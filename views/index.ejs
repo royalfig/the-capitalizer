@@ -9,19 +9,32 @@
 </head>
 
 <body>
+    <header class="cap-header">
+        <h1 class="cap-heading">CMS Capitalizer</h1>
+    </header>
 
     <main class="container">
-        <header class="cap-header">
-            <h1 class="cap-heading">CMS Capitalizer</h1>
-        </header>
-        <fieldset>
-            <form action="/" method="post">
-                <textarea name="title" class="cap-input" placeholder="Enter Title" required></textarea>
-                <input type="submit" class="cap-button" value="Capitalize">
-            </form>
-        </fieldset>
-        <p class="cap-result"><%= newTitle %></p>
+
+
+        <section class="input-left">
+            <fieldset>
+                <form action="/" method="post" class="cap-form">
+                    <textarea name="title" class="cap-input" placeholder="Enter Title(s)" required></textarea>
+                    <input type="submit" class="cap-button" value="Capitalize">
+                </form>
+            </fieldset>
+        </section>
+
+        <section class="result-right">
+            <textarea id="title-text" class="cap-result"><%= newTitle %></textarea>
+            <button id="copy-button" class="cap-button">Copy to Clipboard</button>
+        </section>
+
     </main>
+
+    <!-- Load copy to clipboard srcript -->
+    <script src="/js/main.js"></script>
 </body>
+
 
 </html>
