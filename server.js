@@ -20,46 +20,83 @@ app.post('/', function (req, res) {
 
     const prep = ['a', 'aboard', 'about', 'above', 'across', 'after', 'against', 'along', 'amid', 'among', 'anti', 'around', 'as', 'at', 'before', 'behind', 'below', 'beneath', 'beside', 'besides', 'between', 'beyond', 'but', 'by', 'concerning', 'considering', 'despite', 'down', 'during', 'except', 'excepting', 'excluding', 'following', 'for', 'from', 'in', 'inside', 'into', 'like', 'minus', 'near', 'of', 'off', 'on', 'onto', 'opposite', 'outside', 'over', 'past', 'per', 'plus', 'regarding', 'round', 'save', 'since', 'than', 'the', 'this', 'through', 'to', 'toward', 'towards', 'under', 'underneath', 'unlike', 'until', 'up', 'upon', 'versus', 'via', 'with', 'within', 'without'];
 
-    console.log(/\r\n/.test(req.body.title));
+    // if (/\r\n/.test(req.body.title) === true) {
+    //     console.log("This is multiple titles");
+    // } else {
+    //     console.log("This is a single title");
+    // }
 
-    let titleArray = req.body.title.toLowerCase().split(" ");
+    // let test = req.body.title.toLowerCase().split(/\r\n/);
+    // let testA = [];
 
+    // test.forEach(element => {
+    //     testA.push(element.split(" "))
+    //     console.log(testA);
+    // })
+
+    console.log(req.body.title);
+    let titleArray = req.body.title.toLowerCase().split(/\r\n/);
     // .split(/\r\n/);
 
     let wordArray = [];
 
     titleArray.forEach(element => {
+
         wordArray.push(element.split(" "));
     });
 
-    console.log(wordArray);
 
-    for (word in titleArray) {
-        if (prep.includes(titleArray[word]) === false) {
 
-            //Change all non-prep words into uppercase
-            titleArray[word] = titleArray[word].replace(/(\w)/, function (x) {
-                return x.toUpperCase();
-            });
+    for (title in wordArray) {
+        for (word in wordArray[title]) {
+            if (prep.includes(wordArray[title][word]) === false) {
 
-            //Change all hypenated words into uppercase
-            titleArray[word] = titleArray[word].replace(/(-\w)/, function (y) {
-                return y.toUpperCase();
-            });
+                //Change all non-prep words into uppercase
+                wordArray[title][word] = wordArray[title][word].replace(/(\w)/, function (x) {
+                    return x.toUpperCase();
+                });
 
+                //Change all hypenated words into uppercase
+                wordArray[title][word] = wordArray[title][word].replace(/(-\w)/, function (y) {
+                    return y.toUpperCase();
+                });
+
+            }
         }
     }
 
-    //Capitalize the first letter of the title
-    newTitle = titleArray.join(" ").replace(/\w/, function (x) {
-        return x.toUpperCase();
-    })
+    console.log(wordArray);
+    let finalTitle = [];
+
+    for (x in wordArray) {
+       
+        finalTitle.push(wordArray[x].join(" "));
+    }
+
+    finalTitle = finalTitle.join("\r\n");
+    console.log(finalTitle);
+    // let newTitle = titleArray.join(" ");
+    // let multiTitle = [];
+
+    // newTitle.forEach(element => {
+    //     multiTitle.push(element.replace(/\w/, function (x) {
+    //         return x.toUpperCase()
+    //     }));
+    // })
+
+    // // console.log(multiTitle);
+
+    // //Capitalize the first letter of the title
+    // newTitle = titleArray.join(" ").replace(/\w/, function (x) {
+    //     return x.toUpperCase();
+    // })
 
     res.render('index', {
-        newTitle: newTitle
+        newTitle: finalTitle
     });
 
 
+    // console.log(newTitle)
 
 })
 
