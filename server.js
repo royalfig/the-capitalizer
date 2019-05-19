@@ -12,13 +12,13 @@ app.use(bodyParser.urlencoded({
 
 app.get('/', function (req, res) {
     res.render('index', {
-        newTitle: null
+        newTitle: null,
+        titleNumber: null
     });
 })
-
 app.post('/', function (req, res) {
 
-    const prep = ['a', 'aboard', 'about', 'above', 'across', 'after', 'against', 'along', 'amid', 'among', 'anti', 'around', 'as', 'at', 'before', 'behind', 'below', 'beneath', 'beside', 'besides', 'between', 'beyond', 'but', 'by', 'concerning', 'considering', 'despite', 'down', 'during', 'except', 'excepting', 'excluding', 'following', 'for', 'from', 'in', 'inside', 'into', 'like', 'minus', 'near', 'of', 'off', 'on', 'onto', 'opposite', 'outside', 'over', 'past', 'per', 'plus', 'regarding', 'round', 'save', 'since', 'than', 'the', 'this', 'through', 'to', 'toward', 'towards', 'under', 'underneath', 'unlike', 'until', 'up', 'upon', 'versus', 'via', 'with', 'within', 'without'];
+    const prep = ['a', 'aboard', 'about', 'above', 'across', 'after', 'against', 'along', 'amid', 'among', 'an', 'and', 'anti', 'around', 'as', 'at', 'before', 'behind', 'below', 'beneath', 'beside', 'besides', 'between', 'beyond', 'but', 'by', 'ca', 'concerning', 'considering', 'de', 'despite', 'down', 'during', 'except', 'excepting', 'excluding', 'following', 'for', 'from', 'in', 'inside', 'into', 'like', 'minus', 'near', 'of', 'off', 'nor', 'on', 'onto', 'opposite', 'or', 'outside', 'over', 'past', 'per', 'plus', 'regarding', 'round', 'save', 'since', 'than', 'the', 'this', 'through', 'to', 'toward', 'towards', 'under', 'underneath', 'unlike', 'until', 'up', 'upon', 'versus', 'via', 'von', 'with', 'within', 'without'];
 
     // if (/\r\n/.test(req.body.title) === true) {
     //     console.log("This is multiple titles");
@@ -38,6 +38,10 @@ app.post('/', function (req, res) {
     let titleArray = req.body.title.toLowerCase().split(/\r\n/);
     // .split(/\r\n/);
 
+    // titleNum = titleArray.length;
+    // titleNum = titleArray.length;
+    let titleNum = titleArray.length;
+    console.log(titleNum);
     let wordArray = [];
 
     titleArray.forEach(element => {
@@ -65,16 +69,17 @@ app.post('/', function (req, res) {
         }
     }
 
-    console.log(wordArray);
+
     let finalTitle = [];
 
     for (x in wordArray) {
-       
-        finalTitle.push(wordArray[x].join(" "));
-    }
 
+        finalTitle.push(wordArray[x].join(" ").replace(/\w/, function (x) {
+            return x.toUpperCase();
+        }))
+    }
     finalTitle = finalTitle.join("\r\n");
-    console.log(finalTitle);
+
     // let newTitle = titleArray.join(" ");
     // let multiTitle = [];
 
@@ -92,9 +97,14 @@ app.post('/', function (req, res) {
     // })
 
     res.render('index', {
+        titleNumber: titleNum,
         newTitle: finalTitle
     });
 
+    // res.render('index', {
+    //     newTitle: finalTitle
+
+    // });
 
     // console.log(newTitle)
 

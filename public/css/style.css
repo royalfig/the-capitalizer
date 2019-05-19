@@ -2,22 +2,26 @@ body {
     margin: 0;
     padding: 0;
 
-    background: #eee;
+    background:#eee;
+    line-height: 1.6;
 }
 
 .cap-header {
-    padding: 4em;
+    padding: 2em;
 
-    background: linear-gradient(217deg, rgba(255, 0, 0, .8), rgba(255, 0, 0, 0) 70.71%),
-        linear-gradient(127deg, rgba(0, 255, 0, .8), rgba(0, 255, 0, 0) 70.71%),
-        linear-gradient(336deg, rgba(0, 0, 255, .8), rgba(0, 0, 255, 0) 70.71%);
+    background: linear-gradient(#0033FF,  #0024B3);
+    border-bottom: 5px solid #FFBD00;
+    box-shadow: 0 1px 1px rgba(0,0,0,.25);
+    
+    
 }
 
 .cap-heading {
+    margin: 0;
+    
     color: #fff;
-    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    font-family: Righteous;
     font-size: 4em;
-    letter-spacing: 3px;
     text-align: center;
 }
 
@@ -30,7 +34,11 @@ body {
 
 
 }
-
+.cap-text-header {
+    text-align: center;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    font-weight: 700;
+}
 .input-left,
 .result-right {
     display: flex;
@@ -51,6 +59,7 @@ textarea {
     outline: none;
     -moz-appearance: none;
     user-select: none;
+
 }
 
 fieldset {
@@ -66,13 +75,15 @@ fieldset {
 
 .cap-input,
 .cap-result {
-    min-height: 150px;
-    padding: 10px;
+    min-height: 250px;
+    padding: 1em;
 
+    border-radius: 5px;
     font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
     font-size: 1em;
+    line-height: 1.6;
     /* outline: none; */
-    overflow: hidden;
+    overflow: auto;
     resize: none;
 
 }
@@ -83,19 +94,25 @@ input:focus {
 
 .cap-button {
     align-self: flex-end;
-    margin-top: 5px;
+    margin-top: 10px;
 
     padding: 3px 5px;
     width: -moz-fit-content;
 
-    background: none;
-    border: 1px solid #555;
+    background: #0033FF;
+    border: none;
     border-radius: 5px;
     box-shadow: none;
+    color: #fff;
     cursor: pointer;
     font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
-    font-size: .8em;
+    font-size: 1em;
     font-weight: 400;
     text-transform: uppercase;
 
+}
+
+.cap-button:hover {
+    background: #0024b3;
+    transition: .1s;
 }

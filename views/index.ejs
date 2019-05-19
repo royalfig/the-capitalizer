@@ -6,11 +6,12 @@
     <title>Capitalize Your Title</title>
     <link rel="stylesheet" type="text/css" href="/css/style.css">
     <link href='https://fonts.googleapis.com/css?family=Open+Sans:300' rel='stylesheet' type='text/css'>
+    <link href="https://fonts.googleapis.com/css?family=Righteous&display=swap" rel="stylesheet">
 </head>
 
 <body>
     <header class="cap-header">
-        <h1 class="cap-heading">CMS Capitalizer</h1>
+        <h1 class="cap-heading">Cap That Title</h1>
     </header>
 
     <main class="container">
@@ -19,6 +20,13 @@
         <section class="input-left">
             <fieldset>
                 <form action="/" method="post" class="cap-form">
+                    <div class="style-select">
+                        <p class="cap-text-header">
+                            <input type="radio" name="style" value="cms" checked>CMS
+                            <input type="radio" name="style" value="apa">APA
+                            <input type="radio" name="style" value="mla">MLA
+                        </p>
+                    </div>
                     <textarea name="title" class="cap-input" placeholder="Enter Title(s)" autofocus></textarea>
                     <input type="submit" class="cap-button" value="Capitalize">
                 </form>
@@ -26,6 +34,7 @@
         </section>
 
         <section class="result-right">
+            <p class="cap-text-header">Titles Converted: <%= titleNumber %></p>
             <textarea id="title-text" class="cap-result"><%= newTitle %></textarea>
             <button id="copy-button" class="cap-button">Copy to Clipboard</button>
         </section>
