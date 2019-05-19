@@ -30,21 +30,33 @@ body {
     display: flex;
     justify-content: center;
     margin-top: 1em;
-    padding: 2em 4em;
+    margin: 0 auto;
+    max-width: 1040px;
+    padding: 2em 4vw;
 
 
 }
 .cap-text-header {
+    display: flex;
+    margin-bottom: 5px;
+    width: 100%;
+
     text-align: center;
     font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
     font-weight: 700;
 }
-.input-left,
-.result-right {
+.select-left {
+    margin-left: 5px;
+}
+.number-right {
+    margin-left: auto;
+    margin-right: 5px;
+}
+.cap-input-container {
     display: flex;
     flex-flow: column;
-    margin: 2.5%;
-    width: 45%;
+    /* margin: 2.5%; */
+    flex: 1 1 auto;
 
     border: none;
     box-shadow: none;
@@ -73,10 +85,11 @@ fieldset {
     flex-flow: column;
 }
 
-.cap-input,
-.cap-result {
+ /* Text Input  */
+.cap-input {
     min-height: 250px;
     padding: 1em;
+    width: calc(100% - 2em);
 
     border-radius: 5px;
     font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
@@ -85,6 +98,7 @@ fieldset {
     /* outline: none; */
     overflow: auto;
     resize: none;
+    text-align: left;
 
 }
 
@@ -94,7 +108,6 @@ input:focus {
 
 .cap-button {
     align-self: flex-end;
-    margin-top: 10px;
 
     padding: 3px 5px;
     width: -moz-fit-content;
@@ -115,4 +128,15 @@ input:focus {
 .cap-button:hover {
     background: #0024b3;
     transition: .1s;
+}
+
+.cap-button:last-child {
+    margin-left: 5px;
+}
+
+
+.button-box {
+    display: flex;
+    justify-content: flex-end;
+    margin-top: 5px;
 }
