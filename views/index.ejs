@@ -93,9 +93,14 @@
                     <div class="style-select">
                         <div class="cap-text-header">
                             <div class="select-left">
-                                <input type="radio" name="style" value="cms" checked>CMS
-                                <input type="radio" name="style" value="apa">APA
-                                <input type="radio" name="style" value="mla">MLA
+                                <input type="radio" name="style" class="style-select-button" id="ap" value="ap"
+                                    checked><label for="ap">Associated Press</label>
+                                <input type="radio" name="style" class="style-select-button" id="apa" value="apa"><label
+                                    for="apa">APA</label>
+                                <input type="radio" name="style" class="style-select-button" id="cms" value="cms"><label
+                                    for="cms">CMS</label>
+                                <input type="radio" name="style" class="style-select-button" id="mla" value="mla"><label
+                                    for="mla">MLA</label>
                             </div>
                             <div class="number-right">
                                 <% if (titleNumber > 1) { %> Titles Converted: <%= titleNumber %>
@@ -117,6 +122,24 @@
 
     <aside class="container explainer">
         <h2>Style Rules</h2>
+        <div class="style-rules ap">
+            <ul>
+                <li>Associated Press</li>
+                <li>Associated Press</li>
+                <li>Associated Press</li>
+                <li>Associated Press</li>
+                <li>Associated Press</li>
+            </ul>
+        </div>
+        <div class="style-rules apa">
+            <ul>
+                <li>American Psychological Association</li>
+                <li>American Psychological Association</li>
+                <li>American Psychological Association</li>
+                <li>American Psychological Association</li>
+                <li>American Psychological Association</li>
+            </ul>
+        </div>
         <div class="style-rules cms">
             <ul>
                 <li>Chicago Manual of Style</li>
@@ -126,22 +149,13 @@
                 <li>Chicago Manual of Style</li>
             </ul>
         </div>
-        <div class="style-rules apa">
-            <ul>
-                <li></li>
-                <li></li>
-                <li></li>
-                <li></li>
-                <li></li>
-            </ul>
-        </div>
         <div class="style-rules mla">
             <ul>
-                <li></li>
-                <li></li>
-                <li></li>
-                <li></li>
-                <li></li>
+                <li>Modern Language Association</li>
+                <li>Modern Language Association</li>
+                <li>Modern Language Association</li>
+                <li>Modern Language Association</li>
+                <li>Modern Language Association</li>
             </ul>
         </div>
     </aside>
