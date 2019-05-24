@@ -16,62 +16,24 @@ function textCopy() {
 
 }
 
-// Change text appearance for style selection
-let styleButtons = document.getElementsByName('style');
-let styleDescriptions = document.getElementsByClassName('style-rules');
+// Change text appearance for style selection 
+// const styleButtons = document.getElementsByName('style');
 
-console.log(styleDescriptions[0].classList[1]);
+// // styleButtons.forEach(x => {
+  
+// //   x.addEventListener('change', function () {
+    
+// //     const ap = document.querySelector("#ap");
+// //     const apa = document.querySelector("#apa");
+// //     const cms = document.querySelector("#cms");
+// //     const mla = document.querySelector("#mla");
+    
+// //     const styleDescriptions = document.getElementsByClassName('style-rules');
+    
+// //     (ap.checked) ? (ap.nextElementSibling.innerHTML = "Associated Press", styleDescriptions[0].style.display = 'block') : (ap.nextElementSibling.innerHTML = "AP", styleDescriptions[0].style.display = 'none');
+// //     (apa.checked) ? (apa.nextElementSibling.innerHTML = "American Psychological Assoication", styleDescriptions[1].style.display = 'block') : (apa.nextElementSibling.innerHTML = "APA", styleDescriptions[1].style.display = 'none');
+// //     (cms.checked) ? (cms.nextElementSibling.innerHTML = "Chicago Manual of Style", styleDescriptions[2].style.display = 'block') : (cms.nextElementSibling.innerHTML = "CMS", styleDescriptions[2].style.display = 'none');
+// //     (mla.checked) ? (mla.nextElementSibling.innerHTML = "Modern Language Association", styleDescriptions[3].style.display = 'block') : (mla.nextElementSibling.innerHTML = "MLA", styleDescriptions[3].style.display = 'none');
 
-styleButtons.forEach(x => {
-  x.addEventListener('change', function () {
-    switch (this.value) {
-      case 'ap':
-        this.nextElementSibling.innerHTML = "Associated Press";
-        styleDescriptions[0].style.display = "block";
-        styleDescriptions[1].style.display = "none";
-        styleDescriptions[2].style.display = "none";
-        styleDescriptions[3].style.display = "none";
-
-        document.querySelector("#apa").nextElementSibling.innerHTML = "APA";
-        document.querySelector("#cms").nextElementSibling.innerHTML = "CMS";
-        document.querySelector("#mla").nextElementSibling.innerHTML = "MLA";
-        break;
-
-      case 'apa':
-        this.nextElementSibling.innerHTML = "American Psychological Association";
-        styleDescriptions[0].style.display = "none";
-        styleDescriptions[1].style.display = "block";
-        styleDescriptions[2].style.display = "none";
-        styleDescriptions[3].style.display = "none";
-
-        document.querySelector("#ap").nextElementSibling.innerHTML = "AP";
-        document.querySelector("#cms").nextElementSibling.innerHTML = "CMS";
-        document.querySelector("#mla").nextElementSibling.innerHTML = "MLA";
-        break;
-
-      case 'cms':
-        this.nextElementSibling.innerHTML = "Chicago Manual of Style";
-        styleDescriptions[0].style.display = "none";
-        styleDescriptions[1].style.display = "none";
-        styleDescriptions[2].style.display = "block";
-        styleDescriptions[3].style.display = "none";
-
-        document.querySelector("#ap").nextElementSibling.innerHTML = "AP";
-        document.querySelector("#apa").nextElementSibling.innerHTML = "APA";
-        document.querySelector("#mla").nextElementSibling.innerHTML = "MLA";
-        break;
-
-      case 'mla':
-        this.nextElementSibling.innerHTML = "Modern Language Association";
-        styleDescriptions[0].style.display = "none";
-        styleDescriptions[1].style.display = "none";
-        styleDescriptions[2].style.display = "none";
-        styleDescriptions[3].style.display = "block";
-
-        document.querySelector("#ap").nextElementSibling.innerHTML = "AP";
-        document.querySelector("#apa").nextElementSibling.innerHTML = "APA";
-        document.querySelector("#cms").nextElementSibling.innerHTML = "CMS";
-        break;
-    }
-  });
-})
+// //   });
+// // })

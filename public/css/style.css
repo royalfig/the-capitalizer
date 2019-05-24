@@ -1,3 +1,7 @@
+* {
+    box-sizing: border-box;
+}
+
 body {
     margin: 0;
     padding: 0;
@@ -69,11 +73,16 @@ body {
 
 textarea {
     box-shadow: none;
-    border: none;
+    border: 1px solid #fff;
     outline: none;
     -moz-appearance: none;
     user-select: none;
 
+}
+
+textarea:focus {
+    
+    border: 1px solid #FFBD00;
 }
 
 fieldset {
@@ -91,8 +100,7 @@ fieldset {
 .cap-input {
     min-height: 250px;
     padding: 1em;
-    width: calc(100% - 2em);
-
+    width: 100%;
     border-radius: 5px;
     font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
     font-size: 1em;
@@ -127,9 +135,17 @@ input:focus {
 
 }
 
-.cap-button:hover {
-    background: #0024b3;
+.cap-button:hover,
+.cap-button:focus,
+input[type="button"]::-moz-focus-inner,
+button::-moz-focus-inner,
+input[type="submit"]::-moz-focus-inner {
+    background: #FFBD00;
+    border: none;
+    color: #111;
+    outline: none;
     transition: .1s;
+
 }
 
 .cap-button:last-child {
@@ -144,25 +160,38 @@ input:focus {
 }
 
 /* Style Rules  */
-.explainer {
+.explainer-container {
     flex-flow: column;
+    box-sizing: border-box;
+}
+
+.explainer {
+    padding: 1em;
+    width: 100%;
+
+    background: #fff;
+    border-bottom-left-radius: 5px;
+    border-bottom-right-radius: 5px;
     text-align: center;
 }
 
-.explainer h2 {
+.container h2 {
+    margin: 0;
     width: 100%;
-    
+
     background: #0033FF;
-    border-radius: 5px;
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
     color: #eee;
     font-size: 2.5em;
+    text-align: center;
 
 }
-.apa,
+/* .apa,
 .cms,
 .mla {
     display: none;
-}
+} */
 
 .style-rules {
     text-align: left;
