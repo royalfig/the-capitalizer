@@ -136,10 +136,10 @@ input:focus {
 }
 
 .cap-button:hover,
-.cap-button:focus,
-input[type="button"]::-moz-focus-inner,
+.cap-button:focus {
+/* input[type="button"]::-moz-focus-inner,
 button::-moz-focus-inner,
-input[type="submit"]::-moz-focus-inner {
+input[type="submit"]::-moz-focus-inner { */
     background: #FFBD00;
     border: none;
     color: #111;
