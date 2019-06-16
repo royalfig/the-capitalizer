@@ -22,6 +22,12 @@
     "express": "^4.16.4"
   },
   "devDependencies": {
+<<<<<<< HEAD
     "nodemon": "^1.19.1"
+=======
+    "gulp-sass": "^4.0.2",
+    "nodemon": "^1.19.0",
+    "gulp": "^4.0.2"
+>>>>>>> 56412e45833cd928ddd57e2f0d126370c7663c57
   }
 }
