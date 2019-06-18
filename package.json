@@ -4,7 +4,7 @@
   "description": "A Title Capitalization Project",
   "main": "server.js",
   "scripts": {
-    "production": "node server",
+    "start": "node server",
     "dev": "nodemon server"
   },
   "repository": {
@@ -23,8 +23,6 @@
     "express": "^4.16.4"
   },
   "devDependencies": {
-    "gulp-sass": "^4.0.2",
-    "nodemon": "^1.19.0",
-    "gulp": "^4.0.2"
+    "nodemon": "^1.19.1"
   }
 }
