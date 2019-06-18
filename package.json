@@ -4,7 +4,8 @@
   "description": "A Title Capitalization Project",
   "main": "server.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "production": "node server",
+    "dev": "nodemon server"
   },
   "repository": {
     "type": "git",
