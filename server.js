@@ -90,12 +90,12 @@ console.log(req.body);
 
 
 
-
+console.log(finalTitle);
     //  Rejoin titles to return to box
-    finalTitle = finalTitle.join("\r\n");
+    // finalTitle = finalTitle.join("\r\n");
 
     // Render the template with the new data
-    res.render('index', {
+    res.render('result', {
         titleNumber: titleNum,
         newTitle: finalTitle,
         style: style

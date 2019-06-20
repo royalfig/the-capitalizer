@@ -89,31 +89,33 @@
 
         <section class="cap-input-container">
             <fieldset>
-                <form action="/" method="post" class="cap-form">
-                    <div class="style-select">
-                        <div class="cap-text-header">
-                            <div class="select-left">
-                                <input type="radio" name="style" class="style-select-button" id="ap" value="ap" required
-                                    <% if (style == "ap") { %>checked<% } %>><label for="ap">AP</label>
-                                <input type="radio" name="style" class="style-select-button" id="apa" value="apa"
-                                    <% if (style == "apa") { %>checked<% } %>><label for="apa">APA</label>
-                                <input type="radio" name="style" class="style-select-button" id="cms" value="cms"
-                                    <% if (style == "cms") { %>checked<% } %>><label for="cms">CMS</label>
-                                <input type="radio" name="style" class="style-select-button" id="mla" value="mla"
-                                    <% if (style == "mla") { %>checked<% } %>><label for="mla">MLA</label>
-                                <input type="radio" name="style" class="style-select-button" id="nyt" value="nyt"
-                                    <% if (style == "nyt") { %>checked<% } %>><label for="nyt">NYT</label>
-                                <input type="radio" name="style" class="style-select-button" id="wp" value="wp"
-                                    <% if (style == "wp") { %>checked<% } %>><label for="wp">WP</label>
-                            </div>
-                            
+
+                <div class="style-select">
+                    <div class="cap-text-header">
+
+                        <div class="number-right">
+                            <% if (titleNumber > 1) { %> Titles Converted: <%= titleNumber %>
+                            <% } else if (titleNumber === 1) { %>
+                            Title Converted: <%= titleNumber %> <% } else {%><% } %>
                         </div>
-                        <textarea id="title-text" name="title" class="cap-input" placeholder="Enter Title(s)"
-                            autofocus></textarea>
-                        <div class="button-box">
-                            <input type="submit" class="cap-button" value="Capitalize">
-                        </div>
-                </form>
+                    </div>
+                    <section aria-label="results">
+
+                        <% newTitle.forEach( function(item, ind) { %>
+                        <p class="cap-result">
+                            <%= item %>
+                        </p>
+
+                        <%                        }) %>
+                    </section>
+                    <div class="button-box">
+                        <button id="copy-button" class="cap-button">Copy</button>
+                        <button id="clear-button" class="cap-button">Clear</button>
+
+
+
+                    </div>
+                    </form>
             </fieldset>
     </main>
 
@@ -183,14 +185,14 @@
             <div class="style-rules nyt">
                 <h3>New York Times</h3>
                 <ul>
-                    
+
                 </ul>
             </div>
 
             <div class="style-rules wp">
                 <h3>Wikipedia</h3>
                 <ul>
-                    
+
                 </ul>
             </div>
         </article>
