@@ -93,24 +93,31 @@
                     <div class="style-select">
                         <div class="cap-text-header">
                             <div class="select-left">
-                                <input type="radio" name="style" class="style-select-button" id="ap" value="ap" required
+                                <input type="radio" name="style" class="style-select-button" value="ap"
+                                    data-id="Associated Press" required checked
                                     <% if (style == "ap") { %>checked<% } %>><label for="ap">AP</label>
-                                <input type="radio" name="style" class="style-select-button" id="apa" value="apa"
+                                <input type="radio" name="style" class="style-select-button" value="apa"
+                                    data-id="American Psychological Associated"
                                     <% if (style == "apa") { %>checked<% } %>><label for="apa">APA</label>
-                                <input type="radio" name="style" class="style-select-button" id="cms" value="cms"
-                                    <% if (style == "cms") { %>checked<% } %>><label for="cms">CMS</label>
-                                <input type="radio" name="style" class="style-select-button" id="mla" value="mla"
+                                <input type="radio" name="style" class="style-select-button" value="cms"
+                                    data-id="Chicago Manual of Style" <% if (style == "cms") { %>checked<% } %>><label
+                                    for="cms">CMS</label>
+                                <input type="radio" name="style" class="style-select-button" value="mla"
+                                    data-id="Modern Literature Association"
                                     <% if (style == "mla") { %>checked<% } %>><label for="mla">MLA</label>
-                                <input type="radio" name="style" class="style-select-button" id="nyt" value="nyt"
-                                    <% if (style == "nyt") { %>checked<% } %>><label for="nyt">NYT</label>
-                                <input type="radio" name="style" class="style-select-button" id="wp" value="wp"
-                                    <% if (style == "wp") { %>checked<% } %>><label for="wp">WP</label>
+                                <input type="radio" name="style" class="style-select-button" value="nyt"
+                                    data-id="New York Times" <% if (style == "nyt") { %>checked<% } %>><label
+                                    for="nyt">NYT</label>
+                                <input type="radio" name="style" class="style-select-button" value="wp"
+                                    data-id="Wikipedia" <% if (style == "wp") { %>checked<% } %>><label
+                                    for="wp">WP</label>
                             </div>
-                            
+
                         </div>
                         <textarea id="title-text" name="title" class="cap-input" placeholder="Enter Title(s)"
                             autofocus></textarea>
                         <div class="button-box">
+                            <a class="style-description"></a>
                             <input type="submit" class="cap-button" value="Capitalize">
                         </div>
                 </form>
@@ -120,7 +127,7 @@
     <aside class="container explainer-container">
         <h2>Style Rules</h2>
         <article class="explainer">
-            <div class="style-rules ap">
+            <div id="ap" class="style-rules ap">
                 <h3>Associated Press</h3>
                 <ul>
 
@@ -134,7 +141,7 @@
                     <li>To break these rules is tantamount to pedophilia.</li>
                 </ul>
             </div>
-            <div class="style-rules apa">
+            <div id="apa" class="style-rules apa">
                 <h3>American Psychological Association</h3>
                 <ul>
                     <li>The first word in a sentence, so smug, is capitalized, as is any of the family members, i.e.,
@@ -147,7 +154,7 @@
                         letter.</li>
                 </ul>
             </div>
-            <div class="style-rules cms">
+            <div id="cms" class="style-rules cms">
                 <h3>Chicago Manual of Style (17<sup>th</sup> edition)</h3>
                 <ul>
                     <li>Begging to be seen, the first word in a sentence must always be capitalized. Lest the last word
@@ -168,7 +175,7 @@
                         No exceptions!</li>
                 </ul>
             </div>
-            <div class="style-rules mla">
+            <div id="mla" class="style-rules mla">
                 <h3>Modern Language Association</h3>
                 <ul>
                     <li>The first word of a title is like the winner of a race. Crown it with capitalization.</li>
@@ -180,17 +187,17 @@
                 </ul>
             </div>
 
-            <div class="style-rules nyt">
+            <div id="nyt" class="style-rules nyt">
                 <h3>New York Times</h3>
                 <ul>
-                    
+
                 </ul>
             </div>
 
-            <div class="style-rules wp">
+            <div id="wp" class="style-rules wp">
                 <h3>Wikipedia</h3>
                 <ul>
-                    
+
                 </ul>
             </div>
         </article>

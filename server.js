@@ -18,20 +18,86 @@ app.get('/', function (req, res) {
     });
 })
 
-app.post('/', function (req, res) {
+// app.get('/result', (req, res) => {
+//     res.redirect('/');
+// })
 
-    const prep = ['a', 'aboard', 'about', 'above', 'across', 'after', 'against', 'along', 'amid', 'among', 'an', 'and', 'anti', 'around', 'as', 'at', 'before', 'behind', 'below', 'beneath', 'beside', 'besides', 'between', 'beyond', 'but', 'by', 'c.', 'ca.', 'concerning', 'considering', 'de', 'despite', 'down', 'during', 'except', 'excepting', 'excluding', 'following', 'for', 'from', 'in', 'inside', 'into', 'like', 'minus', 'near', 'of', 'off', 'nor', 'on', 'onto', 'opposite', 'or', 'outside', 'over', 'past', 'per', 'plus', 'regarding', 'round', 'save', 'since', 'than', 'the', 'this', 'through', 'to', 'toward', 'towards', 'under', 'underneath', 'unlike', 'until', 'up', 'upon', 'versus', 'via', 'von', 'with', 'within', 'without'];
+app.post('/', (req, res) => {
+
+    const prep = ['aboard', 'about', 'above', 'across', 'after', 'against', 'along', 'amid', 'among', 'and', 'anti', 'around', 'as', 'at', 'before', 'behind', 'below', 'beneath', 'beside', 'besides', 'between', 'beyond', 'but', 'by', 'c.', 'ca.', 'concerning', 'considering', 'de', 'despite', 'down', 'during', 'except', 'excepting', 'excluding', 'following', 'for', 'from', 'in', 'inside', 'into', 'like', 'minus', 'near', 'of', 'off', 'nor', 'on', 'onto', 'opposite', 'or', 'outside', 'over', 'past', 'per', 'plus', 'regarding', 'round', 'save', 'since', 'than', 'this', 'through', 'to', 'toward', 'towards', 'under', 'underneath', 'unlike', 'until', 'up', 'upon', 'versus', 'via', 'von', 'with', 'within', 'without'];
 
     const coordConj = ['and', 'but', 'for', 'nor', 'or', 'so', 'yet'];
-console.log(req.body);
+
+    const articles = ['a', 'an', 'the'];
+
+    const spec = ['ADA',
+        'AKA',
+        'ATM',
+        'AWOL',
+        'BC',
+        'BCE',
+        'BYOB',
+        'CE',
+        'CIA',
+        'DIY',
+        'DOB',
+        'EFL',
+        'ESL',
+        'ETA',
+        'FAQ',
+        'FYI',
+        'GMO',
+        'HR',
+        'ID',
+        'II',
+        'III',
+        'IQ',
+        'IV',
+        'IX',
+        'MD',
+        'MIA',
+        'OCD',
+        'OG',
+        'PC',
+        'POW',
+        'PR',
+        'PR',
+        'PS',
+        'RIP',
+        'RSVP',
+        'SOL',
+        'SOS',
+        'TBA',
+        'TGIF',
+        'V',
+        'VI',
+        'VII',
+        'VIII',
+        'WWI',
+        'WWII',
+        'X',
+        'e.g.',
+        'i.e.'
+    ];
+
+    const specSearch = spec.map(element => element.toLowerCase());
+
     // Define selected style
     let style = req.body.style;
 
-    //  Split titles into an array
-    let titleArray = req.body.title.toLowerCase().split(/\r\n/);
+    //  Split titles into an array, remove blank lines
+    let oldTitle = req.body.title;
 
-    //  Number of titles sent 
+    let titleArray = oldTitle.toLowerCase().split(/\r\n/).filter(title => title != '');
+
+
+    //  Number of titles sent
     let titleNum = titleArray.length;
+
+    // Capitalize each word of the sentence
+    titleArray.forEach((el, index) => {
+        return titleArray[index] = el.trim().replace(/(\s\w)|(^\w)|(-\w)/g, title => title.toUpperCase());
+    })
 
     //  Add words of title to an array
     let wordArray = [];
@@ -40,71 +106,107 @@ console.log(req.body);
         wordArray.push(element.split(" "));
     });
 
+    // Modify special words
     for (title in wordArray) {
         for (word in wordArray[title]) {
-            if (prep.includes(wordArray[title][word]) === false) {
-
-                //Change all non-prep words into uppercase
-                wordArray[title][word] = wordArray[title][word].replace(/(\w)/, function (x) {
-                    return x.toUpperCase();
-                });
-
-                //Change all hypenated words into uppercase
-                wordArray[title][word] = wordArray[title][word].replace(/(-\w)/, function (y) {
-
-                    return y.toUpperCase();
-                });
-
+            let specIndex = specSearch.indexOf(wordArray[title][word].toLowerCase());
+            if (specIndex > 0) {
+                wordArray[title][word] = spec[specIndex];
             }
+        }
+    }
 
-            if (style == "ap") {
-                if (wordArray[title][word].length > 3) {
-                    wordArray[title][word] = wordArray[title][word].replace(/(\w)/, function (x) {
-                        return x.toUpperCase();
-                    });
-                }
+    // Lowercase prepositions and articles
+    for (title in wordArray) {
+        for (word in wordArray[title]) {
+            if ([...prep, ...articles].includes(wordArray[title][word].toLowerCase())) {
+                wordArray[title][word] = wordArray[title][word].toLowerCase();
             }
+        }
+    }
+
+    //Uppercase post hyphen
+    for (title in wordArray) {
+        for (word in wordArray[title]) {
+            wordArray[title][word] = wordArray[title][word].replace(/-(\w)/, word => word.toUpperCase());
         }
     }
 
     //  Uppercase first letter of every title
     let finalTitle = [];
 
-    for (x in wordArray) {
-
-        finalTitle.push(wordArray[x].join(" ").replace(/\w/, function (x) {
-            return x.toUpperCase();
-        }));
-
-        
-
+    for (word in wordArray) {
+        finalTitle.push(wordArray[word].join(" ").replace(/\w/, firstLet => firstLet.toUpperCase()));
     }
 
-    // Uppercase letters after colons
-    for (x in finalTitle) {
-        finalTitle[x] = finalTitle[x].replace(/:.(\w)/, function (y) {
-            return y.toUpperCase();
-        });
-    }
-
-
-
-
-console.log(finalTitle);
     //  Rejoin titles to return to box
     // finalTitle = finalTitle.join("\r\n");
 
-    // Render the template with the new data
     res.render('result', {
-        titleNumber: titleNum,
         newTitle: finalTitle,
-        style: style
+        style: style,
+        titleNumber: titleNum
     });
+
+
+
+
+    // for (title in wordArray) {
+    //     for (word in wordArray[title]) {
+    //         if (prep.includes(wordArray[title][word]) === false) {
+
+    //             //Change all non-prep words into uppercase
+    //             wordArray[title][word] = wordArray[title][word].replace(/(\w)/, function (x) {
+    //                 return x.toUpperCase();
+    //             });
+
+    //             //Change all hypenated words into uppercase
+    //             wordArray[title][word] = wordArray[title][word].replace(/(-\w)/, function (y) {
+
+    //                 return y.toUpperCase();
+    //             });
+
+    //         }
+
+    //         if (style == "ap") {
+    //             if (wordArray[title][word].length > 3) {
+    //                 wordArray[title][word] = wordArray[title][word].replace(/(\w)/, function (x) {
+    //                     return x.toUpperCase();
+    //                 });
+    //             }
+    //         }
+    //     }
+    // }
+
+
+
+
+    // }
+
+    // Uppercase letters after colons
+    // for (x in finalTitle) {
+    //     finalTitle[x] = finalTitle[x].replace(/:.(\w)/, function (y) {
+    //         return y.toUpperCase();
+    //     });
+    // }
+
+
+
+
+
+
+
+    // Render the template with the new data
+    // res.render('result', {
+    //     titleNumber: titleNum,
+    //     newTitle: finalTitle,
+    //     style: style
+    // })
 
 
 
 })
 
 app.listen(3000, function () {
-    console.log('Example app listening on port 3000!')
+    console.log(`Hey butthole, app running on 3000`)
 })

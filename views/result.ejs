@@ -11,6 +11,8 @@
 
 <body>
     <header class="cap-header">
+
+
         <h1 class="cap-heading">Capitalize Titles <svg style="height: 100px; width: 100px; vertical-align: bottom;"
                 viewBox="0 0 128 128" xmlns="http://www.w3.org/2000/svg">
                 <defs>
@@ -92,7 +94,25 @@
 
                 <div class="style-select">
                     <div class="cap-text-header">
-
+                        <div class="select-left">
+                            <input type="radio" name="style" class="style-select-button" value="ap"
+                                data-id="Associated Press" required checked
+                                <% if (style == "ap") { %>checked<% } %>><label for="ap">AP</label>
+                            <input type="radio" name="style" class="style-select-button" value="apa"
+                                data-id="American Psychological Associated"
+                                <% if (style == "apa") { %>checked<% } %>><label for="apa">APA</label>
+                            <input type="radio" name="style" class="style-select-button" value="cms"
+                                data-id="Chicago Manual of Style" <% if (style == "cms") { %>checked<% } %>><label
+                                for="cms">CMS</label>
+                            <input type="radio" name="style" class="style-select-button" value="mla"
+                                data-id="Modern Literature Association" <% if (style == "mla") { %>checked<% } %>><label
+                                for="mla">MLA</label>
+                            <input type="radio" name="style" class="style-select-button" value="nyt"
+                                data-id="New York Times" <% if (style == "nyt") { %>checked<% } %>><label
+                                for="nyt">NYT</label>
+                            <input type="radio" name="style" class="style-select-button" value="wp" data-id="Wikipedia"
+                                <% if (style == "wp") { %>checked<% } %>><label for="wp">WP</label>
+                        </div>
                         <div class="number-right">
                             <% if (titleNumber > 1) { %> Titles Converted: <%= titleNumber %>
                             <% } else if (titleNumber === 1) { %>
@@ -100,24 +120,28 @@
                         </div>
                     </div>
                     <section aria-label="results">
-
                         <% newTitle.forEach( function(item, ind) { %>
-                        <p class="cap-result">
-                            <%= item %>
-                        </p>
-
-                        <%                        }) %>
+                        <p class="cap-result"><%= item %></p>
+                        <% }) %>
                     </section>
                     <div class="button-box">
+                        <a class="style-description"></a>
                         <button id="copy-button" class="cap-button">Copy</button>
-                        <button id="clear-button" class="cap-button">Clear</button>
-
-
-
+                        <form action="/" method="get" style="line-height: 1;">
+                            <input id="clear-button" type="submit" class="cap-button" value="Clear">
+                        </form>
                     </div>
                     </form>
             </fieldset>
     </main>
+
+    <div class="title-covers-container">
+        <% newTitle.forEach( function(item, ind) { %>
+        <div class="title-cover">
+            <p><%= item %></p>
+        </div>
+        <% }) %>
+    </div>
 
     <aside class="container explainer-container">
         <h2>Style Rules</h2>
@@ -197,6 +221,10 @@
             </div>
         </article>
     </aside>
+
+    <footer class="cap-footer">
+        <p>I'm the footer</p>
+    </footer>
 
     <!-- Load copy to clipboard srcript -->
     <script src="/js/main.js"></script>
