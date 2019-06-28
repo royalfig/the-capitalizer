@@ -243,7 +243,8 @@ input[type="submit"]::-moz-focus-inner { */
     align-items: center;
     display: flex;
     font-size: .75em;
-    height: 200px;
+    flex-wrap: wrap;
+    /* height: 200px; */
     justify-content: center;
     padding: 2em 4vw;
 
@@ -252,7 +253,10 @@ input[type="submit"]::-moz-focus-inner { */
 }
 
 .title-cover {
-    flex: 0 0 auto;
+    align-items: center;
+    display: flex;
+    flex: 1 1 auto;
+    justify-content: center;
     width: 100px;
     height: 150px;
     color: #111;
@@ -260,13 +264,29 @@ input[type="submit"]::-moz-focus-inner { */
     margin: 5px;
     border-radius: 5px;
     overflow: hidden;
+
+    filter: saturate(.5);
+    transform: scale(.95);
+    text-decoration: none;
+    /* box-shadow: 25px 25px 25px rgba(0, 0, 0, .1), 4px 4px 8px rgba(0, 0, 0, .2) ; */
+
+}
+
+.title-cover:hover {
+    filter: saturate(1);
+    transform: scale(1);
+    cursor: pointer;
+    /* box-shadow: 30px 30px 30px rgba(0, 0, 0, .15), 6px 6px 10px rgba(0, 0, 0, .25) ; */
+
 }
 
 .title-cover>p {
     padding: 5px;
     overflow: hidden;
     margin: 0;
-    font-weight: 400;
+    font-weight: 700;
+    line-height: 1.2;
+    text-align: center;
 }
 
 .cap-footer {

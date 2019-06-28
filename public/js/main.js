@@ -122,3 +122,13 @@ function updateStyle() {
 }
 
 selectedStyle.forEach(input => input.addEventListener('click', updateStyle));
+
+//Animation H1 header
+const header = document.querySelector('.cap-heading');
+const headerArray = header.innerText.split('')
+
+for (letter in headerArray) {
+  console.log(headerArray, headerArray[letter])
+  headerArray[letter] = headerArray[letter].toUpperCase();
+}
+
