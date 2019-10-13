@@ -131,7 +131,7 @@ export default {};
   text-align: center;
 }
 
-.container h2 {
+h2 {
   margin: 0;
   width: 100%;
   background: cap-blue;

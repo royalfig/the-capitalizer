@@ -11,7 +11,7 @@ export default {};
 
 <style lang="stylus" scoped>
 .cap-header {
-  padding: 2em;
+  padding: 1em;
   background: linear-gradient(#0033ff, #0024b3);
   border-bottom: 5px solid cap-yellow;
   box-shadow: 0 1px 1px rgba(0, 0, 0, 0.25);

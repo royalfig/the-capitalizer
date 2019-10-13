@@ -1,48 +1,51 @@
 <template>
-  <section class="container">
-    <fieldset>
-      <form class="cap-form">
-        <div class="style-choice-container">
-          <div class="style-choices">
-            <div v-for="style in styles" :key="style.abb">
-              <input
-                v-model="picked"
-                type="radio"
-                name="style"
-                class="style-select-button"
-                :value="style.abb"
-                :id="style.abb"
-                required
-                :aria-label="style.name"
-              />
-              <label class="style-select-label" :for="style.abb">{{ style.abb }}</label>
-            </div>
-          </div>
-        </div>
-        <textarea
-          id="title-text"
-          name="title"
-          class="cap-input"
-          placeholder="Enter Title(s)"
-          autofocus
-          v-model="message"
-        ></textarea>
-      </form>
-      <p v-show="titleNum > 0">{{ titleNum }}</p>
-    </fieldset>
+  <section class="container flex-row">
+    <div class="style-choice-container flex-row flex-100">
+      <div class="style-choices flex-row">
+        <p class="style-choice-instruction m-0">Choose Style:</p>
+        <div class="style-button-container" v-for="style in styles" :key="style.abb">
+          <input
+            v-model="picked"
+            type="radio"
+            name="style"
+            class="style-select-button"
+            :value="style.abb"
+            :id="style.abb"
+            required
+            :aria-label="style.name"
+          />
 
-    <div class="result-container">
+          <label class="style-select-label" :for="style.abb">{{ style.abb }}</label>
+        </div>
+      </div>
       <div class="style-fullname">
         <a :href="anchorTag">{{ styleName }}</a>
       </div>
+    </div>
+
+    <div class="input-container">
+      <textarea
+        id="title-text"
+        name="title"
+        class="input-titles"
+        placeholder="Enter Title(s)"
+        autofocus
+        v-model="message"
+      ></textarea>
+    </div>
+
+    <div class="result-container">
       <div class="output-text" :class="{capped: isCapped}">
-        <p class="result-title" v-for="title in capitalize" :key="title">{{ title }}</p>
+        <p class="result-title m-0" v-for="(title,index) in capitalize" :key="index">{{ title }}</p>
       </div>
     </div>
   </section>
 </template>
 
 <script>
+import { prep, coordConj, articles, spec } from "../capitalize/lists.js";
+import cap from "../capitalize/capitalize.js";
+
 export default {
   data() {
     return {
@@ -80,9 +83,9 @@ export default {
   },
   computed: {
     styleName: function() {
-      for (name in this.styles) {
-        if (this.styles[name].abb === this.picked) {
-          return this.styles[name].name;
+      for (let style of this.styles) {
+        if (style.abb === this.picked) {
+          return style.name;
         }
       }
     },
@@ -91,18 +94,54 @@ export default {
     },
     capitalize: function() {
       if (this.message !== "") {
-        const capArray = this.message.split(/\n/);
-        this.titleNum = capArray.length;
-        const returnArray = [];
-        capArray.forEach(element => {
-          returnArray.push(
+        // Split titles into individuals
+        const originalTitles = this.message
+          .trim()
+          .toLowerCase()
+          .split(/\n/);
+
+        // Get number of titles
+        this.titleNum = originalTitles.length;
+        const titleArray = [];
+
+        originalTitles.forEach(element => {
+          titleArray.push(
             element.replace(/\s\w|^\w/g, letter => {
               return letter.toUpperCase();
             })
           );
         });
+
+        const wordArray = [];
+
+        titleArray.forEach(element => {
+          wordArray.push(element.split(" "));
+        });
+
+        // Lowercase prepositions and articles
+        for (let title in wordArray) {
+          for (let word in wordArray[title]) {
+            if (
+              [...prep, ...articles].includes(
+                wordArray[title][word].toLowerCase()
+              )
+            ) {
+              wordArray[title][word] = wordArray[title][word].toLowerCase();
+            }
+          }
+        }
+
+        const finalTitle = [];
+
+        for (let word in wordArray) {
+          finalTitle.push(
+            wordArray[word]
+              .join(" ")
+              .replace(/\w/, firstLetter => firstLetter.toUpperCase())
+          );
+        }
         this.isCapped = true;
-        return returnArray;
+        return finalTitle;
       } else {
         this.isCapped = false;
         this.titleNum = 0;
@@ -114,170 +153,47 @@ export default {
 </script>
 
 <style lang="stylus" scoped>
-section {
-}
-
-.style-choice-container {
-  display: flex;
-  width: 100%;
-}
-
-.style-fullname {
-  flex: 1;
-  text-align: right;
-  margin-bottom: 0.25em;
+.style-choice-container, .style-choices {
+  // justify-content: space-around;
+  align-items: center;
 }
 
 .style-choices {
-  display: flex;
-  margin-bottom: 0.25em;
-  align-items: center;
-  justify-content: center;
+}
+
+.style-button-container {
+  margin: 0 5px;
 }
 
 .style-select-button {
-  line-height: 1;
-  margin: 0;
+  margin: 0 5px;
+
+  &:hover {
+    cursor: pointer;
+  }
 }
 
-.style-select-label {
-  font-weight: 600;
-  margin-right: 0.5em;
-  margin-left: 4px;
-  line-height: 1;
-}
-
-.number-right {
-  margin-left: auto;
-  margin-right: 5px;
-}
-
-.cap-input-container {
-  display: flex;
-  flex-flow: column;
-  flex: 1 1 auto;
-  border: none;
-  box-shadow: none;
-  font-size: 1em;
-  line-height: 1.6;
-  text-align: center;
-}
-
-textarea {
-  box-shadow: none;
-  border: 1px solid #fff;
-  outline: none;
-  -moz-appearance: none;
-  user-select: none;
-}
-
-textarea:focus, [aria-label='results']:hover {
-  border: 1px solid #ffbd00;
-}
-
-fieldset {
-  border: none;
-  margin: 0;
-  padding: 0;
-}
-
-fieldset, .result-container {
-  flex: 1;
-}
-
-.result-container {
-  margin-left: 1em;
-}
-
-.output-text {
-  border-radius: 5px;
-  background: #ffffff;
-  overflow: auto;
-  resize: none;
-  height: 250px;
+.input-container, .result-container {
+  width: calc(50% - 2em);
   padding: 1em;
-  border: 1px solid white;
-  transition: all 0.2s ease-in;
+  margin: 1em;
+  background: #fff;
+  border-radius: cap-border-radius;
+  border: 1px solid #000000;
+  min-height: 300px;
 }
 
-.capped {
-  border: 1px solid green;
-}
-
-.result-title {
-  margin: 0;
-}
-
-.container {
-  display: flex;
-  font-size: 1em;
-  line-height: 1.5;
-}
-
-.cap-text-header {
-  display: flex;
-  margin-bottom: 0.25em;
-}
-
-.cap-form {
-  display: flex;
-  flex-flow: column;
-}
-
-.cap-input {
-  height: 250px;
-  padding: 1em;
-  position: relative;
+.input-titles {
   width: 100%;
-  z-index: 0;
-  border-radius: 5px;
-  overflow: auto;
+  height: 100%;
+  line-height: 1.5;
   resize: none;
-  text-align: left;
-  background: #ffffff;
-  border: 1px solid #fff;
+}
+
+.input-titles, .result-title {
+  border: none;
   margin: 0;
-  font-size: 1em;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
-}
-
-input:focus {
-  outline: none;
-}
-
-.cap-button {
-  align-self: flex-end;
-  padding: 3px 5px;
-  display: inline-block;
-  background: cap-yellow;
-  border: none;
-  border-radius: 5px;
-  box-shadow: none;
-  color: #000;
-  cursor: pointer;
-  font-size: 1.5em;
-  font-weight: 800;
-  line-height: 1;
-  text-transform: uppercase;
-}
-
-.cap-button:hover, .cap-button:focus {
-  background: #ffbd00;
-  border: none;
-  color: #111111;
-  outline: none;
-  transition: 0.1s;
-}
-
-.cap-button:last-child {
-  margin-left: 5px;
-}
-
-.button-box {
-  display: flex;
-  justify-content: flex-end;
-  margin-top: 5px;
-  position: relative;
-  z-index: 1;
+  background: #ffffff;
+  border-radius: cap-border-radius;
 }
 </style>
