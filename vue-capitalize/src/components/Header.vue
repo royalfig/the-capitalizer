@@ -1,7 +1,6 @@
 <template>
-  <header class="cap-header">
-    <h1>The Royal Title Capitalizer</h1>
-    <p>☕️ Properly Uppercase</p>
+  <header class="header flex-row">
+    <h1 class="title">Titles Capitalized</h1>
   </header>
 </template>
 
@@ -10,16 +9,28 @@ export default {};
 </script>
 
 <style lang="stylus" scoped>
-.cap-header {
-  padding: 1em;
-  background: linear-gradient(#0033ff, #0024b3);
-  border-bottom: 5px solid cap-yellow;
-  box-shadow: 0 1px 1px rgba(0, 0, 0, 0.25);
-  color: #ffffff;
-  text-align: center;
+.header {
+  width: 100%;
+  padding: 1.5em 1em 3em;
+}
 
-  h1 {
-    font-size: 4em;
+.title {
+  display: inline-block;
+  position: relative;
+  margin: 0 auto;
+  font-size: 3em;
+  color: #333333;
+  text-align: center;
+  border-bottom: 1px solid cap-red;
+
+  &:after {
+    content: '';
+    position: absolute;
+    height: 1px;
+    width: 100%;
+    left: 0;
+    bottom: 2px;
+    border-bottom: 4px double cap-red;
   }
 }
 </style>

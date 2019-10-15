@@ -1,43 +1,13 @@
 <template>
   <section class="container flex-row">
-    <div class="style-choice-container flex-row flex-100">
-      <div class="style-choices flex-row">
-        <p class="style-choice-instruction m-0">Choose Style:</p>
-        <div class="style-button-container" v-for="style in styles" :key="style.abb">
-          <input
-            v-model="picked"
-            type="radio"
-            name="style"
-            class="style-select-button"
-            :value="style.abb"
-            :id="style.abb"
-            required
-            :aria-label="style.name"
-          />
-
-          <label class="style-select-label" :for="style.abb">{{ style.abb }}</label>
-        </div>
-      </div>
-      <div class="style-fullname">
-        <a :href="anchorTag">{{ styleName }}</a>
-      </div>
+    <div class="input-container flex-col">
+      <header class="input-header">Enter your title(s)</header>
+      <textarea id="title-text" name="title" class="input-titles" autofocus v-model="message"></textarea>
     </div>
 
-    <div class="input-container">
-      <textarea
-        id="title-text"
-        name="title"
-        class="input-titles"
-        placeholder="Enter Title(s)"
-        autofocus
-        v-model="message"
-      ></textarea>
-    </div>
-
-    <div class="result-container">
-      <div class="output-text" :class="{capped: isCapped}">
-        <p class="result-title m-0" v-for="(title,index) in capitalize" :key="index">{{ title }}</p>
-      </div>
+    <div class="result-container flex-col">
+      <header class="input-header">Titles Capitalized</header>
+      <p class="result-title m-0" v-for="(title,index) in capitalize" :key="index">{{ title }}</p>
     </div>
   </section>
 </template>
@@ -49,49 +19,12 @@ import cap from "../capitalize/capitalize.js";
 export default {
   data() {
     return {
-      styles: [
-        {
-          abb: "AP",
-          name: "Associated Press"
-        },
-        {
-          abb: "APA",
-          name: "American Psychological Association"
-        },
-        {
-          abb: "CMS",
-          name: "Chicago Manual of Style"
-        },
-        {
-          abb: "MLA",
-          name: "Modern Language Association"
-        },
-        {
-          abb: "NYT",
-          name: "New York Times"
-        },
-        {
-          abb: "WP",
-          name: "Wikipedia"
-        }
-      ],
-      picked: "AP",
       message: "",
       isCapped: false,
       titleNum: 0
     };
   },
   computed: {
-    styleName: function() {
-      for (let style of this.styles) {
-        if (style.abb === this.picked) {
-          return style.name;
-        }
-      }
-    },
-    anchorTag: function() {
-      return "#" + this.picked.toLowerCase();
-    },
     capitalize: function() {
       if (this.message !== "") {
         // Split titles into individuals
@@ -153,47 +86,65 @@ export default {
 </script>
 
 <style lang="stylus" scoped>
-.style-choice-container, .style-choices {
-  // justify-content: space-around;
-  align-items: center;
-}
+.container {
+  position: relative;
+  margin-bottom: 2em;
 
-.style-choices {
-}
-
-.style-button-container {
-  margin: 0 5px;
-}
-
-.style-select-button {
-  margin: 0 5px;
-
-  &:hover {
-    cursor: pointer;
+  &:after {
+    height: 3px;
+    width: 100%;
+    position: absolute;
+    background: linear-gradient(to right, cap-red, cap-green);
+    left: 0;
+    bottom: 0;
+    content: '';
   }
 }
 
 .input-container, .result-container {
-  width: calc(50% - 2em);
+  width: 50%;
   padding: 1em;
-  margin: 1em;
-  background: #fff;
-  border-radius: cap-border-radius;
-  border: 1px solid #000000;
-  min-height: 300px;
+  color: #F9F7F7;
+  border-left: 1px solid cap-border;
+  border-right: 1px solid cap-border;
+  border-collapse: collapse;
+  min-height: 400px;
+  font-weight: 400;
+}
+
+.input-container {
+  background-color: #3D3D3D;
+}
+
+.result-container {
+  background-color: #313030;
+}
+
+.input-header {
+  margin-bottom: 0.5em;
+  padding-bottom: 0.15em;
+  border-bottom: 1px solid cap-border;
+  font-weight: 600;
 }
 
 .input-titles {
   width: 100%;
   height: 100%;
-  line-height: 1.5;
+  padding: 0;
+  line-height: 1.6;
+  color: #F9F7F7;
+  background-color: #3D3D3D;
   resize: none;
+  caret-color: cap-red;
+
+  &:focus {
+    outline: none;
+    border-bottom: 3px dotted cap-border;
+  }
 }
 
 .input-titles, .result-title {
   border: none;
   margin: 0;
-  background: #ffffff;
-  border-radius: cap-border-radius;
 }
 </style>
