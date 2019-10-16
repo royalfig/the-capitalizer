@@ -6,8 +6,15 @@
     </div>
 
     <div class="result-container flex-col">
-      <header class="input-header">Titles Capitalized</header>
-      <p class="result-title m-0" v-for="(title,index) in capitalize" :key="index">{{ title }}</p>
+      <header class="input-header">
+        Titles Capitalized
+        <transition name="fade">
+          <span class="title-num" v-if="titleNum > 0">{{ titleNum }}</span>
+        </transition>
+      </header>
+      <div class="results">
+        <p class="result-title m-0" v-for="(title, index) in capitalize" :key="index">{{ title }}</p>
+      </div>
     </div>
   </section>
 </template>
@@ -15,17 +22,29 @@
 <script>
 import { prep, coordConj, articles, spec } from "../capitalize/lists.js";
 import cap from "../capitalize/capitalize.js";
+import posTagger from "../../node_modules/wink-pos-tagger";
+
+const tagger = posTagger();
 
 export default {
   data() {
     return {
-      message: "",
-      isCapped: false,
-      titleNum: 0
+      message: ""
     };
   },
   computed: {
-    capitalize: function() {
+    titleNum() {
+      if (this.message !== "") {
+        // Split titles into individuals
+        const originalTitles = this.message
+          .trim()
+          .toLowerCase()
+          .split(/\n/);
+
+        return originalTitles.length;
+      }
+    },
+    capitalize() {
       if (this.message !== "") {
         // Split titles into individuals
         const originalTitles = this.message
@@ -34,7 +53,8 @@ export default {
           .split(/\n/);
 
         // Get number of titles
-        this.titleNum = originalTitles.length;
+        const pos = tagger.tagSentence(this.message);
+        console.log(pos);
         const titleArray = [];
 
         originalTitles.forEach(element => {
@@ -63,9 +83,7 @@ export default {
             }
           }
         }
-
         const finalTitle = [];
-
         for (let word in wordArray) {
           finalTitle.push(
             wordArray[word]
@@ -73,22 +91,22 @@ export default {
               .replace(/\w/, firstLetter => firstLetter.toUpperCase())
           );
         }
-        this.isCapped = true;
+
         return finalTitle;
-      } else {
-        this.isCapped = false;
-        this.titleNum = 0;
       }
     }
   },
-  methods: {}
+  methods: {
+    clearIt() {
+      this.message = "";
+    }
+  }
 };
 </script>
 
 <style lang="stylus" scoped>
 .container {
   position: relative;
-  margin-bottom: 2em;
 
   &:after {
     height: 3px;
@@ -108,7 +126,7 @@ export default {
   border-left: 1px solid cap-border;
   border-right: 1px solid cap-border;
   border-collapse: collapse;
-  min-height: 400px;
+  height: 400px;
   font-weight: 400;
 }
 
@@ -118,6 +136,10 @@ export default {
 
 .result-container {
   background-color: #313030;
+}
+
+.results {
+  overflow-y: auto;
 }
 
 .input-header {
@@ -146,5 +168,34 @@ export default {
 .input-titles, .result-title {
   border: none;
   margin: 0;
+}
+
+.title-num {
+  margin-left: 1px;
+  background: #F9F7F7;
+  color: #333;
+  padding: 1px 3px;
+  vertical-align: text-top;
+  border-radius: 4px;
+  font-size: 0.8em;
+}
+
+.fade-enter {
+  transform: translateY(-10px);
+  opacity: 0;
+}
+
+.fade-enter-to, .fade-leave {
+  transform: translateY(0);
+  opacity: 1;
+}
+
+.fade-enter-active, .fade-leave-active {
+  transition: all 0.15s cubic-bezier(1, 0.5, 0.8, 1);
+}
+
+.fade-leave-to { /* .fade-leave-active below version 2.1.8 */
+  transform: translateY(10px);
+  opacity: 0;
 }
 </style>

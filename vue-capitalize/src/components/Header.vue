@@ -11,7 +11,7 @@ export default {};
 <style lang="stylus" scoped>
 .header {
   width: 100%;
-  padding: 1.5em 1em 3em;
+  padding: 0 1em 3em;
 }
 
 .title {
