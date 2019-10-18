@@ -122,6 +122,8 @@ export default {
 }
 
 .style-label {
+  // for accessibility
+  min-width: 48px;
   align-items: center;
   position: relative;
   padding-left: 1.25em;
@@ -139,8 +141,12 @@ export default {
 
 .style-label input {
   position: absolute;
+  height: 48px;
+  min-width: 100%;
+  width: 100%;
   opacity: 0;
   cursor: pointer;
+  margin-left: -1.25em;
 
   &:focus {
     background: black;

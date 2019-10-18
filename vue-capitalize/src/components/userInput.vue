@@ -2,7 +2,14 @@
   <section class="container flex-row">
     <div class="input-container flex-col">
       <header class="input-header">Enter your title(s)</header>
-      <textarea id="title-text" name="title" class="input-titles" autofocus v-model="message"></textarea>
+      <textarea
+        id="title-text"
+        name="title"
+        class="input-titles"
+        autofocus
+        v-model="message"
+        aria-label="Title Input Field"
+      ></textarea>
     </div>
 
     <div class="result-container flex-col">
@@ -20,12 +27,7 @@
 </template>
 
 <script>
-import { prep, coordConj, articles, spec } from "../capitalize/lists.js";
-import cap from "../capitalize/capitalize.js";
-import posTagger from "../../node_modules/wink-pos-tagger";
-
-const tagger = posTagger();
-
+import titleCapitalizer from "../capitalize/capitalize.js";
 export default {
   data() {
     return {
@@ -50,71 +52,8 @@ export default {
       const style = this.styleValue.style;
 
       if (this.message !== "") {
-        // Split titles into individuals
-        const originalTitles = this.message
-          .trim()
-          .toLowerCase()
-          .split(/\n/);
-
-        const pos = tagger.tagSentence(this.message);
-        // console.log(pos);
-
-        const titleArray = [];
-
-        originalTitles.forEach(element => {
-          titleArray.push(
-            element.replace(/\s\w|^\w/g, letter => {
-              return letter.toUpperCase();
-            })
-          );
-        });
-
-        const wordArray = [];
-
-        titleArray.forEach(element => {
-          wordArray.push(element.split(" "));
-        });
-
-        if (style === "AP" || style === "APA" || style === "NYT") {
-          // Lowercase prepositions and articles
-
-          for (let title in wordArray) {
-            for (let word in wordArray[title]) {
-              if (
-                wordArray[title][word].length < 4 &&
-                [...prep, ...articles].includes(
-                  wordArray[title][word].toLowerCase()
-                )
-              ) {
-                wordArray[title][word] = wordArray[title][word].toLowerCase();
-              }
-            }
-          }
-        } else {
-          // Lowercase prepositions and articles
-          for (let title in wordArray) {
-            for (let word in wordArray[title]) {
-              if (
-                [...prep, ...articles].includes(
-                  wordArray[title][word].toLowerCase()
-                )
-              ) {
-                wordArray[title][word] = wordArray[title][word].toLowerCase();
-              }
-            }
-          }
-        }
-
-        const finalTitle = [];
-        for (let word in wordArray) {
-          finalTitle.push(
-            wordArray[word]
-              .join(" ")
-              .replace(/\w/, firstLetter => firstLetter.toUpperCase())
-          );
-        }
-
-        return finalTitle;
+        const capitalizedTitle = titleCapitalizer(style, this.message);
+        return capitalizedTitle;
       } else {
         return "";
       }
