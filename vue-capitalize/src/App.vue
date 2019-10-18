@@ -1,7 +1,7 @@
 <template>
   <div>
     <app-header></app-header>
-    <app-style-selector></app-style-selector>
+    <app-style-selector v-on:styleSelected="logIt"></app-style-selector>
     <app-user-input ref="titleText"></app-user-input>
     <app-style-buttons v-on:clear="clearField" v-on:copy="copyField"></app-style-buttons>
     <app-style-rules></app-style-rules>
@@ -25,11 +25,13 @@ export default {
   },
   methods: {
     clearField() {
-      console.log("triggered");
       this.$refs.titleText.clearIt();
     },
     copyField() {
-      console.log("copied");
+      this.$refs.titleText.copyIt();
+    },
+    logIt() {
+      console.log("went");
     }
   }
 };

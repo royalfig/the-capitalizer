@@ -54,7 +54,7 @@ export default {
 
         // Get number of titles
         const pos = tagger.tagSentence(this.message);
-        console.log(pos);
+        // console.log(pos);
         const titleArray = [];
 
         originalTitles.forEach(element => {
@@ -99,6 +99,16 @@ export default {
   methods: {
     clearIt() {
       this.message = "";
+    },
+    copyIt() {
+      const textArea = document.createElement("textarea");
+      const copyTitle = this.capitalize.join("\n");
+      textArea.value = copyTitle;
+      document.body.appendChild(textArea);
+      textArea.select();
+      document.execCommand("copy");
+      document.body.removeChild(textArea);
+      alert("Titles Copied");
     }
   }
 };

@@ -135,3 +135,23 @@ const spec = [
   "e.g.",
   "i.e."
 ];
+
+const apLowercase = [
+  "a",
+  "for",
+  "so",
+  "an",
+  "in",
+  "the",
+  "and",
+  "nor",
+  "to",
+  "at",
+  "of",
+  "up",
+  "but",
+  "on",
+  "yet",
+  "by",
+  "or"
+];

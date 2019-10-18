@@ -1,6 +1,7 @@
 <template>
-  <header class="header flex-row">
+  <header class="header flex-col">
     <h1 class="title">Titles Capitalized</h1>
+    <p class="subtitle">Turn your text into proper title case</p>
   </header>
 </template>
 
@@ -12,6 +13,8 @@ export default {};
 .header {
   width: 100%;
   padding: 0 1em 3em;
+  justify-content: center;
+  align-items: center;
 }
 
 .title {
@@ -32,5 +35,13 @@ export default {};
     bottom: 2px;
     border-bottom: 4px double cap-red;
   }
+}
+
+.subtitle {
+  color: #333;
+  text-align: center;
+  font-size: 0.9;
+  font-weight: 600;
+  text-transform: uppercase;
 }
 </style>

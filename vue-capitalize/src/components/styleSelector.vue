@@ -18,6 +18,7 @@
           :value="style.abb"
           :aria-label="style.name"
           v-model="picked"
+          @click="$emit('selectedStyle', {style: this.abb})"
         />
         <span class="checkmark"></span>
       </label>
