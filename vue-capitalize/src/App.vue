@@ -1,8 +1,8 @@
 <template>
   <div>
     <app-header></app-header>
-    <app-style-selector v-on:styleSelected="logIt"></app-style-selector>
-    <app-user-input ref="titleText"></app-user-input>
+    <app-style-selector v-on:selectedStyle="styleValue"></app-style-selector>
+    <app-user-input ref="titleText" :styleValue="this.chosenStyle"></app-user-input>
     <app-style-buttons v-on:clear="clearField" v-on:copy="copyField"></app-style-buttons>
     <app-style-rules></app-style-rules>
   </div>
@@ -16,6 +16,11 @@ import styleButtons from "./components/styleButtons.vue";
 import styleRules from "./components/styleRules.vue";
 
 export default {
+  data() {
+    return {
+      chosenStyle: { style: "AP" }
+    };
+  },
   components: {
     "app-header": Header,
     "app-style-selector": styleSelector,
@@ -30,8 +35,8 @@ export default {
     copyField() {
       this.$refs.titleText.copyIt();
     },
-    logIt() {
-      console.log("went");
+    styleValue(chosenStyle) {
+      this.chosenStyle = chosenStyle;
     }
   }
 };

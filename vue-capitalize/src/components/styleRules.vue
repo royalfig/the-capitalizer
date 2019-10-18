@@ -1,6 +1,6 @@
 <template>
   <aside class="container explainer-container">
-    <h2>Style Rules</h2>
+    <h2 class="style-rules">Style Rules</h2>
     <article class="explainer">
       <div id="ap" class="style-rules ap">
         <h3>Associated Press</h3>
@@ -115,35 +115,8 @@ export default {};
 </script>
 
 <style scoped lang="stylus">
-.explainer-container {
-  flex-flow: column;
-  box-sizing: border-box;
-  max-width: 1024px;
-  margin: 0 auto;
-}
-
-.explainer {
-  padding: 1em;
-  width: 100%;
-  background: #fff;
-  border-bottom-left-radius: 5px;
-  border-bottom-right-radius: 5px;
-  text-align: center;
-}
-
-h2 {
-  margin: 0;
-  width: 100%;
-  background: cap-blue;
-  border-top-left-radius: 5px;
-  border-top-right-radius: 5px;
-  color: #eee;
-  font-size: 2.5em;
-  text-align: center;
-}
-
 .style-rules {
-  text-align: left;
-  align-self: flex-start;
+  color: #333;
+  font-weight: 600;
 }
 </style>

@@ -42,9 +42,13 @@ export default {
           .split(/\n/);
 
         return originalTitles.length;
+      } else {
+        return 0;
       }
     },
     capitalize() {
+      const style = this.styleValue.style;
+
       if (this.message !== "") {
         // Split titles into individuals
         const originalTitles = this.message
@@ -52,9 +56,9 @@ export default {
           .toLowerCase()
           .split(/\n/);
 
-        // Get number of titles
         const pos = tagger.tagSentence(this.message);
         // console.log(pos);
+
         const titleArray = [];
 
         originalTitles.forEach(element => {
@@ -71,18 +75,36 @@ export default {
           wordArray.push(element.split(" "));
         });
 
-        // Lowercase prepositions and articles
-        for (let title in wordArray) {
-          for (let word in wordArray[title]) {
-            if (
-              [...prep, ...articles].includes(
-                wordArray[title][word].toLowerCase()
-              )
-            ) {
-              wordArray[title][word] = wordArray[title][word].toLowerCase();
+        if (style === "AP" || style === "APA" || style === "NYT") {
+          // Lowercase prepositions and articles
+
+          for (let title in wordArray) {
+            for (let word in wordArray[title]) {
+              if (
+                wordArray[title][word].length < 4 &&
+                [...prep, ...articles].includes(
+                  wordArray[title][word].toLowerCase()
+                )
+              ) {
+                wordArray[title][word] = wordArray[title][word].toLowerCase();
+              }
+            }
+          }
+        } else {
+          // Lowercase prepositions and articles
+          for (let title in wordArray) {
+            for (let word in wordArray[title]) {
+              if (
+                [...prep, ...articles].includes(
+                  wordArray[title][word].toLowerCase()
+                )
+              ) {
+                wordArray[title][word] = wordArray[title][word].toLowerCase();
+              }
             }
           }
         }
+
         const finalTitle = [];
         for (let word in wordArray) {
           finalTitle.push(
@@ -93,6 +115,8 @@ export default {
         }
 
         return finalTitle;
+      } else {
+        return "";
       }
     }
   },
@@ -110,7 +134,8 @@ export default {
       document.body.removeChild(textArea);
       alert("Titles Copied");
     }
-  }
+  },
+  props: ["styleValue"]
 };
 </script>
 

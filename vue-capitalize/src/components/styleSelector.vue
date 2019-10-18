@@ -18,7 +18,7 @@
           :value="style.abb"
           :aria-label="style.name"
           v-model="picked"
-          @click="$emit('selectedStyle', {style: this.abb})"
+          v-on:input="$emit('selectedStyle', {style: style.abb})"
         />
         <span class="checkmark"></span>
       </label>
