@@ -6,10 +6,13 @@
         id="title-text"
         name="title"
         class="input-titles"
-        autofocus
         v-model="message"
+        @keydown="inputKeyDown = true"
+        @keyup="inputKeyDown = false"
+        autofocus
         aria-label="Title Input Field"
       ></textarea>
+      <div class="input-container-bottom-border" :class="{'input-key-down': inputKeyDown}"></div>
     </div>
 
     <div class="result-container flex-col">
@@ -31,7 +34,9 @@ import titleCapitalizer from "../capitalize/capitalize.js";
 export default {
   data() {
     return {
-      message: ""
+      message: "",
+      inputFocus: false,
+      inputKeyDown: false
     };
   },
   computed: {
@@ -79,20 +84,6 @@ export default {
 </script>
 
 <style lang="stylus" scoped>
-.container {
-  position: relative;
-
-  &:after {
-    height: 3px;
-    width: 100%;
-    position: absolute;
-    background: linear-gradient(to right, cap-red, cap-green);
-    left: 0;
-    bottom: 0;
-    content: '';
-  }
-}
-
 .input-container, .result-container {
   width: 50%;
   padding: 1em;
@@ -106,6 +97,24 @@ export default {
 
 .input-container {
   background-color: #3D3D3D;
+}
+
+.input-container-bottom-border {
+  width: 100%;
+  height: 3px;
+  background-color: #eee;
+  outline: none;
+}
+
+.input-titles:focus + .input-container-bottom-border {
+  background-color: cap-red;
+  transition: all 0.2s ease-out;
+}
+
+.input-titles:focus + .input-key-down {
+  background-color: #fea449;
+  box-shadow: 0 0 2px 2px rgba(255, 255, 255, 0.25);
+  transition: all 0.1s ease-out;
 }
 
 .result-container {
@@ -132,11 +141,6 @@ export default {
   background-color: #3D3D3D;
   resize: none;
   caret-color: cap-red;
-
-  &:focus {
-    outline: none;
-    border-bottom: 3px dotted cap-border;
-  }
 }
 
 .input-titles, .result-title {
