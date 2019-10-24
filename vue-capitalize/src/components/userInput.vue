@@ -1,18 +1,16 @@
 <template>
   <section class="container flex-row">
     <div class="input-container flex-col">
-      <header class="input-header">Enter your title(s)</header>
+      <header class="input-header">Enter 1 Title per Line</header>
       <textarea
         id="title-text"
         name="title"
         class="input-titles"
         v-model="message"
-        @keydown="inputKeyDown = true"
-        @keyup="inputKeyDown = false"
         autofocus
         aria-label="Title Input Field"
       ></textarea>
-      <div class="input-container-bottom-border" :class="{'input-key-down': inputKeyDown}"></div>
+      <div class="input-container-bottom-border"></div>
     </div>
 
     <div class="result-container flex-col">
@@ -25,6 +23,7 @@
       <div class="results">
         <p class="result-title m-0" v-for="(title, index) in capitalize" :key="index">{{ title }}</p>
       </div>
+      <div class="input-container-bottom-border" :class="{'results-active': titleNum > 0}"></div>
     </div>
   </section>
 </template>
@@ -34,9 +33,7 @@ import titleCapitalizer from "../capitalize/capitalize.js";
 export default {
   data() {
     return {
-      message: "",
-      inputFocus: false,
-      inputKeyDown: false
+      message: ""
     };
   },
   computed: {
@@ -104,6 +101,7 @@ export default {
   height: 3px;
   background-color: #eee;
   outline: none;
+  transition: background-color 0.2s ease-out;
 }
 
 .input-titles:focus + .input-container-bottom-border {
@@ -111,18 +109,17 @@ export default {
   transition: all 0.2s ease-out;
 }
 
-.input-titles:focus + .input-key-down {
-  background-color: #fea449;
-  box-shadow: 0 0 2px 2px rgba(255, 255, 255, 0.25);
-  transition: all 0.1s ease-out;
-}
-
 .result-container {
   background-color: #313030;
 }
 
 .results {
+  flex: 1;
   overflow-y: auto;
+}
+
+.results-active {
+  background-color: cap-green;
 }
 
 .input-header {
