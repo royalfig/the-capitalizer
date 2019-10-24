@@ -104,6 +104,10 @@ export default {
   transition: background-color 0.2s ease-out;
 }
 
+.input-titles:focus {
+  outline: none;
+}
+
 .input-titles:focus + .input-container-bottom-border {
   background-color: cap-red;
   transition: all 0.2s ease-out;
