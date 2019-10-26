@@ -25,16 +25,27 @@ export default {};
   color: #333333;
   text-align: center;
   border-bottom: 1px solid cap-red;
+  
 
-  &:after {
+  &:before {
     content: '';
     position: absolute;
     height: 1px;
     width: 100%;
     left: 0;
     bottom: 2px;
-    border-bottom: 4px double cap-red;
+    border-bottom: 1px solid cap-red; 
   }
+  &:after {
+    content: '';
+    position: absolute;
+    height: 1px;
+    width: 100%;
+    left: 0;
+    bottom: -4.5px;
+    border-bottom: 1px solid cap-red; 
+  }
+  
 }
 
 .subtitle {

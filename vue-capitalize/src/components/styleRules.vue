@@ -59,7 +59,7 @@ export default {
   },
   computed: {
     sortedStyles() {
-      return this.styles.sort((a, b) => {
+      return this.styles.slice(0).sort((a, b) => {
         var idA = a.id;
         var idB = b.id;
         if (idA < idB) {
