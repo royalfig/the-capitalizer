@@ -9,6 +9,7 @@
   },
   "dependencies": {
     "core-js": "^2.6.5",
+    "debounce": "^1.2.0",
     "normalize.css": "^8.0.1",
     "vue": "^2.6.10",
     "wink-pos-tagger": "^2.2.2"

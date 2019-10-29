@@ -1,10 +1,12 @@
 import { prep, coordConj, articles, spec } from "./lists";
-
+import { debounce } from "../../node_modules/debounce";
 import posTagger from "../../node_modules/wink-pos-tagger";
 
 const tagger = posTagger();
 
-export default function capitalizer(style, text) {
+export default debounce(capitalizer, 100);
+
+function capitalizer(style, text) {
   // Split titles into individuals
   const originalTitles = text
     .trim()
@@ -12,7 +14,7 @@ export default function capitalizer(style, text) {
     .split(/\n/);
 
   const pos = tagger.tagSentence(text);
-  // console.log(pos);
+  console.log(pos);
 
   const titleArray = [];
 
