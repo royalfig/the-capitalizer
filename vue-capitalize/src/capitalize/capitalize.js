@@ -53,12 +53,36 @@ function decode(posArray) {
   return decodedArray;
 }
 
+function firstLetterCap(word) {
+  // Put in function to test for '
+  const regExp = /'\w/;
+  if (!regExp.test(word)) {
+    return word.replace(/\w/, match => match.toUpperCase());
+  } else {
+    return word;
+  }
+}
+
+function topAndTale(titles) {
+  const first = titles.slice(0, 1)[0].normal;
+  const last = titles.slice(-1)[0].normal;
+  const firstCap = firstLetterCap(first);
+  const lastCap = firstLetterCap(last);
+  console.log(firstCap, lastCap);
+}
+
+function capitalize(titles, style) {
+  const finalTitle = [];
+  topAndTale(titles);
+}
+
 class Title {
   constructor(title, style) {
     this.original = title.trim();
     this.lowercase = this.original.toLowerCase();
     this.pos = tagger.tagSentence(this.lowercase);
     this.decoded = decode(this.pos);
+    this.capitalized = capitalize(this.pos, style);
   }
 }
 
@@ -72,7 +96,7 @@ export default function capitalizer(style, text) {
     titlesArray.push(titleObj);
   });
 
-  console.log(titlesArray);
+  // console.log(titlesArray);
   // const posObject = [];
   // originalTitles.forEach(title => posObject.push(tagger.tagSentence(title)));
   // console.log(posObject);
