@@ -61,11 +61,8 @@ export default {
   },
   computed: {
     styleName() {
-      for (let style of this.styles) {
-        if (style.abb === this.picked) {
-          return style.name;
-        }
-      }
+      let styleName = this.styles.find(o => o.abb === this.picked);
+      return styleName.name;
     },
     anchorTag: function() {
       return "#" + this.picked.toLowerCase();
