@@ -44,6 +44,8 @@ const decoder = {
   WRB: "Wh-adverb"
 };
 
+const nouns = ["NN", "NNS", "NNP", "NNPS", "PRP", "PRP$"];
+
 function decode(posArray) {
   const decodedArray = [];
   posArray.forEach(element => {
@@ -67,16 +69,35 @@ function capFirstAndLastLetter(titles) {
   if (titles.length > 0) {
     const first = titles.slice(0, 1)[0].normal;
     const firstCap = capFirstLetter(first);
+    const lastIndex = titles.indexOf(titles.slice(-1)[0]);
     const last = titles.slice(-1)[0].normal;
     const lastCap = capFirstLetter(last);
-    console.log(firstCap, lastCap);
+    const result = [];
+    result[0] = firstCap;
+    result[lastIndex] = lastCap;
+    return result;
   }
 }
 
-function capitalize(titles, style) {
-  const finalTitle = [];
+function capNouns(titles) {
+  let nounArray = [];
+  titles.map((word, index) => {
+    if (nouns.includes(word.pos)) {
+      nounArray[index] = capFirstLetter(word.normal);
+    }
+  });
+  return nounArray;
+}
 
-  capFirstAndLastLetter(titles);
+function capitalize(titles, style) {
+  const finalTitleArr = [];
+  const noun = capNouns(titles);
+  noun.forEach((word, idx) => (finalTitleArr[idx] = word));
+  const firstAndLastLetter = capFirstAndLastLetter(titles);
+  firstAndLastLetter.forEach((word, idx) => (finalTitleArr[idx] = word));
+
+  const finalTitle = finalTitleArr.join(" ");
+  return finalTitle;
 }
 
 class Title {
@@ -99,6 +120,7 @@ export default function capitalizer(style, text) {
     titlesArray.push(titleObj);
   });
 
+  return titlesArray;
   // console.log(titlesArray);
   // const posObject = [];
   // originalTitles.forEach(title => posObject.push(tagger.tagSentence(title)));
