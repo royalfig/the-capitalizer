@@ -53,7 +53,7 @@ function decode(posArray) {
   return decodedArray;
 }
 
-function firstLetterCap(word) {
+function capFirstLetter(word) {
   // Put in function to test for '
   const regExp = /'\w/;
   if (!regExp.test(word)) {
@@ -63,17 +63,20 @@ function firstLetterCap(word) {
   }
 }
 
-function topAndTale(titles) {
-  const first = titles.slice(0, 1)[0].normal;
-  const last = titles.slice(-1)[0].normal;
-  const firstCap = firstLetterCap(first);
-  const lastCap = firstLetterCap(last);
-  console.log(firstCap, lastCap);
+function capFirstAndLastLetter(titles) {
+  if (titles.length > 0) {
+    const first = titles.slice(0, 1)[0].normal;
+    const firstCap = capFirstLetter(first);
+    const last = titles.slice(-1)[0].normal;
+    const lastCap = capFirstLetter(last);
+    console.log(firstCap, lastCap);
+  }
 }
 
 function capitalize(titles, style) {
   const finalTitle = [];
-  topAndTale(titles);
+
+  capFirstAndLastLetter(titles);
 }
 
 class Title {
