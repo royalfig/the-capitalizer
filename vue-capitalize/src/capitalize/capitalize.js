@@ -44,7 +44,28 @@ const decoder = {
   WRB: "Wh-adverb"
 };
 
-const nouns = ["NN", "NNS", "NNP", "NNPS", "PRP", "PRP$"];
+const alwaysCapped = [
+  "NN",
+  "NNS",
+  "NNP",
+  "NNPS",
+  "PRP",
+  "PRP$",
+  "RB",
+  "RBR",
+  "RBS",
+  "VB",
+  "VBD",
+  "VBG",
+  "VBN",
+  "VBP",
+  "VBZ",
+  "WDT",
+  "WP$",
+  "WRB"
+];
+
+const adjectives = ["JJ", "JJR", "JJS"];
 
 function decode(posArray) {
   const decodedArray = [];
@@ -79,25 +100,64 @@ function capFirstAndLastLetter(titles) {
   }
 }
 
-function capNouns(titles) {
-  let nounArray = [];
+function alwaysCap(titles) {
+  const nounArray = [];
   titles.map((word, index) => {
-    if (nouns.includes(word.pos)) {
+    if (alwaysCapped.includes(word.pos)) {
       nounArray[index] = capFirstLetter(word.normal);
     }
   });
   return nounArray;
 }
 
+function capAdjectives(titles, style) {
+  const adjectiveArray = [];
+
+  titles.map((word, index) => {
+    if (adjectives.includes(word.pos)) {
+      adjectiveArray[index] = capFirstLetter(word.normal);
+    }
+  });
+
+  return adjectiveArray;
+}
+
+function punctuationFix(title) {
+  return title.replace(/(\s)(\')|(\s)(:)/g, "$2");
+}
+
+function threeOrMore(title, style) {
+  const threeOrMoreArr = [];
+  if (["AP", "APA", "NYT"].includes(style)) {
+    title.map((word, idx) => {
+      if (word.normal.length > 3) {
+        threeOrMoreArr[idx] = capFirstLetter(word.normal);
+      }
+    });
+  }
+  return threeOrMoreArr;
+}
+
 function capitalize(titles, style) {
   const finalTitleArr = [];
-  const noun = capNouns(titles);
-  noun.forEach((word, idx) => (finalTitleArr[idx] = word));
-  const firstAndLastLetter = capFirstAndLastLetter(titles);
-  firstAndLastLetter.forEach((word, idx) => (finalTitleArr[idx] = word));
+  if (titles.length > 0) {
+    titles.forEach((word, idx) => (finalTitleArr[idx] = word.normal));
+    const noun = alwaysCap(titles);
+    noun.forEach((word, idx) => (finalTitleArr[idx] = word));
 
-  const finalTitle = finalTitleArr.join(" ");
-  return finalTitle;
+    const adj = capAdjectives(titles, style);
+    adj.forEach((word, idx) => (finalTitleArr[idx] = word));
+
+    const threePlus = threeOrMore(titles, style);
+    threePlus.forEach((word, idx) => (finalTitleArr[idx] = word));
+
+    const firstAndLastLetter = capFirstAndLastLetter(titles);
+    firstAndLastLetter.forEach((word, idx) => (finalTitleArr[idx] = word));
+
+    const finalTitle = finalTitleArr.join(" ");
+    const TitleWithPunctuationFixed = punctuationFix(finalTitle);
+    return TitleWithPunctuationFixed;
+  }
 }
 
 class Title {
@@ -106,6 +166,7 @@ class Title {
     this.lowercase = this.original.toLowerCase();
     this.pos = tagger.tagSentence(this.lowercase);
     this.decoded = decode(this.pos);
+    console.log(this.decoded);
     this.capitalized = capitalize(this.pos, style);
   }
 }
@@ -116,7 +177,7 @@ export default function capitalizer(style, text) {
   const titlesArray = [];
 
   titles.forEach(element => {
-    let titleObj = new Title(element);
+    let titleObj = new Title(element, style);
     titlesArray.push(titleObj);
   });
 
