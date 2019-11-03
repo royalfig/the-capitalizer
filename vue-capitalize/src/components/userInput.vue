@@ -21,7 +21,7 @@
         </transition>
       </header>
       <div class="results">
-        <p class="result-title m-0" v-for="(title, index) in capitalize" :key="index">{{ title }}</p>
+        <p class="result-title m-0" v-for="(title, index) in capitalize" :key="index">{{ title.capitalized }}</p>
       </div>
       <div class="input-container-bottom-border" :class="{'results-active': titleNum > 0}"></div>
     </div>
