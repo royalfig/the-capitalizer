@@ -165,8 +165,8 @@ class Title {
     this.original = title.trim();
     this.lowercase = this.original.toLowerCase();
     this.pos = tagger.tagSentence(this.lowercase);
+    console.log(this.pos);
     this.decoded = decode(this.pos);
-    console.log(this.decoded);
     this.capitalized = capitalize(this.pos, style);
   }
 }
