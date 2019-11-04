@@ -12,7 +12,7 @@ export default {};
 <style lang="stylus" scoped>
 .header {
   width: 100%;
-  padding: 0 1em 3em;
+  padding: 0 1em 1em;
   justify-content: center;
   align-items: center;
 }

@@ -68,19 +68,27 @@ export default {
   },
   methods: {
     clearIt() {
-      this.message = "";
-      this.$toasted.show("Titles Cleared");
+      if (this.message === "") {
+        this.$toasted.show("Enter a title first", { type: "info" });
+      } else {
+        this.message = "";
+        this.$toasted.show("✅ Titles Cleared", { type: "success" });
+      }
     },
     copyIt() {
-      const textArea = document.createElement("textarea");
-      const copyTitle = this.capitalize.join("\n");
-      textArea.value = copyTitle;
-      document.body.appendChild(textArea);
-      textArea.select();
-      document.execCommand("copy");
-      document.body.removeChild(textArea);
-      const copied = this.titleNum > 1 ? " Titles Copied" : " Title Copied";
-      this.$toasted.show(this.titleNum + copied);
+      if (this.message === "") {
+        this.$toasted.show("Enter a title to copy", { type: "info" });
+      } else {
+        const textArea = document.createElement("textarea");
+        const copyTitle = this.capitalize.join("\n");
+        textArea.value = copyTitle;
+        document.body.appendChild(textArea);
+        textArea.select();
+        document.execCommand("copy");
+        document.body.removeChild(textArea);
+        const copied = this.titleNum > 1 ? " Titles Copied" : " Title Copied";
+        this.$toasted.show(this.titleNum + copied, { type: "success" });
+      }
     }
   },
   props: ["styleValue"]

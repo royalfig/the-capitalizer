@@ -3,8 +3,8 @@ import App from "./App.vue";
 import Toasted from "vue-toasted";
 
 Vue.use(Toasted, {
-  duration: 3000,
-  type: "success"
+  duration: 4000,
+  theme: "outline"
 });
 
 Vue.config.productionTip = false;
