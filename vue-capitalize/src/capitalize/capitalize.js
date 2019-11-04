@@ -4,7 +4,7 @@ import { throttle, debounce } from "../../node_modules/throttle-debounce";
 
 function lowercaseFirstLetter(word, style) {
   const capped = cap(word);
-  if (spec.includes(word.toUpperCase())) {
+  if (spec.includes(word.toUpperCase().replace(/\./g, ""))) {
     return word.toUpperCase();
   }
   switch (style) {

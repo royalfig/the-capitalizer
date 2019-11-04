@@ -1,6 +1,6 @@
 <template>
   <header class="header flex-col">
-    <h1 class="title">Titles Capitalized</h1>
+    <h1 class="title">The Capitalizer</h1>
     <p class="subtitle">Turn your text into proper title case</p>
   </header>
 </template>
@@ -25,7 +25,6 @@ export default {};
   color: #333333;
   text-align: center;
   border-bottom: 1px solid cap-red;
-  
 
   &:before {
     content: '';
@@ -34,8 +33,9 @@ export default {};
     width: 100%;
     left: 0;
     bottom: 2px;
-    border-bottom: 1px solid cap-red; 
+    border-bottom: 1px solid cap-red;
   }
+
   &:after {
     content: '';
     position: absolute;
@@ -43,9 +43,8 @@ export default {};
     width: 100%;
     left: 0;
     bottom: -4.5px;
-    border-bottom: 1px solid cap-red; 
+    border-bottom: 1px solid cap-red;
   }
-  
 }
 
 .subtitle {
