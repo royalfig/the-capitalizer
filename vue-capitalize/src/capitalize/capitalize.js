@@ -1,10 +1,10 @@
-import { prep, coordConj, subConj, articles, spec } from "./lists";
+import { prep, coordConj, subConj, articles, allCaps } from "./lists";
 // import { debounce } from "../../node_modules/debounce";
 import { throttle, debounce } from "../../node_modules/throttle-debounce";
 
 function lowercaseFirstLetter(word, style) {
   const capped = cap(word);
-  if (spec.includes(word.toUpperCase().replace(/\./g, ""))) {
+  if (allCaps.includes(word.toUpperCase().replace(/\./g, ""))) {
     return word.toUpperCase();
   }
   switch (style) {

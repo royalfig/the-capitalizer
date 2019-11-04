@@ -1,4 +1,4 @@
-export { prep, coordConj, subConj, articles, spec };
+export { prep, coordConj, subConj, articles, allCaps };
 
 const prep = [
   "aboard",
@@ -8,13 +8,17 @@ const prep = [
   "after",
   "against",
   "along",
+  "alongside",
   "amid",
+  "amidst",
   "among",
-  "and",
+  "amongst",
   "anti",
   "around",
   "as",
+  "astride",
   "at",
+  "atop",
   "before",
   "behind",
   "below",
@@ -27,9 +31,9 @@ const prep = [
   "by",
   "c.",
   "ca.",
+  "circa",
   "concerning",
   "considering",
-  "de",
   "despite",
   "down",
   "during",
@@ -45,6 +49,7 @@ const prep = [
   "like",
   "minus",
   "near",
+  "next",
   "of",
   "off",
   "nor",
@@ -64,6 +69,8 @@ const prep = [
   "than",
   "this",
   "through",
+  "throughout",
+  "till",
   "to",
   "toward",
   "towards",
@@ -71,11 +78,11 @@ const prep = [
   "underneath",
   "unlike",
   "until",
+  "unto",
   "up",
   "upon",
   "versus",
   "via",
-  "von",
   "with",
   "within",
   "without"
@@ -116,7 +123,7 @@ const subConj = [
 
 const articles = ["a", "an", "the"];
 
-const spec = [
+const allCaps = [
   "ADA",
   "AKA",
   "ATM",
@@ -156,7 +163,6 @@ const spec = [
   "OCD",
   "OG",
   "PC",
-  "PhD",
   "POW",
   "PR",
   "PR",
@@ -176,7 +182,5 @@ const spec = [
   "VIII",
   "WWI",
   "WWII",
-  "X",
-  "e.g.",
-  "i.e."
+  "X"
 ];
