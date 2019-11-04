@@ -1,4 +1,4 @@
-export { prep, coordConj, articles, spec };
+export { prep, coordConj, subConj, articles, spec };
 
 const prep = [
   "aboard",
@@ -83,6 +83,37 @@ const prep = [
 
 const coordConj = ["and", "but", "for", "nor", "or", "so", "yet"];
 
+const subConj = [
+  "after",
+  "although",
+  "as",
+  "as far as",
+  "as if",
+  "as long as",
+  "as soon as",
+  "as though",
+  "because",
+  "before",
+  "even if",
+  "even though",
+  "every time",
+  "if",
+  "in order that",
+  "since",
+  "so",
+  "so that",
+  "than",
+  "though",
+  "unless",
+  "until",
+  "when",
+  "whenever",
+  "where",
+  "whereas",
+  "wherever",
+  "while"
+];
+
 const articles = ["a", "an", "the"];
 
 const spec = [
@@ -134,24 +165,4 @@ const spec = [
   "X",
   "e.g.",
   "i.e."
-];
-
-const apLowercase = [
-  "a",
-  "for",
-  "so",
-  "an",
-  "in",
-  "the",
-  "and",
-  "nor",
-  "to",
-  "at",
-  "of",
-  "up",
-  "but",
-  "on",
-  "yet",
-  "by",
-  "or"
 ];
