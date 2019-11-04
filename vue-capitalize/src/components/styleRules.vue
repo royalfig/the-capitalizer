@@ -25,8 +25,9 @@ export default {
           style: "Chicago Manual of Style (CMS)",
           rules: [
             {
-              rule: "Capitalize the first and last word",
-              example: "the grapes of wrath -> The Grapes of Wrath"
+              rule: "Capitalize the first and last word of the title",
+              example:
+                "the Grapes of wrath ➜ <span class='changed'>T</span>he Grapes of <span class='changed'>W</span>rath"
             },
             {
               rule:
@@ -231,16 +232,14 @@ export default {
 }
 
 .badge {
-  display: inline;
   padding: 2px 4px;
-  font-size: 0.5em;
   font-weight: 700;
+  font-size: 75%;
   text-transform: uppercase;
   color: #fff;
   background-color: #333;
   border-radius: 5px;
   margin-left: 5px;
-  vertical-align: super;
 }
 
 .rule {
@@ -258,4 +257,15 @@ export default {
     left: -0.75em;
   }
 }
+
+.explanation {
+  margin-left: 2em;
+
+  &:before {
+    content: 'EXAMPLE:';
+    font-size: 75%;
+    margin-right: 1em;
+  }
+}
 </style>
+

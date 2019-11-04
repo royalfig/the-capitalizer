@@ -8,7 +8,7 @@ function lowercaseFirstLetter(word, style) {
     return word.toUpperCase();
   }
   switch (style) {
-    case "AP":
+    case "AP": {
       if (
         [...prep, ...articles, ...coordConj, ...subConj].includes(word) &&
         word.length < 4
@@ -17,7 +17,8 @@ function lowercaseFirstLetter(word, style) {
       } else {
         return capped;
       }
-    case "APA":
+    }
+    case "APA": {
       if (
         [...articles, ...prep, ...coordConj, ...subConj].includes(word) &&
         word.length < 4
@@ -26,20 +27,23 @@ function lowercaseFirstLetter(word, style) {
       } else {
         return capped;
       }
-    case "CMS":
+    }
+    case "CMS": {
       const chi = ["and", "as", "but", "for", "or", "nor"];
       if ([...chi, ...articles, ...prep].includes(word)) {
         return word;
       } else {
         return capped;
       }
-    case "MLA":
+    }
+    case "MLA": {
       if ([...articles, ...prep, ...coordConj].includes(word)) {
         return word;
       } else {
         return capped;
       }
-    case "NYT":
+    }
+    case "NYT": {
       const nyLowerCase = [
         "and",
         "as",
@@ -67,7 +71,8 @@ function lowercaseFirstLetter(word, style) {
       } else {
         return capped;
       }
-    case "WP":
+    }
+    case "WP": {
       if (
         [...articles, ...coordConj, ...prep].includes(word) &&
         word.length < 5
@@ -76,6 +81,7 @@ function lowercaseFirstLetter(word, style) {
       } else {
         return capped;
       }
+    }
   }
 }
 

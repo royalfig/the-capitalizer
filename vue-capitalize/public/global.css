@@ -10,3 +10,6 @@ body {
   line-height: 1.6;
   background: #fffefe;
 }
+.changed {
+  text-decoration: underline;
+}
