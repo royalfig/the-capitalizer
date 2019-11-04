@@ -4,6 +4,9 @@ import { throttle, debounce } from "../../node_modules/throttle-debounce";
 
 function lowercaseFirstLetter(word, style) {
   const capped = cap(word);
+  if (spec.includes(word.toUpperCase())) {
+    return word.toUpperCase();
+  }
   switch (style) {
     case "AP":
       if (
@@ -82,6 +85,7 @@ function cap(word) {
 
 function capitalize(titles, style) {
   const titleArr = [];
+
   if (titles.length > 0) {
     titles.forEach(word => titleArr.push(lowercaseFirstLetter(word, style)));
   }

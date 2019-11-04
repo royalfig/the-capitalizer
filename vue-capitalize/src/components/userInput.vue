@@ -21,7 +21,11 @@
         </transition>
       </header>
       <div class="results">
-        <p class="result-title m-0" v-for="(title, index) in capitalize" :key="index">{{ title.capitalized }}</p>
+        <p
+          class="result-title m-0"
+          v-for="(title, index) in capitalize"
+          :key="index"
+        >{{ title.capitalized }}</p>
       </div>
       <div class="input-container-bottom-border" :class="{'results-active': titleNum > 0}"></div>
     </div>
@@ -30,6 +34,7 @@
 
 <script>
 import titleCapitalizer from "../capitalize/capitalize.js";
+
 export default {
   data() {
     return {
@@ -64,6 +69,7 @@ export default {
   methods: {
     clearIt() {
       this.message = "";
+      this.$toasted.show("Titles Cleared");
     },
     copyIt() {
       const textArea = document.createElement("textarea");
@@ -73,7 +79,8 @@ export default {
       textArea.select();
       document.execCommand("copy");
       document.body.removeChild(textArea);
-      alert("Titles Copied");
+      const copied = this.titleNum > 1 ? " Titles Copied" : " Title Copied";
+      this.$toasted.show(this.titleNum + copied);
     }
   },
   props: ["styleValue"]
