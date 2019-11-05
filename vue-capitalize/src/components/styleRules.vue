@@ -8,7 +8,7 @@
 
       <div v-for="(item, index) in name.rules" :key="index">
         <p class="rule" v-html="item.rule"></p>
-        <p class="explanation" v-html="item.example"></p>
+        <p class="warning" v-if="item.warning" v-html="item.warning"></p>
       </div>
     </article>
   </aside>
@@ -25,41 +25,37 @@ export default {
           style: "Chicago Manual of Style (CMS)",
           rules: [
             {
-              rule: "Capitalize the first and last word of the title",
-              example:
-                "the Grapes of wrath ➜ <span class='changed'>T</span>he Grapes of <span class='changed'>W</span>rath"
+              rule: "Capitalize the first and last word of the title"
             },
             {
               rule:
-                "Capitalize nouns, pronouns, verbs, adjectives, and conjunctions (but not the coordinating conjunctions <em>and</em>, <em>but</em>, <em>for</em>, or, and <em>nor</em>)",
-              example: ""
+                "Capitalize nouns, pronouns, verbs, adjectives, adverbs, and conjunctions (but not the coordinating conjunctions <em>and</em>, <em>but</em>, <em>for</em>, or, and <em>nor</em>)"
             },
             {
               rule:
                 "Lowercase all prepositions unless they are used adverbially or adjectivally or when they are part of a Latin expression",
-              example: ""
+              warning:
+                "The Capitalizer may not be able to detect whether your preposition is being used adverbially or adjectivally or is part of a Latin expression."
             },
             {
               rule:
-                "Lowercase articles (<em>the</em>, <em>a</em>, and <em>an</em>)",
-              example: ""
+                "Lowercase the articles (<em>the</em>, <em>a</em>, and <em>an</em>)"
             },
             {
               rule:
-                "Lowercase &ldquo;to&rdquo; as a preposition (see no. 3), but also lowercase it as part of an infinite as in &ldquo;to run&rdquo;",
-              example: ""
+                "Lowercase <em>to</em> as a preposition (as stated above), but also lowercase <em>to</em> as part of an infinite as in &ldquo;to run&rdquo;"
             },
             {
               rule:
-                "Lowercase the parts of proper names that would normally be lowercase, like the &ldquo;von&rdquo; in Wolfgang von Mozart or the &ldquo;von&rdquo; in Wolfgang von Goethe",
-              example: ""
+                "Lowercase the parts of proper names that would normally be lowercase, like the &ldquo;von&rdquo; in Georg von Trapp or the &ldquo;van&rdquo; in Vincent van Gogh"
             },
             {
               rule:
                 "Lowercase the second part of a species name, as in <em>Homo sapiens</em>",
-              example: ""
+              warning:
+                "The Capitalizer, like the scientists, may not know all of the species on this planet. Ensure your species name is capitalized correctly."
             },
-            { rule: "Hyphens: it&apos;s a whole thing", example: "" }
+            { rule: "Hyphens: it&apos;s a whole thing", warning: "" }
           ]
         },
         {
@@ -70,22 +66,22 @@ export default {
             {
               rule:
                 "Capitalize the first and last word of the title and the first word of any subtitle",
-              example:
+              warning:
                 "the grapes of wrath: a book about wine &rarr; The Grapes of Wrath: A Book About Wine"
             },
             {
               rule:
                 "Capitalize all major words in the title, including those after a hyphen. Major words: nouns, verbs, adjectives, adverbs, and pronouns",
-              example: ""
+              warning: ""
             },
             {
               rule: "Capitalize all words with four or more letters",
-              example: ""
+              warning: ""
             },
             {
               rule:
                 "Lowercase everything else, which includes the minor words, that is, conjunctions, articles, and prepositions",
-              example: ""
+              warning: ""
             }
           ]
         },
@@ -96,26 +92,26 @@ export default {
           rules: [
             {
               rule: "Capitalize all words of four letters or more.",
-              example: ""
+              warning: ""
             },
             {
               rule:
                 "Capitalize major words, including verbs, nouns, adjectives, adverbs, and pronouns.",
-              example: ""
+              warning: ""
             },
             {
               rule:
                 "Lowercase conjunctions, articles, and prepositions (when shorter than four letters)",
-              example: ""
+              warning: ""
             },
             {
               rule: "Capitalize each word in a hyphenated compound",
-              example: ""
+              warning: ""
             },
             {
               rule:
                 "Capitalize the first word in a subtitle (a word appearing after a colon or a dash",
-              example: ""
+              warning: ""
             }
           ]
         },
@@ -155,20 +151,20 @@ export default {
           badge: "Academic",
           style: "Modern Language Association (MLA)",
           rules: [
-            { rule: "Capitalize the first word and last word", example: "" },
+            { rule: "Capitalize the first word and last word", warning: "" },
             {
               rule: "Capitalize the first word in a subtitle or after a hyphen",
-              example: ""
+              warning: ""
             },
             {
               rule:
                 "Capitalize nouns, pronouns, verbs, adjectives, adverbs, and subordinating conjunctions",
-              example: ""
+              warning: ""
             },
             {
               rule:
                 "Lowercase articles, prepositions, coordinating conjunctions, and the &ldquo;to&rdquo; in infinitives",
-              example: ""
+              warning: ""
             }
           ]
         },
@@ -185,9 +181,13 @@ export default {
             { rule: "Capitalize prepositions of five letters or more" },
             {
               rule:
-                "Capitalize prepositions when used in phrasal verbs or compound prepositions"
+                "Capitalize prepositions when used in phrasal verbs or compound prepositions",
+              warning:
+                "The Capitalizer may not recognize all phrasal verbs or compound prepositions"
             },
-            { rule: "Lowercase articles" },
+            {
+              rule: "Lowercase articles (<em>a</em>, <em>an</em>, <em>the</em>)"
+            },
             { rule: "Lowercase coordinating conjunctions" },
             { rule: "Lowercase prepositions of four letters or fewer" },
             { rule: "Lowercase the &ldquo;to&rdquo; in infinitives" },
@@ -240,6 +240,7 @@ export default {
   background-color: #333;
   border-radius: 5px;
   margin-left: 5px;
+  font-weight: 700;
 }
 
 .rule {
@@ -258,13 +259,18 @@ export default {
   }
 }
 
-.explanation {
+.warning {
   margin-left: 2em;
 
   &:before {
-    content: 'EXAMPLE:';
+    content: 'Warning:';
     font-size: 75%;
-    margin-right: 1em;
+    margin-right: 0.5em;
+    text-transform: uppercase;
+    border-radius: cap-border-radius;
+    background-color: #fea449;
+    font-weight: 700;
+    padding: 2px 4px;
   }
 }
 </style>

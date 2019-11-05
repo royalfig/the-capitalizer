@@ -6,7 +6,8 @@
         id="title-text"
         name="title"
         class="input-titles"
-        v-model="message"
+        v-bind:value="message"
+        v-on:input="message = $event.target.value"
         autofocus
         aria-label="Title Input Field"
       ></textarea>
@@ -80,7 +81,11 @@ export default {
         this.$toasted.show("Enter a title to copy", { type: "info" });
       } else {
         const textArea = document.createElement("textarea");
-        const copyTitle = this.capitalize.join("\n");
+        const titleArray = [];
+        this.capitalize.forEach(element => {
+          titleArray.push(element.capitalized);
+        });
+        const copyTitle = titleArray.join("\n");
         textArea.value = copyTitle;
         document.body.appendChild(textArea);
         textArea.select();
@@ -96,15 +101,31 @@ export default {
 </script>
 
 <style lang="stylus" scoped>
+.container {
+  display: flex;
+  flex-direction: column;
+}
+
 .input-container, .result-container {
-  width: 50%;
+  // width: 50%;
   padding: 1em;
   color: #F9F7F7;
   border-left: 1px solid cap-border;
   border-right: 1px solid cap-border;
   border-collapse: collapse;
-  height: 400px;
+  height: 250px;
   font-weight: 400;
+}
+
+@media (min-width: tablet) {
+  .container {
+    flex-direction: row;
+  }
+
+  .input-container, .result-container {
+    width: 50%;
+    height: 400px;
+  }
 }
 
 .input-container {

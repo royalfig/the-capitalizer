@@ -6,80 +6,81 @@ function lowercaseFirstLetter(word, style) {
   const capped = cap(word);
   if (allCaps.includes(word.toUpperCase().replace(/\./g, ""))) {
     return word.toUpperCase();
-  }
-  switch (style) {
-    case "AP": {
-      if (
-        [...prep, ...articles, ...coordConj, ...subConj].includes(word) &&
-        word.length < 4
-      ) {
-        return word;
-      } else {
-        return capped;
+  } else {
+    switch (style) {
+      case "AP": {
+        if (
+          [...prep, ...articles, ...coordConj, ...subConj].includes(word) &&
+          word.length < 4
+        ) {
+          return word;
+        } else {
+          return capped;
+        }
       }
-    }
-    case "APA": {
-      if (
-        [...articles, ...prep, ...coordConj, ...subConj].includes(word) &&
-        word.length < 4
-      ) {
-        return word;
-      } else {
-        return capped;
+      case "APA": {
+        if (
+          [...articles, ...prep, ...coordConj, ...subConj].includes(word) &&
+          word.length < 4
+        ) {
+          return word;
+        } else {
+          return capped;
+        }
       }
-    }
-    case "CMS": {
-      const chi = ["and", "as", "but", "for", "or", "nor"];
-      if ([...chi, ...articles, ...prep].includes(word)) {
-        return word;
-      } else {
-        return capped;
+      case "CMS": {
+        const chi = ["and", "as", "but", "for", "or", "nor"];
+        if ([...chi, ...articles, ...prep].includes(word)) {
+          return word;
+        } else {
+          return capped;
+        }
       }
-    }
-    case "MLA": {
-      if ([...articles, ...prep, ...coordConj].includes(word)) {
-        return word;
-      } else {
-        return capped;
+      case "MLA": {
+        if ([...articles, ...prep, ...coordConj].includes(word)) {
+          return word;
+        } else {
+          return capped;
+        }
       }
-    }
-    case "NYT": {
-      const nyLowerCase = [
-        "and",
-        "as",
-        "at",
-        "but",
-        "by",
-        "en",
-        "for",
-        "if",
-        "in",
-        "of",
-        "on",
-        "or",
-        "to",
-        "v.",
-        "vs.",
-        "via"
-      ];
-      const nyUpperCase = ["no", "nor", "not", "off", "out", "so", "up"];
-      if (
-        [...nyLowerCase, ...articles].includes(word) &&
-        !nyUpperCase.includes(word)
-      ) {
-        return word;
-      } else {
-        return capped;
+      case "NYT": {
+        const nyLowerCase = [
+          "and",
+          "as",
+          "at",
+          "but",
+          "by",
+          "en",
+          "for",
+          "if",
+          "in",
+          "of",
+          "on",
+          "or",
+          "to",
+          "v.",
+          "vs.",
+          "via"
+        ];
+        const nyUpperCase = ["no", "nor", "not", "off", "out", "so", "up"];
+        if (
+          [...nyLowerCase, ...articles].includes(word) &&
+          !nyUpperCase.includes(word)
+        ) {
+          return word;
+        } else {
+          return capped;
+        }
       }
-    }
-    case "WP": {
-      if (
-        [...articles, ...coordConj, ...prep].includes(word) &&
-        word.length < 5
-      ) {
-        return word;
-      } else {
-        return capped;
+      case "WP": {
+        if (
+          [...articles, ...coordConj, ...prep].includes(word) &&
+          word.length < 5
+        ) {
+          return word;
+        } else {
+          return capped;
+        }
       }
     }
   }

@@ -57,6 +57,7 @@ const prep = [
   "onto",
   "opposite",
   "or",
+  "out",
   "outside",
   "over",
   "past",
@@ -154,6 +155,7 @@ const allCaps = [
   "IV",
   "IX",
   "JS",
+  "MA",
   "MD",
   "MIA",
   "MLB",
@@ -173,6 +175,7 @@ const allCaps = [
   "SOS",
   "TBA",
   "TGIF",
+  "TV",
   "UK",
   "US",
   "USA",
@@ -182,5 +185,6 @@ const allCaps = [
   "VIII",
   "WWI",
   "WWII",
+  "WWW",
   "X"
 ];

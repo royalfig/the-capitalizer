@@ -11,5 +11,6 @@ body {
   background: #fffefe;
 }
 .changed {
-  text-decoration: underline;
+  position: relative;
+  border-bottom: 1px solid #fe4949;
 }
