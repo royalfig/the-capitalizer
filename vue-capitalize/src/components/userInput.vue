@@ -1,7 +1,7 @@
 <template>
   <section class="container flex-row">
     <div class="input-container flex-col">
-      <header class="input-header">Enter 1 Title per Line</header>
+      <header class="input-header">Enter One Title per Line</header>
       <textarea
         id="title-text"
         name="title"
