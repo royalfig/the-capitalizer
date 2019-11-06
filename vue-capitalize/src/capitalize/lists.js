@@ -188,3 +188,5 @@ const allCaps = [
   "WWW",
   "X"
 ];
+
+const lowercasePartOfNames = ["von", "van"];

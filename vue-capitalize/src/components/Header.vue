@@ -21,7 +21,7 @@ export default {};
   display: inline-block;
   position: relative;
   margin: 0 auto;
-  font-size: 3em;
+  padding: 10px;
   color: #333333;
   text-align: center;
   border-bottom: 1px solid cap-red;
