@@ -2,6 +2,10 @@ import { prep, coordConj, subConj, articles, allCaps } from "./lists";
 // import { debounce } from "../../node_modules/debounce";
 import { throttle, debounce } from "../../node_modules/throttle-debounce";
 
+function convertToEmDash(input) {
+  return input.replace(/--|–/g, "\u2014");
+}
+
 function lowercaseFirstLetter(word, style) {
   const capped = cap(word);
   if (allCaps.includes(word.toUpperCase().replace(/\./g, ""))) {
@@ -108,16 +112,19 @@ function capitalize(titles, style) {
     cap(match)
   );
 
-  const hyphenFixed = finalTitleArrFixed.replace(/-(\w)|:\s(\w)/g, p1 =>
-    cap(p1)
+  const hyphenFixed = finalTitleArrFixed.replace(/-(\w)|:\s(\w)/g, match1 =>
+    cap(match1)
   );
 
-  return hyphenFixed;
+  const leftQuote = hyphenFixed.replace(/^(\")/, "\u201C");
+
+  const rightQuote = leftQuote.replace(/(")$/, "\u201D");
+  return rightQuote;
 }
 
 class Title {
   constructor(title, style) {
-    this.original = title.trim();
+    this.original = convertToEmDash(title.trim());
     this.lowercase = this.original.toLowerCase();
     this.wordArray = this.lowercase.split(" ");
     this.capitalized = capitalize(this.wordArray, style);

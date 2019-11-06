@@ -66,7 +66,7 @@ export default {
           rules: [
             {
               rule:
-                "Capitalize the first and last word of the title and the first word of any subtitle"
+                "Capitalize the first and last words in the title and in any subtitle"
             },
             {
               rule: "Capitalize all words with four or more letters"
@@ -78,7 +78,7 @@ export default {
 
             {
               rule:
-                "Lowercase everything else, which includes the minor words, that is, <em>coordinating conjunctions</em>, <em>articles</em>, and <em>prepositions</em>"
+                "Lowercase everything else, which includes <em>coordinating conjunctions</em>, <em>articles</em>, and <em>prepositions</em> (when fewer than four letters)"
             }
           ]
         },
@@ -89,14 +89,14 @@ export default {
           rules: [
             {
               rule:
-                "Capitalize the first and last word of any title and the first word of a subtitle"
+                "Capitalize the first and last words in the title and in any subtitle"
             },
             {
-              rule: "Capitalize all words of four letters or more."
+              rule: "Capitalize all words of four letters or more"
             },
             {
               rule:
-                "Capitalize major words, including <em>verbs</em>, <em>nouns</em>, <em>adjectives</em>, <em>adverbs</em>, and <em>pronouns</em>."
+                "Capitalize major words, including <em>verbs</em>, <em>nouns</em>, <em>adjectives</em>, <em>adverbs</em>, and <em>pronouns</em>"
             },
 
             {
@@ -104,7 +104,7 @@ export default {
             },
             {
               rule:
-                "Lowercase <em>coordinating conjunctions</em>, <em>articles</em>, and <em>prepositions</em> (when shorter than four letters)"
+                "Lowercase <em>coordinating conjunctions</em>, <em>articles</em>, and <em>prepositions</em> (when fewer than four letters)"
             }
           ]
         },
@@ -113,16 +113,23 @@ export default {
           badge: "Journalistic",
           style: "New York Times (NYT)",
           rules: [
-            { rule: "Capitalize the first and last word of a title" },
             {
               rule:
-                "Capitalize <em>nouns</em>, <em>pronouns</em>, <em>verbs</em>, and all words with four or more letters"
+                "Capitalize the first and last words in the title and in any subtitle"
+            },
+            { rule: "Capitalize all words with four or more letters" },
+            {
+              rule:
+                "Capitalize <em>nouns</em>, <em>pronouns</em>, and <em>verbs</em>"
             },
 
-            { rule: "Capitalize no, nor, not, off, out, so, up" },
             {
               rule:
-                "Capitalize prepositions with fewer than four letters when they are used adverbally or to modify a verb"
+                "Capitalize &ldquo;no&rdquo;, &ldquo;nor&rdquo;, &ldquo;not&rdquo;, &ldquo;off&rdquo;, &ldquo;out&rdquo;, &ldquo;so&rdquo;, &ldquo;up&rdquo;"
+            },
+            {
+              rule:
+                "Capitalize prepositions with fewer than four letters when they are used adverbally, adjectivally, or to modify a verb"
             },
             {
               rule:
@@ -130,12 +137,12 @@ export default {
             },
             {
               rule:
-                "Lowercase a, and, as, at, but, by, en, for, if, in, of, on, or, the, to, v., vs., via"
+                "Lowercase &ldquo;a&rdquo;, &ldquo;and&rdquo;, &ldquo;as&rdquo;, &ldquo;at&rdquo;, &ldquo;but&rdquo;, &ldquo;by&rdquo;, &ldquo;en&rdquo;, &ldquo;for&rdquo;, &ldquo;if&rdquo;, &ldquo;in&rdquo;, &ldquo;of&rdquo;, &ldquo;on&rdquo;, &ldquo;or&rdquo;, &ldquo;the&rdquo;, &ldquo;to&rdquo;, &ldquo;v.&rdquo, &ldquo;vs.&rdquo;, &ldquo;via&rdquo;"
             },
             { rule: "Lowercase the &ldquo;to&rdquo; in infinitives" },
             {
               rule:
-                "Capitalize hyphenated compounds unless the compound is formed from a prefix of two or three letters that is used to separate doubled vowels. If a prefix has four letters or more, capitalize both words in the compound. "
+                "Capitalize hyphenated compounds unless the compound is formed from a prefix of two or three letters that is used to separate doubled vowels. If a prefix has four letters or more, capitalize both words in the compound"
             }
           ]
         },
@@ -144,17 +151,20 @@ export default {
           badge: "Academic",
           style: "Modern Language Association (MLA)",
           rules: [
-            { rule: "Capitalize the first word and last word" },
             {
-              rule: "Capitalize the first word in a subtitle or after a hyphen"
+              rule:
+                "Capitalize the first and last words in the title and in any subtitle"
             },
             {
               rule:
-                "Capitalize nouns, pronouns, verbs, adjectives, adverbs, and subordinating conjunctions"
+                "Capitalize <em>nouns</em>, <em>pronouns</em>, <em>verbs</em>, <em>adjectives</em>, <em>adverbs</em>, and <em>subordinating conjunctions</em>"
             },
             {
               rule:
-                "Lowercase articles, prepositions, coordinating conjunctions, and the &ldquo;to&rdquo; in infinitives"
+                "Lowercase <em>articles</em>, <em>prepositions</em>, <em>coordinating</em> conjunctions, and the &ldquo;to&rdquo; in infinitives"
+            },
+            {
+              rule: "Capitalize all words in a hyphenated compound"
             }
           ]
         },

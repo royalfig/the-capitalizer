@@ -15,7 +15,6 @@ const prep = [
   "amongst",
   "anti",
   "around",
-  "as",
   "astride",
   "at",
   "atop",
