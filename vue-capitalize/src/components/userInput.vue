@@ -178,11 +178,13 @@ export default {
   background-color: #3D3D3D;
   resize: none;
   caret-color: cap-red;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
 }
 
 .input-titles, .result-title {
   border: none;
   margin: 0;
+  font-size: 1.2em;
 }
 
 .title-num {

@@ -25,6 +25,7 @@ export default {};
   color: #333333;
   text-align: center;
   border-bottom: 1px solid cap-red;
+  line-height: 1.2;
 
   &:before {
     content: '';

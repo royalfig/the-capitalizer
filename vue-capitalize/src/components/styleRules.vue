@@ -29,7 +29,7 @@ export default {
             },
             {
               rule:
-                "Capitalize nouns, pronouns, verbs, adjectives, adverbs, and conjunctions (but not the coordinating conjunctions <em>and</em>, <em>but</em>, <em>for</em>, or, and <em>nor</em>)"
+                "Capitalize <em>nouns</em>, <em>pronouns</em>, <em>verbs</em>, <em>adjectives</em>, <em>adverbs</em>, and <em>conjunctions</em> (but not the <em>coordinating conjunctions</em> and, but, for, or, and nor)"
             },
             {
               rule:
@@ -43,11 +43,11 @@ export default {
             },
             {
               rule:
-                "Lowercase <em>to</em> as a preposition (as stated above), but also lowercase <em>to</em> as part of an infinite as in &ldquo;to run&rdquo;"
+                "Lowercase <em>to</em> as part of an infinite as in &ldquo;to run&rdquo;"
             },
             {
               rule:
-                "Lowercase the parts of proper names that would normally be lowercase, like the &ldquo;von&rdquo; in Georg von Trapp or the &ldquo;van&rdquo; in Vincent van Gogh"
+                "Lowercase the parts of proper names that would normally be lowercase, like &ldquo;von&rdquo; in Georg von Trapp or &ldquo;van&rdquo; in Vincent van Gogh"
             },
             {
               rule:
@@ -65,14 +65,7 @@ export default {
           rules: [
             {
               rule:
-                "Capitalize the first and last word of the title and the first word of any subtitle",
-              warning:
-                "the grapes of wrath: a book about wine &rarr; The Grapes of Wrath: A Book About Wine"
-            },
-            {
-              rule:
-                "Capitalize all major words in the title, including those after a hyphen. Major words: nouns, verbs, adjectives, adverbs, and pronouns",
-              warning: ""
+                "Capitalize the first and last word of the title and the first word of any subtitle"
             },
             {
               rule: "Capitalize all words with four or more letters",
@@ -80,7 +73,13 @@ export default {
             },
             {
               rule:
-                "Lowercase everything else, which includes the minor words, that is, conjunctions, articles, and prepositions",
+                "Capitalize all major words in the title, including those after a hyphen. Major words include <em>nouns</em>, <em>verbs</em>, <em>adjectives</em>, <em>adverbs</em>, and <em>pronouns</em>",
+              warning: ""
+            },
+
+            {
+              rule:
+                "Lowercase everything else, which includes the minor words, that is, <em>coordinating conjunctions</em>, <em>articles</em>, and <em>prepositions</em>",
               warning: ""
             }
           ]
@@ -91,26 +90,26 @@ export default {
           style: "American Psychological Association (APA)",
           rules: [
             {
+              rule:
+                "Capitalize the first and last word of any title and the first word of a subtitle"
+            },
+            {
               rule: "Capitalize all words of four letters or more.",
               warning: ""
             },
             {
               rule:
-                "Capitalize major words, including verbs, nouns, adjectives, adverbs, and pronouns.",
+                "Capitalize major words, including <em>verbs</em>, <em>nouns</em>, <em>adjectives</em>, <em>adverbs</em>, and <em>pronouns</em>.",
               warning: ""
             },
-            {
-              rule:
-                "Lowercase conjunctions, articles, and prepositions (when shorter than four letters)",
-              warning: ""
-            },
+
             {
               rule: "Capitalize each word in a hyphenated compound",
               warning: ""
             },
             {
               rule:
-                "Capitalize the first word in a subtitle (a word appearing after a colon or a dash",
+                "Lowercase <em>coordinating conjunctions</em>, <em>articles</em>, and <em>prepositions</em> (when shorter than four letters)",
               warning: ""
             }
           ]
@@ -120,17 +119,17 @@ export default {
           badge: "Journalistic",
           style: "New York Times (NYT)",
           rules: [
+            { rule: "Capitalize the first and last word of a title" },
             {
               rule:
-                "Capitalize nouns, pronouns, verbs, and all words with four or more letters"
+                "Capitalize <em>nouns</em>, <em>pronouns</em>, <em>verbs</em>, and all words with four or more letters"
             },
-            { rule: "Capitalize the first and last word" },
+
             { rule: "Capitalize no, nor, not, off, out, so, up" },
             {
               rule:
                 "Capitalize prepositions with fewer than four letters when they are used adverbally or to modify a verb"
             },
-            { rule: "Capitalize the first word of a title" },
             {
               rule:
                 "Capitalize &ldquo;for&rdquo; when it takes the place of a verb to mean support or advocate"
