@@ -23,23 +23,27 @@ export default {
           style: "Chicago Manual of Style (CMS)",
           rules: [
             {
-              rule: "Capitalize the first and last word of the title"
+              rule:
+                "Capitalize the first and last words in the title and in any subtitle"
             },
             {
               rule:
-                "Capitalize <em>nouns</em>, <em>pronouns</em>, <em>verbs</em>, <em>adjectives</em>, <em>adverbs</em>, and <em>conjunctions</em> (but not the <em>coordinating conjunctions</em> and, but, for, or, and nor)"
+                "Capitalize <em>nouns</em>, <em>pronouns</em>, <em>verbs</em>, <em>adjectives</em>, <em>adverbs</em>, and <em>conjunctions</em> (but not &ldquo;and&rdquo;, &ldquo;but&rdquo;, &ldquo;for&rdquo;, &ldquo;or&rdquo;, &ldquo;nor&rdquo;)"
             },
             {
               rule:
-                "Lowercase all prepositions unless they are used adverbially or adjectivally or when they are part of a Latin expression"
+                "Lowercase all prepositions unless they are used adverbially or adjectivally"
             },
             {
               rule:
-                "Lowercase the articles (<em>the</em>, <em>a</em>, and <em>an</em>)"
+                "Lowercase the articles (&ldquo;a&rdquo;, &ldquo;an&rdquo;, &ldquo;the&rdquo;)"
             },
             {
               rule:
                 "Lowercase &ldquo;to&rdquo; as part of an infinite as in &ldquo;to run&rdquo;"
+            },
+            {
+              rule: "Lowercase &ldquo;as&rdquo; in all instances"
             },
             {
               rule:
@@ -47,9 +51,12 @@ export default {
             },
             {
               rule:
-                "Lowercase the second part of a species name, as in <em>Homo sapiens</em>"
+                "Lowercase the second part of a species name, as in &ldquo;<em>Homo sapiens</em>&rdquo;"
             },
-            { rule: "Hyphens: it&apos;s a whole thing" }
+            {
+              rule:
+                "For hyphenated compounds, always capitalize the first word. Capitalize subsequent words unless they are articles, prepositions, or coordinating conjunctions, or a musical symbol (like &ldquo;sharp&rdquo; in F-sharp). If the first word is a prefix that could not stand on its own, then lowercase the following word (for example, &ldquo;Anti-theft&rdquo;). Capitalize all words in hyphenated numbers or fractions"
+            }
           ]
         },
         {
