@@ -1,26 +1,15 @@
 <template>
   <header class="header flex-col">
-    <h1 class="title">The Capitalizer</h1>
-    <div :style="{ width: itemWidth }" class="underline"></div>
-    <div :style="{ width: itemWidth }" class="underline"></div>
-    <div :style="{ width: itemWidth }" class="underline"></div>
+    <div>
+      <h1 class="title">The Capitalizer</h1>
+      <div class="underline"></div>
+      <div class="underline"></div>
+      <div class="underline"></div>
+    </div>
     <p class="subtitle">Turn your text into proper title case</p>
   </header>
 </template>
 
-<script>
-export default {
-  data() {
-    return {
-      itemWidth: "75%"
-    };
-  },
-  mounted() {
-    const title = document.querySelector(".title").offsetWidth;
-    this.itemWidth = title + "px";
-  }
-};
-</script>
 
 <style lang="stylus" scoped>
 .header {
@@ -42,7 +31,7 @@ export default {
   height: 2px;
   width: 100%;
   background-color: cap-red;
-  margin: 1px auto;
+  margin: 2px auto;
 }
 
 .subtitle {

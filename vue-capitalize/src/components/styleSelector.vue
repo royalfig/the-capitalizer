@@ -161,7 +161,9 @@ export default {
 // background-color: lighten(cap-border, 75%);
 // }
 .style-label input:focus ~ .checkmark {
-  border-bottom: 3px double cap-red;
+  border: 3px solid cap-dark-gray;
+  z-index: 100;
+  background: none;
 }
 
 /* When the radio button is checked, add a blue background */

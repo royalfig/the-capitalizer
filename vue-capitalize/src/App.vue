@@ -80,27 +80,9 @@ html {
   font-size: 16px;
 }
 
-@media (min-width: tablet) {
-  html {
-    font-size: 17px;
-  }
-}
-
-@media (min-width: laptop) {
-  html {
-    font-size: 18px;
-  }
-}
-
-@media (min-width: desktop) {
-  html {
-    font-size: 19px;
-  }
-}
-
 body {
   margin: 0;
-  padding: 1em 2em;
+  padding: 1em;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
   line-height: 1.6;
   background: #fffefe;
@@ -129,5 +111,37 @@ h5 {
 .changed {
   position: relative;
   border-bottom: 1px solid #fe4949;
+}
+
+@media (min-width: tablet) {
+  html {
+    font-size: 17px;
+  }
+
+  body {
+    padding: 1em 2em;
+  }
+}
+
+@media (min-width: laptop) {
+  html {
+    font-size: 18px;
+  }
+}
+
+@media (min-width: desktop) {
+  html {
+    font-size: 19px;
+  }
+}
+
+.toasted.custom-toast.outline.info {
+  color: cap-info;
+  border-color: cap-info;
+}
+
+.toasted.custom-toast.outline.success {
+  color: cap-success;
+  border-color: cap-success;
 }
 </style>

@@ -7,7 +7,6 @@ function convertToEmDash(input) {
 }
 
 function lowercaseFirstLetter(word, style) {
-  console.log(word, style);
   const capped = cap(word);
   if (allCaps.includes(word.toUpperCase().replace(/\./g, ""))) {
     return word.toUpperCase();

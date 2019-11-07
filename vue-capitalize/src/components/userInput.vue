@@ -73,7 +73,7 @@ export default {
         this.$toasted.show("Enter a title first", { type: "info" });
       } else {
         this.message = "";
-        this.$toasted.show("✅ Titles Cleared", { type: "success" });
+        this.$toasted.show("🎉 Titles Cleared", { type: "success" });
       }
     },
     copyIt() {
@@ -92,7 +92,9 @@ export default {
         document.execCommand("copy");
         document.body.removeChild(textArea);
         const copied = this.titleNum > 1 ? " Titles Copied" : " Title Copied";
-        this.$toasted.show(this.titleNum + copied, { type: "success" });
+        this.$toasted.show(this.titleNum + copied, {
+          type: "success"
+        });
       }
     }
   },
@@ -129,13 +131,13 @@ export default {
 }
 
 .input-container {
-  background-color: cap-dark-gray;
+  background-color: cap-gray;
 }
 
 .input-container-bottom-border {
   width: 100%;
   height: 3px;
-  background-color: cap-dark-gray;
+  background-color: cap-border;
   outline: none;
   transition: background-color 0.2s ease-out;
 }
