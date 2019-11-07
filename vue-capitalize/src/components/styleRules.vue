@@ -221,7 +221,7 @@ export default {
 
 <style scoped lang="stylus">
 .style-rules {
-  color: #333;
+  color: cap-darker-gray;
   font-weight: 600;
   text-align: center;
 }
@@ -240,25 +240,10 @@ export default {
   font-size: 75%;
   text-transform: uppercase;
   color: #fff;
-  background-color: #333;
+  background-color: cap-dark-gray;
   border-radius: 5px;
   margin-left: 5px;
   font-weight: 700;
-}
-
-.warning {
-  margin-left: 2em;
-
-  &:before {
-    content: 'Warning:';
-    font-size: 75%;
-    margin-right: 0.5em;
-    text-transform: uppercase;
-    border-radius: cap-border-radius;
-    background-color: #fea449;
-    font-weight: 700;
-    padding: 2px 4px;
-  }
 }
 
 .rule-container {

@@ -1,57 +1,53 @@
 <template>
   <header class="header flex-col">
     <h1 class="title">The Capitalizer</h1>
+    <div :style="{ width: itemWidth }" class="underline"></div>
+    <div :style="{ width: itemWidth }" class="underline"></div>
+    <div :style="{ width: itemWidth }" class="underline"></div>
     <p class="subtitle">Turn your text into proper title case</p>
   </header>
 </template>
 
 <script>
-export default {};
+export default {
+  data() {
+    return {
+      itemWidth: "75%"
+    };
+  },
+  mounted() {
+    const title = document.querySelector(".title").offsetWidth;
+    this.itemWidth = title + "px";
+  }
+};
 </script>
 
 <style lang="stylus" scoped>
 .header {
-  width: 100%;
   padding: 0 1em 1em;
   justify-content: center;
   align-items: center;
+  margin: 0 auto;
 }
 
 .title {
-  display: inline-block;
-  position: relative;
-  margin: 0 auto;
-  padding: 10px;
+  margin: 0.15em auto;
   color: #333333;
   text-align: center;
-  border-bottom: 1px solid cap-red;
   line-height: 1.2;
+  font-weight: 900;
+}
 
-  &:before {
-    content: '';
-    position: absolute;
-    height: 1px;
-    width: 100%;
-    left: 0;
-    bottom: 2px;
-    border-bottom: 1px solid cap-red;
-  }
-
-  &:after {
-    content: '';
-    position: absolute;
-    height: 1px;
-    width: 100%;
-    left: 0;
-    bottom: -4.5px;
-    border-bottom: 1px solid cap-red;
-  }
+.underline {
+  height: 2px;
+  width: 100%;
+  background-color: cap-red;
+  margin: 1px auto;
 }
 
 .subtitle {
-  color: #333;
+  color: #444;
   text-align: center;
-  font-size: 0.9;
   font-weight: 600;
   text-transform: uppercase;
 }

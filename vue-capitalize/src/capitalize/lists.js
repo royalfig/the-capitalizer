@@ -123,7 +123,7 @@ const subConj = [
 
 const articles = ["a", "an", "the"];
 
-const allCaps = [
+const rawCaps = [
   "ADA",
   "AKA",
   "ATM",
@@ -187,5 +187,8 @@ const allCaps = [
   "WWW",
   "X"
 ];
+const addEmAfter = rawCaps.map(word => word + "—");
+const addEmBefore = rawCaps.map(word => "—" + word);
+const allCaps = [...rawCaps, ...addEmBefore, ...addEmAfter];
 
-const lowercasePartOfNames = ["von", "van"];
+const lowercasePartOfNames = ["de", "von", "van", "y"];

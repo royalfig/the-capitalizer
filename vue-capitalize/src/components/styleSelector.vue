@@ -144,10 +144,6 @@ export default {
   opacity: 0;
   cursor: pointer;
   margin-left: -1.25em;
-
-  &:focus {
-    background: black;
-  }
 }
 
 .checkmark {
@@ -161,8 +157,11 @@ export default {
   transition: all 0.2s ease-out;
 }
 
-.style-label:hover input ~ .checkmark, .style-label:focus input ~ .checkmark {
-  background-color: lighten(cap-border, 75%);
+// .style-label:hover input ~ .checkmark, .style-label:focus input ~ .checkmark {
+// background-color: lighten(cap-border, 75%);
+// }
+.style-label input:focus ~ .checkmark {
+  border-bottom: 3px double cap-red;
 }
 
 /* When the radio button is checked, add a blue background */

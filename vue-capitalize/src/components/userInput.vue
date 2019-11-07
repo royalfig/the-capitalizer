@@ -109,7 +109,7 @@ export default {
 .input-container, .result-container {
   // width: 50%;
   padding: 1em;
-  color: #F9F7F7;
+  color: cap-white;
   border-left: 1px solid cap-border;
   border-right: 1px solid cap-border;
   border-collapse: collapse;
@@ -129,13 +129,13 @@ export default {
 }
 
 .input-container {
-  background-color: #3D3D3D;
+  background-color: cap-dark-gray;
 }
 
 .input-container-bottom-border {
   width: 100%;
   height: 3px;
-  background-color: #eee;
+  background-color: cap-dark-gray;
   outline: none;
   transition: background-color 0.2s ease-out;
 }
@@ -150,7 +150,7 @@ export default {
 }
 
 .result-container {
-  background-color: #313030;
+  background-color: cap-darker-gray;
 }
 
 .results {
@@ -174,8 +174,8 @@ export default {
   height: 100%;
   padding: 0;
   line-height: 1.6;
-  color: #F9F7F7;
-  background-color: #3D3D3D;
+  color: cap-white;
+  background-color: cap-gray;
   resize: none;
   caret-color: cap-red;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
@@ -189,8 +189,8 @@ export default {
 
 .title-num {
   margin-left: 1px;
-  background: #F9F7F7;
-  color: #333;
+  background: cap-white;
+  color: cap-dark-gray;
   padding: 1px 3px;
   vertical-align: text-top;
   border-radius: 4px;

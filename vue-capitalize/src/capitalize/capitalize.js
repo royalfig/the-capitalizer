@@ -3,10 +3,11 @@ import { prep, coordConj, subConj, articles, allCaps } from "./lists";
 import { throttle, debounce } from "../../node_modules/throttle-debounce";
 
 function convertToEmDash(input) {
-  return input.replace(/--|–/g, "\u2014");
+  return input.replace(/--|\u2013/g, "\u2014");
 }
 
 function lowercaseFirstLetter(word, style) {
+  console.log(word, style);
   const capped = cap(word);
   if (allCaps.includes(word.toUpperCase().replace(/\./g, ""))) {
     return word.toUpperCase();
@@ -112,13 +113,25 @@ function capitalize(titles, style) {
     cap(match)
   );
 
-  const hyphenFixed = finalTitleArrFixed.replace(/-(\w)|:\s(\w)/g, match1 =>
-    cap(match1)
+  const punctuationFixed = finalTitleArrFixed.replace(
+    /-(\w)|:\s(\w)|\?\s(\w)|\.\s(\w)/g,
+    match => cap(match)
   );
 
-  const leftQuote = hyphenFixed.replace(/^(\")/, "\u201C");
+  const leftQuote = punctuationFixed.replace(/^(\")/, "\u201C");
 
   const rightQuote = leftQuote.replace(/(")$/, "\u201D");
+
+  function fixEmDash(input, style) {
+    if (/—/g.test(input)) {
+      input.replace(/—(\w+)/, (match, p1) => lowercaseFirstLetter(p1, style));
+    } else {
+      return input;
+    }
+  }
+
+  console.log(fixEmDash(rightQuote, style));
+
   return rightQuote;
 }
 
