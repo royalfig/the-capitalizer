@@ -2,7 +2,7 @@
   <footer class="flex-row footer">
     <div class="container flex-row">
       <div class="footer-col">
-        <img :src="require('../img/the_capitalizer.png')" />
+        <img alt="" :src="require('../img/the_capitalizer.png')" />
         <p class="brand">The Capitalizer</p>
         <p class="copyright">
           &copy;
