@@ -189,6 +189,24 @@ export default {
   font-size: 1.2em;
 }
 
+.input-titles, .results {
+  &::-webkit-scrollbar {
+    width: 10px;
+  }
+
+  &::-webkit-scrollbar-track {
+    background: cap-border;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background: cap-white;
+  }
+
+  &::-webkit-scrollbar-thumb:hover {
+    background: cap-dark-gray;
+  }
+}
+
 .title-num {
   margin-left: 1px;
   background: cap-white;
