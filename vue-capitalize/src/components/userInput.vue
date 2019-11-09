@@ -1,12 +1,13 @@
 <template>
   <section class="container flex-row">
     <div class="input-container flex-col">
-      <header class="input-header">Enter 1 Title per Line</header>
+      <header class="input-header">Enter One Title per Line</header>
       <textarea
         id="title-text"
         name="title"
         class="input-titles"
-        v-model="message"
+        v-bind:value="message"
+        v-on:input="message = $event.target.value"
         autofocus
         aria-label="Title Input Field"
       ></textarea>
@@ -21,7 +22,11 @@
         </transition>
       </header>
       <div class="results">
-        <p class="result-title m-0" v-for="(title, index) in capitalize" :key="index">{{ title.capitalized }}</p>
+        <p
+          class="result-title m-0"
+          v-for="(title, index) in capitalize"
+          :key="index"
+        >{{ title.capitalized }}</p>
       </div>
       <div class="input-container-bottom-border" :class="{'results-active': titleNum > 0}"></div>
     </div>
@@ -30,6 +35,7 @@
 
 <script>
 import titleCapitalizer from "../capitalize/capitalize.js";
+
 export default {
   data() {
     return {
@@ -63,17 +69,33 @@ export default {
   },
   methods: {
     clearIt() {
-      this.message = "";
+      if (this.message === "") {
+        this.$toasted.show("Enter a title first", { type: "info" });
+      } else {
+        this.message = "";
+        this.$toasted.show("Titles Cleared", { type: "success" });
+      }
     },
     copyIt() {
-      const textArea = document.createElement("textarea");
-      const copyTitle = this.capitalize.join("\n");
-      textArea.value = copyTitle;
-      document.body.appendChild(textArea);
-      textArea.select();
-      document.execCommand("copy");
-      document.body.removeChild(textArea);
-      alert("Titles Copied");
+      if (this.message === "") {
+        this.$toasted.show("Enter a title to copy", { type: "info" });
+      } else {
+        const textArea = document.createElement("textarea");
+        const titleArray = [];
+        this.capitalize.forEach(element => {
+          titleArray.push(element.capitalized);
+        });
+        const copyTitle = titleArray.join("\n");
+        textArea.value = copyTitle;
+        document.body.appendChild(textArea);
+        textArea.select();
+        document.execCommand("copy");
+        document.body.removeChild(textArea);
+        const copied = this.titleNum > 1 ? " Titles Copied" : " Title Copied";
+        this.$toasted.show(this.titleNum + copied, {
+          type: "success"
+        });
+      }
     }
   },
   props: ["styleValue"]
@@ -81,25 +103,41 @@ export default {
 </script>
 
 <style lang="stylus" scoped>
+.container {
+  display: flex;
+  flex-direction: column;
+}
+
 .input-container, .result-container {
-  width: 50%;
+  // width: 50%;
   padding: 1em;
-  color: #F9F7F7;
+  color: cap-white;
   border-left: 1px solid cap-border;
   border-right: 1px solid cap-border;
   border-collapse: collapse;
-  height: 400px;
+  height: 250px;
   font-weight: 400;
 }
 
+@media (min-width: tablet) {
+  .container {
+    flex-direction: row;
+  }
+
+  .input-container, .result-container {
+    width: 50%;
+    height: 400px;
+  }
+}
+
 .input-container {
-  background-color: #3D3D3D;
+  background-color: cap-gray;
 }
 
 .input-container-bottom-border {
   width: 100%;
   height: 3px;
-  background-color: #eee;
+  background-color: cap-border;
   outline: none;
   transition: background-color 0.2s ease-out;
 }
@@ -114,7 +152,7 @@ export default {
 }
 
 .result-container {
-  background-color: #313030;
+  background-color: cap-darker-gray;
 }
 
 .results {
@@ -138,21 +176,41 @@ export default {
   height: 100%;
   padding: 0;
   line-height: 1.6;
-  color: #F9F7F7;
-  background-color: #3D3D3D;
+  color: cap-white;
+  background-color: cap-gray;
   resize: none;
   caret-color: cap-red;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
 }
 
 .input-titles, .result-title {
   border: none;
   margin: 0;
+  font-size: 1.2em;
+}
+
+.input-titles, .results {
+  &::-webkit-scrollbar {
+    width: 10px;
+  }
+
+  &::-webkit-scrollbar-track {
+    background: cap-border;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background: cap-white;
+  }
+
+  &::-webkit-scrollbar-thumb:hover {
+    background: cap-dark-gray;
+  }
 }
 
 .title-num {
   margin-left: 1px;
-  background: #F9F7F7;
-  color: #333;
+  background: cap-white;
+  color: cap-dark-gray;
   padding: 1px 3px;
   vertical-align: text-top;
   border-radius: 4px;
