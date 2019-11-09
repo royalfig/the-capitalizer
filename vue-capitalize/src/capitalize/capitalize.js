@@ -1,20 +1,33 @@
-import { prep, coordConj, subConj, articles, allCaps } from "./lists";
+import {
+  prep,
+  coordConj,
+  subConj,
+  articles,
+  allCaps,
+  lowercasePartOfNames
+} from "./lists";
 // import { debounce } from "../../node_modules/debounce";
 import { throttle, debounce } from "../../node_modules/throttle-debounce";
 
 function convertToEmDash(input) {
-  return input.replace(/--|\u2013/g, "\u2014");
+  return input.replace(/--|(?!\d)\u2013(?!\d)/g, "\u2014");
 }
 
 function lowercaseFirstLetter(word, style) {
   const capped = cap(word);
-  if (allCaps.includes(word.toUpperCase().replace(/\./g, ""))) {
+  if (allCaps.includes(word.toUpperCase().replace(/[\.,—?:-]/g, ""))) {
     return word.toUpperCase();
   } else {
     switch (style) {
       case "AP": {
         if (
-          [...prep, ...articles, ...coordConj, ...subConj].includes(word) &&
+          [
+            ...prep,
+            ...articles,
+            ...coordConj,
+            ...subConj,
+            ...lowercasePartOfNames
+          ].includes(word) &&
           word.length < 4
         ) {
           return word;
@@ -24,7 +37,13 @@ function lowercaseFirstLetter(word, style) {
       }
       case "APA": {
         if (
-          [...articles, ...prep, ...coordConj, ...subConj].includes(word) &&
+          [
+            ...articles,
+            ...prep,
+            ...coordConj,
+            ...subConj,
+            ...lowercasePartOfNames
+          ].includes(word) &&
           word.length < 4
         ) {
           return word;
@@ -34,14 +53,23 @@ function lowercaseFirstLetter(word, style) {
       }
       case "CMS": {
         const chi = ["and", "as", "but", "for", "or", "nor"];
-        if ([...chi, ...articles, ...prep].includes(word)) {
+        if (
+          [...chi, ...articles, ...prep, ...lowercasePartOfNames].includes(word)
+        ) {
           return word;
         } else {
           return capped;
         }
       }
       case "MLA": {
-        if ([...articles, ...prep, ...coordConj].includes(word)) {
+        if (
+          [
+            ...articles,
+            ...prep,
+            ...coordConj,
+            ...lowercasePartOfNames
+          ].includes(word)
+        ) {
           return word;
         } else {
           return capped;
@@ -68,7 +96,9 @@ function lowercaseFirstLetter(word, style) {
         ];
         const nyUpperCase = ["no", "nor", "not", "off", "out", "so", "up"];
         if (
-          [...nyLowerCase, ...articles].includes(word) &&
+          [...nyLowerCase, ...articles, ...lowercasePartOfNames].includes(
+            word
+          ) &&
           !nyUpperCase.includes(word)
         ) {
           return word;
@@ -121,17 +151,11 @@ function capitalize(titles, style) {
 
   const rightQuote = leftQuote.replace(/(")$/, "\u201D");
 
-  function fixEmDash(input, style) {
-    if (/—/g.test(input)) {
-      input.replace(/—(\w+)/, (match, p1) => lowercaseFirstLetter(p1, style));
-    } else {
-      return input;
-    }
-  }
+  const emDash = rightQuote.replace(/(?<=—)\w+/g, match =>
+    lowercaseFirstLetter(match, style)
+  );
 
-  console.log(fixEmDash(rightQuote, style));
-
-  return rightQuote;
+  return emDash;
 }
 
 class Title {

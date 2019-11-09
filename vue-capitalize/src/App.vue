@@ -1,10 +1,13 @@
 <template>
   <div>
-    <app-header></app-header>
-    <app-style-selector v-on:selectedStyle="styleValue"></app-style-selector>
-    <app-user-input ref="titleText" :styleValue="this.chosenStyle"></app-user-input>
-    <app-style-buttons v-on:clear="clearField" v-on:copy="copyField"></app-style-buttons>
-    <app-style-rules></app-style-rules>
+    <div class="app-container">
+      <app-header></app-header>
+      <app-style-selector v-on:selectedStyle="styleValue"></app-style-selector>
+      <app-user-input ref="titleText" :styleValue="this.chosenStyle"></app-user-input>
+      <app-style-buttons v-on:clear="clearField" v-on:copy="copyField"></app-style-buttons>
+      <app-style-rules></app-style-rules>
+    </div>
+    <app-footer></app-footer>
   </div>
 </template>
 
@@ -14,6 +17,7 @@ import styleSelector from "./components/styleSelector.vue";
 import userInput from "./components/userInput.vue";
 import styleButtons from "./components/styleButtons.vue";
 import styleRules from "./components/styleRules.vue";
+import Footer from "./components/Footer.vue";
 
 export default {
   metaInfo: {
@@ -33,11 +37,11 @@ export default {
           "Turn your text into proper title case according to the style rules"
       },
       { name: "twitter:creator", content: "@TheRoyalFig" },
-      { name: "twitter:image:src", content: "img" },
+      { name: "twitter:image:src", content: "/the_capitalizer.jpg" },
       { name: "og:title", content: "The Capitalizer" },
       { name: "og:type", content: "article" },
       { name: "og:url", content: "https://thecapitalizer.com" },
-      { name: "og:image", content: "img" },
+      { name: "og:image", content: "/the_capitalizer.jpg" },
       {
         name: "og:description",
         content:
@@ -55,7 +59,8 @@ export default {
     "app-style-selector": styleSelector,
     "app-user-input": userInput,
     "app-style-buttons": styleButtons,
-    "app-style-rules": styleRules
+    "app-style-rules": styleRules,
+    "app-footer": Footer
   },
   methods: {
     clearField() {
@@ -82,10 +87,8 @@ html {
 
 body {
   margin: 0;
-  padding: 1em;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
   line-height: 1.6;
-  background: #fffefe;
 }
 
 h1 {
@@ -108,9 +111,9 @@ h5 {
   font-size: 1.25em;
 }
 
-.changed {
-  position: relative;
-  border-bottom: 1px solid #fe4949;
+.app-container {
+  background: #fffefe;
+  padding: 1em;
 }
 
 @media (min-width: tablet) {
@@ -118,7 +121,7 @@ h5 {
     font-size: 17px;
   }
 
-  body {
+  .app-container {
     padding: 1em 2em;
   }
 }
@@ -143,5 +146,12 @@ h5 {
 .toasted.custom-toast.outline.success {
   color: cap-success;
   border-color: cap-success;
+}
+
+.underline {
+  height: 2px;
+  width: 100%;
+  background-color: cap-red;
+  margin: 2px auto;
 }
 </style>

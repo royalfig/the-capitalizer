@@ -1,7 +1,8 @@
 <template>
   <aside class="container explainer-container">
-    <h2 class="style-rules">Style Rules</h2>
-
+    <div>
+      <h2 class="style-rules">Style Rules</h2>
+    </div>
     <article class="explainer" v-for="name in sortedStyles" :key="name.id" :id="name.id">
       <h3 class="style">{{ name.style }}</h3>
       <small class="badge">{{ name.badge }}</small>
@@ -9,6 +10,9 @@
         <li v-for="(item, index) in name.rules" :key="index" v-html="item.rule"></li>
       </ul>
     </article>
+    <div class="warning">
+      <p>Warning</p>
+    </div>
   </aside>
 </template>
 
@@ -220,14 +224,22 @@ export default {
 </script>
 
 <style scoped lang="stylus">
+.explainer-container {
+  margin-top: 6rem;
+}
+
 .style-rules {
-  color: cap-darker-gray;
-  font-weight: 600;
+  margin: 0.15em auto;
+  font-weight: 900;
+  line-height: 1.2;
+  color: #333333;
   text-align: center;
 }
 
 .style {
   display: inline;
+  line-height: 1.2;
+  color: cap-dark-gray;
 }
 
 .explainer {
@@ -235,7 +247,8 @@ export default {
 }
 
 .badge {
-  padding: 2px 4px;
+  display: inline;
+  padding: 2px 5px;
   font-weight: 700;
   font-size: 75%;
   text-transform: uppercase;
@@ -244,6 +257,7 @@ export default {
   border-radius: 5px;
   margin-left: 5px;
   font-weight: 700;
+  vertical-align: text-top;
 }
 
 .rule-container {

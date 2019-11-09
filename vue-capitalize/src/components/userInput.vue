@@ -73,7 +73,7 @@ export default {
         this.$toasted.show("Enter a title first", { type: "info" });
       } else {
         this.message = "";
-        this.$toasted.show("🎉 Titles Cleared", { type: "success" });
+        this.$toasted.show("Titles Cleared", { type: "success" });
       }
     },
     copyIt() {

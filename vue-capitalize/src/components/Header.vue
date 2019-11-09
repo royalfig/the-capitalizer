@@ -27,13 +27,6 @@
   font-weight: 900;
 }
 
-.underline {
-  height: 2px;
-  width: 100%;
-  background-color: cap-red;
-  margin: 2px auto;
-}
-
 .subtitle {
   color: #444;
   text-align: center;

@@ -1,4 +1,4 @@
-export { prep, coordConj, subConj, articles, allCaps };
+export { prep, coordConj, subConj, articles, allCaps, lowercasePartOfNames };
 
 const prep = [
   "aboard",
@@ -123,7 +123,7 @@ const subConj = [
 
 const articles = ["a", "an", "the"];
 
-const rawCaps = [
+const allCaps = [
   "ADA",
   "AKA",
   "ATM",
@@ -187,8 +187,5 @@ const rawCaps = [
   "WWW",
   "X"
 ];
-const addEmAfter = rawCaps.map(word => word + "—");
-const addEmBefore = rawCaps.map(word => "—" + word);
-const allCaps = [...rawCaps, ...addEmBefore, ...addEmAfter];
 
 const lowercasePartOfNames = ["de", "von", "van", "y"];

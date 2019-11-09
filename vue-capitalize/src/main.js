@@ -6,7 +6,7 @@ import VueMeta from "vue-meta";
 Vue.use(VueMeta);
 
 Vue.use(Toasted, {
-  duration: 400000,
+  duration: 4000,
   theme: "outline",
   className: "custom-toast"
 });
