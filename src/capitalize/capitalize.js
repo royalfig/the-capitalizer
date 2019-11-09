@@ -7,8 +7,6 @@ import {
   lowercasePartOfNames,
   species
 } from "./lists";
-// import { debounce } from "../../node_modules/debounce";
-import { throttle, debounce } from "../../node_modules/throttle-debounce";
 
 function convertToEmDash(input) {
   return input.replace(/--|(?!\d)\u2013(?!\d)/g, "\u2014");
