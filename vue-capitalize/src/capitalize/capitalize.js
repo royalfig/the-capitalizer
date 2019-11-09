@@ -4,7 +4,8 @@ import {
   subConj,
   articles,
   allCaps,
-  lowercasePartOfNames
+  lowercasePartOfNames,
+  species
 } from "./lists";
 // import { debounce } from "../../node_modules/debounce";
 import { throttle, debounce } from "../../node_modules/throttle-debounce";
@@ -26,7 +27,8 @@ function lowercaseFirstLetter(word, style) {
             ...articles,
             ...coordConj,
             ...subConj,
-            ...lowercasePartOfNames
+            ...lowercasePartOfNames,
+            ...species
           ].includes(word) &&
           word.length < 4
         ) {
@@ -42,7 +44,8 @@ function lowercaseFirstLetter(word, style) {
             ...prep,
             ...coordConj,
             ...subConj,
-            ...lowercasePartOfNames
+            ...lowercasePartOfNames,
+            ...species
           ].includes(word) &&
           word.length < 4
         ) {
@@ -54,7 +57,13 @@ function lowercaseFirstLetter(word, style) {
       case "CMS": {
         const chi = ["and", "as", "but", "for", "or", "nor"];
         if (
-          [...chi, ...articles, ...prep, ...lowercasePartOfNames].includes(word)
+          [
+            ...chi,
+            ...articles,
+            ...prep,
+            ...lowercasePartOfNames,
+            ...species
+          ].includes(word)
         ) {
           return word;
         } else {
@@ -67,7 +76,8 @@ function lowercaseFirstLetter(word, style) {
             ...articles,
             ...prep,
             ...coordConj,
-            ...lowercasePartOfNames
+            ...lowercasePartOfNames,
+            ...species
           ].includes(word)
         ) {
           return word;
@@ -96,9 +106,12 @@ function lowercaseFirstLetter(word, style) {
         ];
         const nyUpperCase = ["no", "nor", "not", "off", "out", "so", "up"];
         if (
-          [...nyLowerCase, ...articles, ...lowercasePartOfNames].includes(
-            word
-          ) &&
+          [
+            ...nyLowerCase,
+            ...articles,
+            ...lowercasePartOfNames,
+            ...species
+          ].includes(word) &&
           !nyUpperCase.includes(word)
         ) {
           return word;
@@ -108,7 +121,7 @@ function lowercaseFirstLetter(word, style) {
       }
       case "WP": {
         if (
-          [...articles, ...coordConj, ...prep].includes(word) &&
+          [...articles, ...coordConj, ...prep, ...species].includes(word) &&
           word.length < 5
         ) {
           return word;

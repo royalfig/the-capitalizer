@@ -3,7 +3,9 @@
     <div class="selected-style flex-row">
       <p class="legend">Style:</p>
       <transition name="fade" mode="out-in">
-        <p class="current-style" :key="styleName">{{ styleName }}</p>
+        <p class="current-style" :key="styleName">
+          <a :href="anchorTag">{{ styleName }}</a>
+        </p>
       </transition>
     </div>
 
@@ -65,7 +67,7 @@ export default {
       return styleName.name;
     },
     anchorTag: function() {
-      return "#" + this.picked.toLowerCase();
+      return "#" + this.picked + "_rule";
     }
   }
 };
@@ -82,9 +84,15 @@ export default {
 
 .selected-style {
   align-items: center;
-  flex: 1;
+  flex: 100%;
   font-weight: 600;
   color: cap-border;
+}
+
+@media (min-width: tablet) {
+  .selected-style {
+    flex: 1;
+  }
 }
 
 .legend {
@@ -112,10 +120,23 @@ export default {
 
 .current-style {
   margin: 0 0 0 0.5em;
+
+  a {
+    color: cap-border;
+    text-decoration: none;
+  }
 }
 
 .style-options {
   align-items: center;
+  flex: 100%;
+  margin-top: 10px;
+}
+
+@media (min-width: tablet) {
+  .style-options {
+    flex: 1;
+  }
 }
 
 .style-label {
@@ -125,6 +146,7 @@ export default {
   position: relative;
   padding-left: 1.25em;
   margin-right: 1.5em;
+  margin-bottom: 0.5em;
   cursor: pointer;
   font-weight: 600;
   color: cap-border;
@@ -181,5 +203,15 @@ export default {
 /* Show the indicator (dot/circle) when checked */
 .style-label input:checked ~ .checkmark:after {
   display: block;
+}
+
+@media (min-width: tablet) {
+  .style-options {
+    margin-top: 0;
+  }
+
+  .style-label {
+    margin-bottom: 0;
+  }
 }
 </style>

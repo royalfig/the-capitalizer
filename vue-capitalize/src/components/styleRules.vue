@@ -3,7 +3,7 @@
     <div>
       <h2 class="style-rules">Style Rules</h2>
     </div>
-    <article class="explainer" v-for="name in sortedStyles" :key="name.id" :id="name.id">
+    <article class="explainer" v-for="name in sortedStyles" :key="name.id" :id="name.id+'_rule'">
       <h3 class="style">{{ name.style }}</h3>
       <small class="badge">{{ name.badge }}</small>
       <ul class="rule-container">
@@ -11,7 +11,15 @@
       </ul>
     </article>
     <div class="warning">
-      <p>Warning</p>
+      <p>
+        <span class="caution">Caution:</span>&nbsp;
+        <strong>The Capitalizer</strong> is just some code trying its best to uppercase your titles according to the rules of your chosen style. Sometimes, though, it won&apos;t work just right. In particular,
+        <strong>The Capitalizer</strong> might not recognize when a preposition should be capitalized when it&apos;s used adverbally, adjectivally, or to modify a verb. There may also be other cases in which it doesn&apos;t return the correct result. If you find an error, you can keep it to yourself,
+        <a
+          href="https://twitter.com/TCapitalizer"
+        >tweet us</a> or
+        <a href="https://github.com/royalfig/Bulk-Title-Capitalizer">contribute to the project</a>!
+      </p>
     </div>
   </aside>
 </template>
@@ -180,9 +188,11 @@ export default {
             { rule: "Capitalize the first and last word of the title" },
             {
               rule:
-                "Capitalize adjectives, adverbs, nouns, subordinating conjunctions, and verbs"
+                "Capitalize <em>adjectives</em>, <em>adverbs</em>, <em>nouns</em>, <em>subordinating conjunctions</em>, and <em>verbs</em>"
             },
-            { rule: "Capitalize prepositions of five letters or more" },
+            {
+              rule: "Capitalize <em>prepositions</em> of five letters or more"
+            },
             {
               rule:
                 "Capitalize prepositions when used in phrasal verbs or compound prepositions"
@@ -246,7 +256,7 @@ export default {
   margin: 2em auto;
 }
 
-.badge {
+.badge, .caution {
   display: inline;
   padding: 2px 5px;
   font-weight: 700;
@@ -260,9 +270,20 @@ export default {
   vertical-align: text-top;
 }
 
+.caution {
+  background: cap-yellow;
+  color: cap-darker-gray;
+  vertical-align: initial;
+  margin-left: 0;
+}
+
 .rule-container {
   margin-left: 1em;
   border-left: 1px solid cap-red;
+}
+
+.warning a, .warning a:visited {
+  color: currentColor;
 }
 </style>
 
