@@ -14,7 +14,7 @@ function convertToEmDash(input) {
 
 function lowercaseFirstLetter(word, style) {
   const capped = cap(word);
-  if (allCaps.includes(word.toUpperCase().replace(/[\.,—?:-]/g, ""))) {
+  if (allCaps.includes(word.toUpperCase().replace(/[.,—?:-]/g, ""))) {
     return word.toUpperCase();
   } else {
     switch (style) {
@@ -158,7 +158,7 @@ function capitalize(titles, style) {
     match => cap(match)
   );
 
-  const leftQuote = punctuationFixed.replace(/^(\")/, "\u201C");
+  const leftQuote = punctuationFixed.replace(/^(")/, "\u201C");
 
   const rightQuote = leftQuote.replace(/(")$/, "\u201D");
 
