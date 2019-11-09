@@ -162,8 +162,9 @@ function capitalize(titles, style) {
 
   const rightQuote = leftQuote.replace(/(")$/, "\u201D");
 
-  const emDash = rightQuote.replace(/(?<=—)\w+/g, match =>
-    lowercaseFirstLetter(match, style)
+  const emDash = rightQuote.replace(
+    /—(\w+)/g,
+    (match, sub) => "—" + lowercaseFirstLetter(sub, style)
   );
 
   return emDash;
