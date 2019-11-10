@@ -72,6 +72,9 @@ export default {
     styleValue(chosenStyle) {
       this.chosenStyle = chosenStyle;
     }
+  },
+  mounted() {
+    this.$ga.page("/");
   }
 };
 </script>
