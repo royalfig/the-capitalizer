@@ -40,7 +40,7 @@ export default {
             },
             {
               rule:
-                "Capitalize <em>nouns</em>, <em>pronouns</em>, <em>verbs</em>, <em>adjectives</em>, <em>adverbs</em>, and <em>conjunctions</em> (but not &ldquo;and&rdquo;, &ldquo;but&rdquo;, &ldquo;for&rdquo;, &ldquo;or&rdquo;, &ldquo;nor&rdquo;)"
+                "Capitalize <em>nouns</em>, <em>pronouns</em>, <em>verbs</em>, <em>adjectives</em>, <em>adverbs</em>, and <em>conjunctions</em> (but not &ldquo;and,&rdquo; &ldquo;but,&rdquo; &ldquo;for,&rdquo; &ldquo;or,&rdquo; &ldquo;nor&rdquo;)"
             },
             {
               rule:
@@ -48,7 +48,7 @@ export default {
             },
             {
               rule:
-                "Lowercase the articles (&ldquo;a&rdquo;, &ldquo;an&rdquo;, &ldquo;the&rdquo;)"
+                "Lowercase the articles (&ldquo;a,&rdquo; &ldquo;an,&rdquo; &ldquo;the&rdquo;)"
             },
             {
               rule:
@@ -137,7 +137,7 @@ export default {
 
             {
               rule:
-                "Capitalize &ldquo;no&rdquo;, &ldquo;nor&rdquo;, &ldquo;not&rdquo;, &ldquo;off&rdquo;, &ldquo;out&rdquo;, &ldquo;so&rdquo;, &ldquo;up&rdquo;"
+                "Capitalize &ldquo;no,&rdquo; &ldquo;nor,&rdquo; &ldquo;not,&rdquo; &ldquo;off,&rdquo; &ldquo;out,&rdquo; &ldquo;so,&rdquo; &ldquo;up&rdquo;"
             },
             {
               rule:
@@ -149,7 +149,7 @@ export default {
             },
             {
               rule:
-                "Lowercase &ldquo;a&rdquo;, &ldquo;and&rdquo;, &ldquo;as&rdquo;, &ldquo;at&rdquo;, &ldquo;but&rdquo;, &ldquo;by&rdquo;, &ldquo;en&rdquo;, &ldquo;for&rdquo;, &ldquo;if&rdquo;, &ldquo;in&rdquo;, &ldquo;of&rdquo;, &ldquo;on&rdquo;, &ldquo;or&rdquo;, &ldquo;the&rdquo;, &ldquo;to&rdquo;, &ldquo;v.&rdquo, &ldquo;vs.&rdquo;, &ldquo;via&rdquo;"
+                "Lowercase &ldquo;a,&rdquo; &ldquo;and,&rdquo; &ldquo;as,&rdquo; &ldquo;at,&rdquo; &ldquo;but,&rdquo; &ldquo;by,&rdquo; &ldquo;en,&rdquo; &ldquo;for,&rdquo; &ldquo;if,&rdquo; &ldquo;in,&rdquo; &ldquo;of,&rdquo; &ldquo;on,&rdquo; &ldquo;or,&rdquo; &ldquo;the,&rdquo; &ldquo;to,&rdquo; &ldquo;v.&rdquo, &ldquo;vs.,&rdquo; &ldquo;via&rdquo;"
             },
             { rule: "Lowercase the &ldquo;to&rdquo; in infinitives" },
             {
