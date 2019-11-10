@@ -9,15 +9,9 @@
   },
   "dependencies": {
     "core-js": "^2.6.5",
-    "debounce": "^1.2.0",
-    "en-pos": "^1.0.16",
-    "normalize.css": "^8.0.1",
-    "throttle-debounce": "^2.1.0",
     "vue": "^2.6.10",
     "vue-analytics": "^5.17.2",
-    "vue-meta": "^2.3.1",
-    "vue-toasted": "^1.1.27",
-    "wink-pos-tagger": "^2.2.2"
+    "vue-toasted": "^1.1.27"
   },
   "devDependencies": {
     "@vue/cli-plugin-babel": "^3.11.0",

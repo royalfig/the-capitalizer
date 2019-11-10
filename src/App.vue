@@ -20,35 +20,6 @@ import styleRules from "./components/styleRules.vue";
 import Footer from "./components/Footer.vue";
 
 export default {
-  metaInfo: {
-    title: "The Capitalizer",
-    meta: [
-      {
-        name: "description",
-        content:
-          "Turn your text into proper title case according to the style rules"
-      },
-      { name: "twitter:card", content: "summary_large_image" },
-      { name: "twitter:site", content: "@thecapitalizer" },
-      { name: "twitter:title", content: "The Capitalizer" },
-      {
-        name: "twitter:description",
-        content:
-          "Turn your text into proper title case according to the style rules"
-      },
-      { name: "twitter:creator", content: "@TheRoyalFig" },
-      { name: "twitter:image:src", content: "/the_capitalizer.jpg" },
-      { name: "og:title", content: "The Capitalizer" },
-      { name: "og:type", content: "article" },
-      { name: "og:url", content: "https://thecapitalizer.com" },
-      { name: "og:image", content: "/the_capitalizer.jpg" },
-      {
-        name: "og:description",
-        content:
-          "Turn your text into proper title case according to the style rules"
-      }
-    ]
-  },
   data() {
     return {
       chosenStyle: { style: "AP" }
