@@ -149,7 +149,7 @@ export default {
             },
             {
               rule:
-                "Lowercase &ldquo;a,&rdquo; &ldquo;and,&rdquo; &ldquo;as,&rdquo; &ldquo;at,&rdquo; &ldquo;but,&rdquo; &ldquo;by,&rdquo; &ldquo;en,&rdquo; &ldquo;for,&rdquo; &ldquo;if,&rdquo; &ldquo;in,&rdquo; &ldquo;of,&rdquo; &ldquo;on,&rdquo; &ldquo;or,&rdquo; &ldquo;the,&rdquo; &ldquo;to,&rdquo; &ldquo;v.&rdquo, &ldquo;vs.,&rdquo; &ldquo;via&rdquo;"
+                "Lowercase &ldquo;a,&rdquo; &ldquo;and,&rdquo; &ldquo;as,&rdquo; &ldquo;at,&rdquo; &ldquo;but,&rdquo; &ldquo;by,&rdquo; &ldquo;en,&rdquo; &ldquo;for,&rdquo; &ldquo;if,&rdquo; &ldquo;in,&rdquo; &ldquo;of,&rdquo; &ldquo;on,&rdquo; &ldquo;or,&rdquo; &ldquo;the,&rdquo; &ldquo;to,&rdquo; &ldquo;v.&rdquo;, &ldquo;vs.,&rdquo; &ldquo;via&rdquo;"
             },
             { rule: "Lowercase the &ldquo;to&rdquo; in infinitives" },
             {
