@@ -1,7 +1,7 @@
 <template>
   <div class="container">
     <p class="large">
-      <span class="instructions">Instructions</span> Type or paste your title(s) in the box on the left side. Put each title on a new line. Converted titles will appear in the box on the right. The bottom border will turn green to show that the titles have been converted successfully. Click the &ldquo;Copy&rdquo; button to copy all titles to your clipboard. Click the &ldquo;Clear&rdquo; button to clear the text box.
+      <span class="instructions">Instructions</span> Type or paste your title(s) in the box on the left side. Put each title on a new line. Converted titles will appear in the box on the right. The bottom border will turn green to show that the titles have been converted successfully. Click the &ldquo;Copy&rdquo; button to copy all titles to your clipboard. Click the &ldquo;Clear&rdquo; button to reset the text box.
     </p>
     <p class="small">
       <span class="instructions">Instructions</span> Type or paste your title(s) in the top box. Put each title on a new line. Converted titles will appear in the box below. The bottom border will turn green to show that the titles have been converted successfully. Click the &ldquo;Copy&rdquo; button to copy all titles to your clipboard. Click the &ldquo;Clear&rdquo; button to reset the text box.
