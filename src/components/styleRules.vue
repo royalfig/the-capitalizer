@@ -1,7 +1,8 @@
 <template>
   <aside class="container explainer-container">
     <div>
-      <h2 class="style-rules">Style Rules</h2>
+      <h2 class="style-rules">The Style Rules</h2>
+      <p>Ideally, we&apos;d have one simple set of rules for capitalizing titles. In reality, though, the rules for title case—what to capitalize and what not to capitalize in a title—slightly differ according to the publication&apos;s style guide. The Capitalizer eases this pain of sorting through all these rules by capitalizing the titles for you! Nonetheless, the most popular rules for capitalization are listed below for your reference.</p>
     </div>
     <article class="explainer" v-for="name in sortedStyles" :key="name.id" :id="name.id+'_rule'">
       <h3 class="style">{{ name.style }}</h3>
@@ -12,7 +13,7 @@
     </article>
     <div class="warning">
       <p>
-        <span class="caution">Caution:</span>&nbsp;
+        <span class="caution">Caution</span>&nbsp;
         <strong>The Capitalizer</strong> is just some code trying its best to uppercase your titles according to the rules of your chosen style. Sometimes, though, it won&apos;t work just right. In particular,
         <strong>The Capitalizer</strong> might not recognize when a preposition should be capitalized when it&apos;s used adverbally, adjectivally, or to modify a verb. There may also be other cases in which it doesn&apos;t return the correct result. If you find an error, you can keep it to yourself,
         <a

@@ -6,7 +6,7 @@
       <div class="underline"></div>
       <div class="underline"></div>
     </div>
-    <p class="subtitle">Turn your text into proper title case</p>
+    <p class="subtitle">A Lightning⚡Fast Title Capitalization Tool</p>
   </header>
 </template>
 
