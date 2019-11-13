@@ -20,7 +20,6 @@
           :value="style.abb"
           :aria-label="style.name"
           v-model="picked"
-          v-on:input="$emit('selectedStyle', {style: style.abb})"
         />
         <span class="checkmark"></span>
       </label>
@@ -68,6 +67,18 @@ export default {
     },
     anchorTag: function() {
       return "#" + this.picked + "_rule";
+    }
+  },
+  mounted() {
+    if (localStorage.style) {
+      this.picked = localStorage.style;
+      this.$emit("selectedStyle", { style: this.picked });
+    }
+  },
+  watch: {
+    picked(newStyle) {
+      localStorage.style = newStyle;
+      this.$emit("selectedStyle", { style: this.picked });
     }
   }
 };
