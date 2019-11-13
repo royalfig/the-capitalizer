@@ -69,16 +69,6 @@ export default {
     anchorTag: function() {
       return "#" + this.picked + "_rule";
     }
-  },
-  mounted() {
-    if (localStorage.style) {
-      this.picked = localStorage.style;
-    }
-  },
-  watch: {
-    picked(newStyle) {
-      localStorage.style = newStyle;
-    }
   }
 };
 </script>
