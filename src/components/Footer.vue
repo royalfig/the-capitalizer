@@ -2,12 +2,11 @@
   <footer class="flex-row footer">
     <div class="container flex-row">
       <div class="footer-col">
-        <img alt="" :src="require('../img/the_capitalizer.png')" />
+        <img alt :src="require('../img/the_capitalizer.png')" />
         <p class="brand">The Capitalizer</p>
         <p class="copyright">
-          &copy;
           <a href="https://ryanfeigenbaum.com" target="_blank" rel="noopener">Ryan Feigenbaum</a>
-          {{ year }}
+          &nbsp;&copy;&nbsp;{{ year }}
         </p>
         <div class="social-media">
           <a href="https://twitter.com/TCapitalizer" aria-label="Twitter">
