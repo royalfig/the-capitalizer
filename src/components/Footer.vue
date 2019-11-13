@@ -6,7 +6,7 @@
         <p class="brand">The Capitalizer</p>
         <p class="copyright">
           <a href="https://ryanfeigenbaum.com" target="_blank" rel="noopener">Ryan Feigenbaum</a>
-          &nbsp;&copy;&nbsp;{{ year }}
+          &copy; {{ year }}
         </p>
         <div class="social-media">
           <a href="https://twitter.com/TCapitalizer" aria-label="Twitter">
