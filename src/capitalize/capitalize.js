@@ -5,14 +5,16 @@ import {
   articles,
   allCaps,
   lowercasePartOfNames,
-  species
+  species,
+  verbalPhrases
 } from "./lists";
 
 function convertToEmDash(input) {
   return input.replace(/--|(?!\d)\u2013(?!\d)/g, "\u2014");
 }
 
-function lowercaseFirstLetter(word, style) {
+function lowercaseFirstLetter(word, style, pos, length) {
+  console.log(word, style, pos + 1, length);
   const capped = cap(word);
   if (allCaps.includes(word.toUpperCase().replace(/[.,—?:-]/g, ""))) {
     return word.toUpperCase();
@@ -137,9 +139,13 @@ function cap(word) {
 
 function capitalize(titles, style) {
   const titleArr = [];
+  const titleLength = titles.length;
 
-  if (titles.length > 0) {
-    titles.forEach(word => titleArr.push(lowercaseFirstLetter(word, style)));
+  if (titleLength > 0) {
+    titles.forEach((word, idx) => {
+      titleArr.push(lowercaseFirstLetter(word, style, idx, titleLength));
+    });
+    // titles.forEach(word => titleArr.push(lowercaseFirstLetter(word, style)));
   }
 
   // Cap the last word
@@ -181,6 +187,7 @@ class Title {
 
 export default function capitalizer(style, text) {
   // Split titles into individuals
+  const config = getConfig(style);
   const titles = text.split(/\n/);
   const titlesArray = [];
 
@@ -191,3 +198,31 @@ export default function capitalizer(style, text) {
 
   return titlesArray;
 }
+
+const getConfig = style => {
+  switch (style) {
+    case "AP":
+      return AP;
+    case "APA":
+      return APA;
+    case "CMS":
+      return CMS;
+    case "MLA":
+      return MLA;
+    case "NYT":
+      return NYT;
+    case "WP":
+      return WP;
+  }
+};
+
+const AP = { alwaysLower: [], greeting: "Hi Rye" };
+const APA = { alwaysLower: [], greeting: "Hi Rye" };
+const CMS = { alwaysLower: [], greeting: "Hi Rye" };
+const MLA = { alwaysLower: [], greeting: "Hi Rye" };
+const NYT = { alwaysLower: [], greeting: "Hi Rye" };
+const WP = { alwaysLower: [], greeting: "Hi Rye" };
+
+// Functions run beforehand -- convert to em dash, smartquotes, trim
+// Functions run to individual words - match whether word is on list, add word position here
+// Functions run to whole sentences - match whether punctuation, phrase, etc. is on list

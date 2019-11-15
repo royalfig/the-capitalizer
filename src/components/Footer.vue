@@ -2,10 +2,12 @@
   <footer class="flex-row footer">
     <div class="container flex-row">
       <div class="footer-col">
-        <img alt :src="require('../img/the_capitalizer.png')" />
+        <img alt :src="require('../img/the_capitalizer.svg')" />
         <p class="brand">The Capitalizer</p>
         <p class="copyright">
-          <a href="https://ryanfeigenbaum.com" target="_blank" rel="noopener">Ryan Feigenbaum</a>
+          <a href="https://ryanfeigenbaum.com" target="_blank" rel="noopener"
+            >Ryan Feigenbaum</a
+          >
           &copy; {{ year }}
         </p>
         <div class="social-media">
@@ -28,7 +30,10 @@
               />
             </svg>
           </a>
-          <a href="https://github.com/royalfig/Bulk-Title-Capitalizer" aria-label="Github">
+          <a
+            href="https://github.com/royalfig/Bulk-Title-Capitalizer"
+            aria-label="Github"
+          >
             <svg
               xmlns="http://www.w3.org/2000/svg"
               width="32.579"
