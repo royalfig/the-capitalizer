@@ -7,11 +7,13 @@ import {
   lowercasePartOfNames,
   species,
   verbalPhrases,
-  chi
+  chi,
+  nyLowerCase,
+  nyUpperCase
 } from "./lists";
 
 // Functions to convert before splitting titles into arrays
-const prepareTitle = input => {
+const prepareTitle = input =>
   input
     .replace(/'\b/g, "\u2018")
     .replace(/\b'/g, "\u2019")
@@ -19,10 +21,33 @@ const prepareTitle = input => {
     .replace(/\b"/g, "\u201d")
     .replace(/--/g, "\u2014")
     .replace(/\b\u2018\b/g, "'");
+
+const doCapitalization = (word, pos, config, length) => {
+  console.log(pos + 1, length);
+  const baseWord = word.replace(/[.,;'"?:\u2018\u2019\u201c\u201d]/g, "");
+  const baseWordCap = baseWord.toUpperCase();
+  const lengthRule =
+    config.alwaysLowerLength === null
+      ? true
+      : baseWord.length < config.alwaysLowerLength;
+
+  if (
+    config.alwaysLower.includes(baseWord) &&
+    lengthRule &&
+    !config.allCaps.includes(baseWordCap) &&
+    !config.alwaysUpper.includes(baseWord) &&
+    pos !== 0 &&
+    pos + 1 !== length
+  ) {
+    return word;
+  } else if (config.allCaps.includes(baseWordCap)) {
+    return baseWordCap;
+  } else {
+    return cap(word);
+  }
 };
 
 function lowercaseFirstLetter(word, style, pos, length) {
-  console.log(word, style, pos + 1, length);
   const capped = cap(word);
   if (allCaps.includes(word.toUpperCase().replace(/[.,—?:-]/g, ""))) {
     return word.toUpperCase();
@@ -145,66 +170,34 @@ function cap(word) {
   return word.replace(/\w/, match => match.toUpperCase());
 }
 
-function capitalize(titles, style) {
+function capitalize(wordArray, config) {
   const titleArr = [];
-  const titleLength = titles.length;
+  const titleLength = wordArray.length;
 
   if (titleLength > 0) {
-    titles.forEach((word, idx) => {
-      titleArr.push(lowercaseFirstLetter(word, style, idx, titleLength));
+    wordArray.forEach((word, idx) => {
+      titleArr.push(doCapitalization(word, idx, config, titleLength));
     });
     // titles.forEach(word => titleArr.push(lowercaseFirstLetter(word, style)));
   }
 
-  // Cap the last word
-  const lastWord = cap(titleArr.splice(-1).toString());
-  titleArr[titleArr.length] = lastWord;
-
+  // Post function
   const joinedTitleArr = titleArr.join(" ");
 
-  // Cap the first word
-  const finalTitleArrFixed = joinedTitleArr.replace(/\w|\w$/, match =>
-    cap(match)
-  );
-
-  const punctuationFixed = finalTitleArrFixed.replace(
+  const punctuationFixed = joinedTitleArr.replace(
     /-(\w)|:\s(\w)|\?\s(\w)|\.\s(\w)/g,
     match => cap(match)
   );
-
-  const leftQuote = punctuationFixed.replace(/^(")/, "\u201C");
-
-  const rightQuote = leftQuote.replace(/(")$/, "\u201D");
-
-  const emDash = rightQuote.replace(
-    /—(\w+)/g,
-    (match, sub) => "—" + lowercaseFirstLetter(sub, style)
-  );
-
-  return emDash;
+  return punctuationFixed;
 }
 
 class Title {
-  constructor(title, style) {
+  constructor(title, config) {
     this.prepared = prepareTitle(title.trim());
     this.lowercase = this.prepared.toLowerCase();
     this.wordArray = this.lowercase.split(" ");
-    this.capitalized = capitalize(this.wordArray, style);
+    this.capitalized = capitalize(this.wordArray, config);
   }
-}
-
-export default function capitalizer(style, text) {
-  // Split titles into individuals
-  const config = getConfig(style);
-  const titles = text.split(/\n/);
-  const titlesArray = [];
-
-  titles.forEach(item => {
-    let titleObj = new Title(item, style);
-    titlesArray.push(titleObj);
-  });
-
-  return titlesArray;
 }
 
 const getConfig = style => {
@@ -212,7 +205,7 @@ const getConfig = style => {
     case "AP":
       return AP;
     case "APA":
-      return AP;
+      return APA;
     case "CMS":
       return CMS;
     case "MLA":
@@ -235,11 +228,26 @@ const AP = {
     ...species
   ],
   alwaysLowerLength: 4,
-  alwaysUpper: null,
-  hyphen: null
+  alwaysUpper: [],
+  hyphen: null,
+  name: "Associated Press"
 };
 
-// APA and AP are the same??
+const APA = {
+  allCaps,
+  alwaysLower: [
+    ...prep,
+    ...articles,
+    ...coordConj,
+    ...subConj,
+    ...lowercasePartOfNames,
+    ...species
+  ],
+  alwaysLowerLength: 4,
+  alwaysUpper: [],
+  hyphen: null,
+  name: "American Psychological Association"
+};
 
 const CMS = {
   allCaps,
@@ -251,8 +259,9 @@ const CMS = {
     ...species
   ],
   alwaysLowerLength: null,
-  alwaysUpper: null,
-  hyphen: null
+  alwaysUpper: [],
+  hyphen: null,
+  name: "Chicago Manual of Style"
 };
 
 const MLA = {
@@ -265,8 +274,9 @@ const MLA = {
     ...species
   ],
   alwaysLowerLength: null,
-  alwaysUpper: null,
-  hyphen: null
+  alwaysUpper: [],
+  hyphen: null,
+  name: "Modern Language Association"
 };
 
 const NYT = {
@@ -279,17 +289,32 @@ const NYT = {
   ],
   alwaysLowerLength: null,
   alwaysUpper: nyUpperCase,
-  hyphen: null
+  hyphen: null,
+  name: "New York Times"
 };
 
 const WP = {
   allCaps,
   alwaysLower: [...articles, ...coordConj, ...prep, ...species],
   alwaysLowerLength: 5,
-  alwaysUpper: null,
-  hyphen: null
+  alwaysUpper: [],
+  hyphen: null,
+  name: "Wikipedia"
 };
 
 // Functions run beforehand -- convert to em dash, smartquotes, trim
 // Functions run to individual words - match whether word is on list, add word position here
 // Functions run to whole sentences - match whether punctuation, phrase, etc. is on list
+
+export default function capitalizer(style, text) {
+  const config = getConfig(style);
+  const titles = text.split(/\n/);
+  const titlesArray = [];
+
+  titles.forEach(title => {
+    let titleObj = new Title(title, config);
+    titlesArray.push(titleObj);
+  });
+
+  return titlesArray;
+}
