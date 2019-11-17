@@ -426,6 +426,29 @@ const verbalPhrases = [
   "wipe off"
 ];
 
+const chi = ["and", "as", "but", "for", "or", "nor"];
+
+const nyLowerCase = [
+  "and",
+  "as",
+  "at",
+  "but",
+  "by",
+  "en",
+  "for",
+  "if",
+  "in",
+  "of",
+  "on",
+  "or",
+  "to",
+  "v.",
+  "vs.",
+  "via"
+];
+
+const nyUpperCase = ["no", "nor", "not", "off", "out", "so", "up"];
+
 export {
   prep,
   coordConj,
@@ -434,5 +457,8 @@ export {
   allCaps,
   lowercasePartOfNames,
   species,
-  verbalPhrases
+  verbalPhrases,
+  chi,
+  nyLowerCase,
+  nyUpperCase
 };

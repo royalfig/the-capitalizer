@@ -6,12 +6,20 @@ import {
   allCaps,
   lowercasePartOfNames,
   species,
-  verbalPhrases
+  verbalPhrases,
+  chi
 } from "./lists";
 
-function convertToEmDash(input) {
-  return input.replace(/--|(?!\d)\u2013(?!\d)/g, "\u2014");
-}
+// Functions to convert before splitting titles into arrays
+const prepareTitle = input => {
+  input
+    .replace(/'\b/g, "\u2018")
+    .replace(/\b'/g, "\u2019")
+    .replace(/"\b/g, "\u201c")
+    .replace(/\b"/g, "\u201d")
+    .replace(/--/g, "\u2014")
+    .replace(/\b\u2018\b/g, "'");
+};
 
 function lowercaseFirstLetter(word, style, pos, length) {
   console.log(word, style, pos + 1, length);
@@ -178,8 +186,8 @@ function capitalize(titles, style) {
 
 class Title {
   constructor(title, style) {
-    this.original = convertToEmDash(title.trim());
-    this.lowercase = this.original.toLowerCase();
+    this.prepared = prepareTitle(title.trim());
+    this.lowercase = this.prepared.toLowerCase();
     this.wordArray = this.lowercase.split(" ");
     this.capitalized = capitalize(this.wordArray, style);
   }
@@ -204,7 +212,7 @@ const getConfig = style => {
     case "AP":
       return AP;
     case "APA":
-      return APA;
+      return AP;
     case "CMS":
       return CMS;
     case "MLA":
@@ -216,12 +224,71 @@ const getConfig = style => {
   }
 };
 
-const AP = { alwaysLower: [], greeting: "Hi Rye" };
-const APA = { alwaysLower: [], greeting: "Hi Rye" };
-const CMS = { alwaysLower: [], greeting: "Hi Rye" };
-const MLA = { alwaysLower: [], greeting: "Hi Rye" };
-const NYT = { alwaysLower: [], greeting: "Hi Rye" };
-const WP = { alwaysLower: [], greeting: "Hi Rye" };
+const AP = {
+  allCaps,
+  alwaysLower: [
+    ...prep,
+    ...articles,
+    ...coordConj,
+    ...subConj,
+    ...lowercasePartOfNames,
+    ...species
+  ],
+  alwaysLowerLength: 4,
+  alwaysUpper: null,
+  hyphen: null
+};
+
+// APA and AP are the same??
+
+const CMS = {
+  allCaps,
+  alwaysLower: [
+    ...chi,
+    ...articles,
+    ...prep,
+    ...lowercasePartOfNames,
+    ...species
+  ],
+  alwaysLowerLength: null,
+  alwaysUpper: null,
+  hyphen: null
+};
+
+const MLA = {
+  allCaps,
+  alwaysLower: [
+    ...articles,
+    ...prep,
+    ...coordConj,
+    ...lowercasePartOfNames,
+    ...species
+  ],
+  alwaysLowerLength: null,
+  alwaysUpper: null,
+  hyphen: null
+};
+
+const NYT = {
+  allCaps,
+  alwaysLower: [
+    ...nyLowerCase,
+    ...articles,
+    ...lowercasePartOfNames,
+    ...species
+  ],
+  alwaysLowerLength: null,
+  alwaysUpper: nyUpperCase,
+  hyphen: null
+};
+
+const WP = {
+  allCaps,
+  alwaysLower: [...articles, ...coordConj, ...prep, ...species],
+  alwaysLowerLength: 5,
+  alwaysUpper: null,
+  hyphen: null
+};
 
 // Functions run beforehand -- convert to em dash, smartquotes, trim
 // Functions run to individual words - match whether word is on list, add word position here
