@@ -6,10 +6,9 @@
       <div class="underline"></div>
       <div class="underline"></div>
     </div>
-    <p class="subtitle">A Lightning⚡Fast Title Capitalization Tool</p>
+    <p class="subtitle">A Lightning⚡Fast Title Capitalization&nbsp;Tool</p>
   </header>
 </template>
-
 
 <style lang="stylus" scoped>
 .header {
