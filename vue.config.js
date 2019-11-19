@@ -6,6 +6,21 @@ module.exports = {
     types.forEach(type =>
       addStyleResource(config.module.rule("stylus").oneOf(type))
     );
+  },
+  pwa: {
+    name: "The Capitalizer - A Title Capitalization Tool",
+    shortName: "The Capitalizer",
+    themeColor: "#f16b6f",
+    msTileColor: "#f16b6f",
+    appleMobileWebAppCapable: "yes",
+    appleMobileWebAppStatusBarStyle: "#f16b6f",
+    iconPaths: {
+      favicon32: "/favicon-32x32.png",
+      favicon16: "/favicon-16x16.png",
+      appleTouchIcon: "/apple-touch-icon.png",
+      maskIcon: "/safari-pinned-tab.svg",
+      msTileImage: "/msapplication-icon-144x144.png"
+    }
   }
 };
 

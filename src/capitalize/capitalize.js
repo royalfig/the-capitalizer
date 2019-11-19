@@ -60,7 +60,6 @@ function capitalize(wordArray, config) {
       titleArr.push(doCapitalization(word, idx, config, titleLength));
     });
   }
-
   // Post function
   const joinedTitleArr = titleArr.join(" ");
 
@@ -72,6 +71,7 @@ function capitalize(wordArray, config) {
     /-(\w)|:\s(\w)|\?\s(\w)|\.\s(\w)/g,
     match => cap(match)
   );
+
   return punctuationFixed;
 }
 
