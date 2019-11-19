@@ -64,7 +64,6 @@ const prep = [
   "round",
   "save",
   "since",
-  "than",
   "this",
   "through",
   "throughout",
@@ -187,7 +186,7 @@ const allCaps = [
   "X"
 ];
 
-const lowercasePartOfNames = ["de", "von", "van", "y"];
+const lowercasePartOfNames = ["da", "de", "von", "van", "y"];
 
 const species = [
   "dromedarius",
@@ -219,7 +218,6 @@ const species = [
   "eupatria",
   "molurus",
   "canadensis hanglu",
-  "hannah",
   "scolopaccus",
   "pardus",
   "leo",
@@ -259,7 +257,7 @@ const species = [
   "inermis",
   "biffoeus",
   "vulgare",
-  "Limonium",
+  "limonium",
   "sativa",
   "mays",
   "indica",
@@ -284,8 +282,34 @@ const species = [
   "cynocephalus",
   "rex",
   "impennis",
-  "megalodon"
+  "megalodon",
+  "erectus"
 ];
+
+const verbalPhrases = /abide[ds]? by|account(ed)?[s]? for|add(ed)?[s]? up|advise[ds]? against|agree[ds]? with|allow(ed)?[s]? for|appeal(ed)?[s]? to|appl(ie[ds])?[y]? for|back(ed)?[s]? away|back(ed)?[s]? down|back(ed)?[s]? up|black(ed)?[s]? out|block(ed)?[s]? off|blow(ed)?[s]? up|boil(ed)?[s]? down to|boot(ed)?[s]? up|break away|break down|break into|break out|break out of|break up|bring up|brush(ed)?[s]? up on|bump(ed)?[s]? into|burn(ed)?[s]? out|call(ed)?[s]? back|call(ed)?[s]? off|calm(ed)?[s]? down|carry on|carry out|check(ed)?[s]? in|check(ed)?[s]? out|clam up|clamp(ed)?[s]? down on|come across|come forward|count(ed)?[s]? on|cut[s]? down on|cut[s]? out|deal[ts]? with|die[sd]? down|drag on|draw(ed)?[s]? up|dress(ed)?[s]? up|drop(ped)?[s]? in|drop(ped)?[s]? off|drop out|ease[sd]? off|end(ed)?[s]? in|end(ed)?[s]? up|fall through|figure[sd]? out|fill(ed)?[s]? out|find out|focus(ed)?[s]? on|get along|get at|get away|get by|get in|get into|get off|get on|get on with|get out|get out of|get over|get rid of|get together|get up|give in|give up|go through|grow(ed)?[s]? up|hand(ed)?[s]? in|hand(ed)?[s]? out|hang up|hold on|hurry up|iron(ed)?[s]? out|join(ed)?[s]? in|join(ed)?[s]? up|keep on|keep up with|kick(ed)?[s]? off|leave out|let down|look after|look(ed)?[s]? down on|look(ed)?[s]? on|look(ed)?[s]? for|look(ed)?[s]? forward to|look(ed)?[s]? up to|make fun of|make up|mix up|move(ed)?[s]? in|move(ed)?[s]? out|nod off|own(ed)?[s]? up|pass(ed)?[s]? away|pass(ed)?[s]? out|pay back|put off|put on|put out|put up|pick(ed)?[s]? up|point(ed)?[s]? out|rely on|rule[sd]? out|run away|run into|run out of|set[s]? off|set[s]? up|shop around|show(ed)?[s]? off|show(ed)?[s]? up|sit down|stand up|take after|take care of|take off|take on|take out|tell off|think over|try on|tune[sd]? in|turn(ed)?[s]? down|turn(ed)?[s]? on|use[sd]? up|watch[e]?[sd]? out|wear out|wipe off/gi;
+
+const chi = ["and", "as", "but", "for", "or", "nor"];
+
+const nyLowerCase = [
+  "and",
+  "as",
+  "at",
+  "but",
+  "by",
+  "en",
+  "for",
+  "if",
+  "in",
+  "of",
+  "on",
+  "or",
+  "to",
+  "v.",
+  "vs.",
+  "via"
+];
+
+const nyUpperCase = ["no", "nor", "not", "off", "out", "so", "up"];
 
 export {
   prep,
@@ -294,5 +318,9 @@ export {
   articles,
   allCaps,
   lowercasePartOfNames,
-  species
+  species,
+  verbalPhrases,
+  chi,
+  nyLowerCase,
+  nyUpperCase
 };

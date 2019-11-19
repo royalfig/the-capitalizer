@@ -2,6 +2,7 @@ import Vue from "vue";
 import App from "./App.vue";
 import Toasted from "vue-toasted";
 import VueAnalytics from "vue-analytics";
+import './registerServiceWorker'
 
 Vue.config.productionTip = false;
 
