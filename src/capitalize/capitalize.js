@@ -20,10 +20,10 @@ const prepareTitle = input =>
     .replace(/"\b/g, "\u201c")
     .replace(/\b"/g, "\u201d")
     .replace(/--/g, "\u2014")
-    .replace(/\b\u2018\b/g, "'");
+    .replace(/\b\u2018\b/g, "\u2019")
+    .replace(/(\u2018)(\d\ds)/g, "\u2019$2");
 
 const doCapitalization = (word, pos, config, length) => {
-  console.log(pos + 1, length);
   const baseWord = word.replace(/[.,;'"?:\u2018\u2019\u201c\u201d]/g, "");
   const baseWordCap = baseWord.toUpperCase();
   const lengthRule =
@@ -47,125 +47,6 @@ const doCapitalization = (word, pos, config, length) => {
   }
 };
 
-function lowercaseFirstLetter(word, style, pos, length) {
-  const capped = cap(word);
-  if (allCaps.includes(word.toUpperCase().replace(/[.,—?:-]/g, ""))) {
-    return word.toUpperCase();
-  } else {
-    switch (style) {
-      case "AP": {
-        if (
-          [
-            ...prep,
-            ...articles,
-            ...coordConj,
-            ...subConj,
-            ...lowercasePartOfNames,
-            ...species
-          ].includes(word) &&
-          word.length < 4
-        ) {
-          return word;
-        } else {
-          return capped;
-        }
-      }
-      case "APA": {
-        if (
-          [
-            ...articles,
-            ...prep,
-            ...coordConj,
-            ...subConj,
-            ...lowercasePartOfNames,
-            ...species
-          ].includes(word) &&
-          word.length < 4
-        ) {
-          return word;
-        } else {
-          return capped;
-        }
-      }
-      case "CMS": {
-        const chi = ["and", "as", "but", "for", "or", "nor"];
-        if (
-          [
-            ...chi,
-            ...articles,
-            ...prep,
-            ...lowercasePartOfNames,
-            ...species
-          ].includes(word)
-        ) {
-          return word;
-        } else {
-          return capped;
-        }
-      }
-      case "MLA": {
-        if (
-          [
-            ...articles,
-            ...prep,
-            ...coordConj,
-            ...lowercasePartOfNames,
-            ...species
-          ].includes(word)
-        ) {
-          return word;
-        } else {
-          return capped;
-        }
-      }
-      case "NYT": {
-        const nyLowerCase = [
-          "and",
-          "as",
-          "at",
-          "but",
-          "by",
-          "en",
-          "for",
-          "if",
-          "in",
-          "of",
-          "on",
-          "or",
-          "to",
-          "v.",
-          "vs.",
-          "via"
-        ];
-        const nyUpperCase = ["no", "nor", "not", "off", "out", "so", "up"];
-        if (
-          [
-            ...nyLowerCase,
-            ...articles,
-            ...lowercasePartOfNames,
-            ...species
-          ].includes(word) &&
-          !nyUpperCase.includes(word)
-        ) {
-          return word;
-        } else {
-          return capped;
-        }
-      }
-      case "WP": {
-        if (
-          [...articles, ...coordConj, ...prep, ...species].includes(word) &&
-          word.length < 5
-        ) {
-          return word;
-        } else {
-          return capped;
-        }
-      }
-    }
-  }
-}
-
 function cap(word) {
   return word.replace(/\w/, match => match.toUpperCase());
 }
@@ -178,13 +59,16 @@ function capitalize(wordArray, config) {
     wordArray.forEach((word, idx) => {
       titleArr.push(doCapitalization(word, idx, config, titleLength));
     });
-    // titles.forEach(word => titleArr.push(lowercaseFirstLetter(word, style)));
   }
 
   // Post function
   const joinedTitleArr = titleArr.join(" ");
 
-  const punctuationFixed = joinedTitleArr.replace(
+  const verbalNounsCapped = joinedTitleArr.replace(verbalPhrases, match =>
+    match.replace(/\b\w/g, match => match.toUpperCase())
+  );
+
+  const punctuationFixed = verbalNounsCapped.replace(
     /-(\w)|:\s(\w)|\?\s(\w)|\.\s(\w)/g,
     match => cap(match)
   );
