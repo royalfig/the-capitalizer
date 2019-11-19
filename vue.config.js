@@ -17,11 +17,11 @@ module.exports = {
     appleMobileWebAppCapable: "yes",
     appleMobileWebAppStatusBarStyle: "#f16b6f",
     iconPaths: {
-      favicon32: "favicon-32x32.png",
-      favicon16: "favicon-16x16.png",
-      appleTouchIcon: "apple-touch-icon.png",
-      maskIcon: "safari-pinned-tab.svg",
-      msTileImage: "msapplication-icon-144x144.png"
+      favicon32: "img/icon/favicon-32x32.png",
+      favicon16: "img/icon/favicon-16x16.png",
+      appleTouchIcon: "img/icon/apple-touch-icon.png",
+      maskIcon: "img/icon/safari-pinned-tab.svg",
+      msTileImage: "img/icon/msapplication-icon-144x144.png"
     }
   }
 };
