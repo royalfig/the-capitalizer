@@ -72,7 +72,12 @@ function capitalize(wordArray, config) {
     match => cap(match)
   );
 
-  return punctuationFixed;
+  const emDashFixed = punctuationFixed.replace(
+    /\u2014(\w+)/g,
+    (match, capture) => "\u2014" + doCapitalization(capture, 1, config, 3)
+  );
+
+  return emDashFixed;
 }
 
 class Title {
