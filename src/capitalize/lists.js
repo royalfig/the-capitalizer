@@ -80,6 +80,8 @@ const prep = [
   "upon",
   "versus",
   "via",
+  "v",
+  "vs",
   "with",
   "within",
   "without"
@@ -203,7 +205,7 @@ const species = [
   "bennettii",
   "tristis",
   "palustris",
-  "lupus familiaris",
+  "familiaris",
   "vulpes",
   "gangeticus",
   "camelopardalis",
@@ -217,7 +219,7 @@ const species = [
   "naja",
   "eupatria",
   "molurus",
-  "canadensis hanglu",
+  "hanglu",
   "scolopaccus",
   "pardus",
   "leo",
@@ -230,7 +232,7 @@ const species = [
   "unicornis",
   "leucogeranus",
   "tigris",
-  "africanus asinus",
+  "asinus",
   "scrofa",
   "lupus",
   "quagga",
@@ -306,8 +308,8 @@ const nyLowerCase = [
   "on",
   "or",
   "to",
-  "v.",
-  "vs.",
+  "v",
+  "vs",
   "via"
 ];
 

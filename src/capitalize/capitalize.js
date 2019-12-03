@@ -63,21 +63,17 @@ function capitalize(wordArray, config) {
   // Post function
   const joinedTitleArr = titleArr.join(" ");
 
-  const verbalNounsCapped = joinedTitleArr.replace(verbalPhrases, match =>
-    match.replace(/\b\w/g, match => match.toUpperCase())
-  );
+  const postResult = joinedTitleArr
+    .replace(verbalPhrases, match =>
+      match.replace(/\b\w/g, match => match.toUpperCase())
+    )
+    .replace(/-(\w)|:\s(\w)|\?\s(\w)|\.\s(\w)/g, match => cap(match))
+    .replace(
+      /\u2014(\w+)/g,
+      (match, capture) => "\u2014" + doCapitalization(capture, 1, config, 3)
+    );
 
-  const punctuationFixed = verbalNounsCapped.replace(
-    /-(\w)|:\s(\w)|\?\s(\w)|\.\s(\w)/g,
-    match => cap(match)
-  );
-
-  const emDashFixed = punctuationFixed.replace(
-    /\u2014(\w+)/g,
-    (match, capture) => "\u2014" + doCapitalization(capture, 1, config, 3)
-  );
-
-  return emDashFixed;
+  return postResult;
 }
 
 class Title {
