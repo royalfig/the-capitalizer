@@ -12,19 +12,28 @@ import {
   nyUpperCase
 } from "./lists";
 
-// Functions to convert before splitting titles into arrays
+// Functions to convert elements before before splitting titles into arrays
 const prepareTitle = input =>
   input
     .replace(/'\b/g, "\u2018")
     .replace(/\b'/g, "\u2019")
     .replace(/"\b/g, "\u201c")
     .replace(/\b"/g, "\u201d")
+    .replace(/,"/g, ",\u201d")
     .replace(/--/g, "\u2014")
     .replace(/\b\u2018\b/g, "\u2019")
     .replace(/(\u2018)(\d\ds)/g, "\u2019$2");
 
+function capFirstLetter(word) {
+  return word.replace(/\w/, match => match.toUpperCase());
+}
+
 const doCapitalization = (word, pos, config, length) => {
-  const baseWord = word.replace(/[.,;'"?:\u2018\u2019\u201c\u201d]/g, "");
+  const baseWord = word.replace(
+    /[.,:;'"?!{}#&%$*^\[\[\u2018\u2019\u201c\u201d]/g,
+    ""
+  );
+  console.log(baseWord);
   const baseWordCap = baseWord.toUpperCase();
   const lengthRule =
     config.alwaysLowerLength === null
@@ -41,15 +50,11 @@ const doCapitalization = (word, pos, config, length) => {
   ) {
     return word;
   } else if (config.allCaps.includes(baseWordCap)) {
-    return baseWordCap;
+    return word.toUpperCase();
   } else {
-    return cap(word);
+    return capFirstLetter(word);
   }
 };
-
-function cap(word) {
-  return word.replace(/\w/, match => match.toUpperCase());
-}
 
 function capitalize(wordArray, config) {
   const titleArr = [];
@@ -60,14 +65,17 @@ function capitalize(wordArray, config) {
       titleArr.push(doCapitalization(word, idx, config, titleLength));
     });
   }
-  // Post function
+  // Post capitalization functions
+  // Move to own function
   const joinedTitleArr = titleArr.join(" ");
 
   const postResult = joinedTitleArr
     .replace(verbalPhrases, match =>
       match.replace(/\b\w/g, match => match.toUpperCase())
     )
-    .replace(/-(\w)|:\s(\w)|\?\s(\w)|\.\s(\w)/g, match => cap(match))
+    .replace(/-(\w)|:\s(\w)|\?\s(\w)|\.\s(\w)/g, match => capFirstLetter(match))
+    .replace(/(t|T)he Us/g, "$1he US")
+    .replace(/ Ca?\. \d/g, match => match.toLowerCase())
     .replace(
       /\u2014(\w+)/g,
       (match, capture) => "\u2014" + doCapitalization(capture, 1, config, 3)
@@ -85,6 +93,7 @@ class Title {
   }
 }
 
+// Configuration | Takes the desired style and sets that styles rules
 const getConfig = style => {
   switch (style) {
     case "AP":
