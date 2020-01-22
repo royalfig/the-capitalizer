@@ -30,10 +30,9 @@ function capFirstLetter(word) {
 
 const doCapitalization = (word, pos, config, length) => {
   const baseWord = word.replace(
-    /[.,:;'"?!{}#&%$*^\[\[\u2018\u2019\u201c\u201d]/g,
+    /[.,:;'"?!{}#&%$*^][\u2018\u2019\u201c\u201d]/g,
     ""
   );
-  console.log(baseWord);
   const baseWordCap = baseWord.toUpperCase();
   const lengthRule =
     config.alwaysLowerLength === null
@@ -74,7 +73,7 @@ function capitalize(wordArray, config) {
       match.replace(/\b\w/g, match => match.toUpperCase())
     )
     .replace(/-(\w)|:\s(\w)|\?\s(\w)|\.\s(\w)/g, match => capFirstLetter(match))
-    .replace(/(t|T)he Us/g, "$1he US")
+    .replace(/(t|T)he Us /g, "$1he US")
     .replace(/ Ca?\. \d/g, match => match.toLowerCase())
     .replace(
       /\u2014(\w+)/g,
