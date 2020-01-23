@@ -30,14 +30,19 @@ function capFirstLetter(word) {
 
 const doCapitalization = (word, pos, config, length) => {
   const baseWord = word.replace(
-    /[.,:;'"?!{}#&%$*^][\u2018\u2019\u201c\u201d]/g,
+    /[.,:;'"?!{}#&%$*^\u2018\u2019\u201c\u201d]|\[|\]/g,
     ""
   );
   const baseWordCap = baseWord.toUpperCase();
+
   const lengthRule =
     config.alwaysLowerLength === null
       ? true
       : baseWord.length < config.alwaysLowerLength;
+
+  if (config.allCaps.includes(baseWordCap)) {
+    return word.toUpperCase();
+  }
 
   if (
     config.alwaysLower.includes(baseWord) &&
@@ -48,11 +53,9 @@ const doCapitalization = (word, pos, config, length) => {
     pos + 1 !== length
   ) {
     return word;
-  } else if (config.allCaps.includes(baseWordCap)) {
-    return word.toUpperCase();
-  } else {
-    return capFirstLetter(word);
   }
+
+  return capFirstLetter(word);
 };
 
 function capitalize(wordArray, config) {
@@ -72,8 +75,8 @@ function capitalize(wordArray, config) {
     .replace(verbalPhrases, match =>
       match.replace(/\b\w/g, match => match.toUpperCase())
     )
-    .replace(/-(\w)|:\s(\w)|\?\s(\w)|\.\s(\w)/g, match => capFirstLetter(match))
-    .replace(/(t|T)he Us /g, "$1he US")
+    .replace(/-(\w)|:\s(\w)|\?\s(\w)/g, match => capFirstLetter(match))
+    .replace(/(t|T)he U(\.)?s(\.)?/g, "$1he U$2S$3")
     .replace(/ Ca?\. \d/g, match => match.toLowerCase())
     .replace(
       /\u2014(\w+)/g,
