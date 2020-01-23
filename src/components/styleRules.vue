@@ -1,7 +1,7 @@
 <template>
   <aside class="container explainer-container">
     <div>
-      <h2 class="style-rules">The Style Rules</h2>
+      <h2 class="style-rules">What to Capitalize in a Title</h2>
       <p>Ideally, we&apos;d have one simple set of rules for capitalizing titles. In reality, though, the rules for title case—what to capitalize and what not to capitalize in a title—slightly differ according to the publication&apos;s style guide. The Capitalizer eases this pain of sorting through all these rules by capitalizing the titles for you! Nonetheless, the most popular rules for capitalization are listed below for your reference.</p>
     </div>
     <article class="explainer" v-for="name in sortedStyles" :key="name.id" :id="name.id+'_rule'">
@@ -105,7 +105,7 @@ export default {
                 "Capitalize the first and last words in the title and in any subtitle"
             },
             {
-              rule: "Capitalize all words of four letters or more"
+              rule: "Capitalize all words with four or more letters"
             },
             {
               rule:

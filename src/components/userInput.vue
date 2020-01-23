@@ -109,7 +109,6 @@ export default {
 }
 
 .input-container, .result-container {
-  // width: 50%;
   padding: 1em;
   color: cap-white;
   border-left: 1px solid cap-border;
