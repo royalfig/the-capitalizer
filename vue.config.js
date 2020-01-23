@@ -8,7 +8,8 @@ module.exports = {
     );
   },
   pwa: {
-    name: "The Capitalizer — A Lightning⚡Fast Title Capitalization Tool",
+    name:
+      "The Capitalizer — A Lightning-Fast Tool for Automatically Capitalizing Titles",
     manifestOptions: {
       short_name: "The Capitalizer"
     },
