@@ -76,7 +76,7 @@ function capitalize(wordArray, config) {
       match.replace(/\b\w/g, match => match.toUpperCase())
     )
     .replace(/-(\w)|:\s(\w)|\?\s(\w)/g, match => capFirstLetter(match))
-    .replace(/(t|T)he U(\.)?s(\.)?/g, "$1he U$2S$3")
+    .replace(/(t|T)he U(\.)?s(\.)?(\W)/g, "$1he U$2S$3$4")
     .replace(/ Ca?\. \d/g, match => match.toLowerCase())
     .replace(
       /\u2014(\w+)/g,
