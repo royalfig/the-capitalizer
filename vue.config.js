@@ -14,7 +14,7 @@ module.exports = {
       short_name: "The Capitalizer"
     },
     themeColor: "#f16b6f",
-    msTileColor: "#f16b6f",
+    msTileColor: "#fffefe",
     appleMobileWebAppCapable: "yes",
     appleMobileWebAppStatusBarStyle: "#f16b6f",
     iconPaths: {
