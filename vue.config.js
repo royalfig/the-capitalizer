@@ -9,7 +9,7 @@ module.exports = {
   },
   pwa: {
     name:
-      "The Capitalizer — A Lightning-Fast Tool for Automatically Capitalizing Titles",
+      "Title Capitalization Tool - The Capitalizer — Automatically Convert Text to Title Case",
     manifestOptions: {
       short_name: "The Capitalizer"
     },
