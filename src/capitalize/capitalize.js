@@ -71,6 +71,11 @@ function capitalize(wordArray, config) {
   // Move to own function
   const joinedTitleArr = titleArr.join(" ");
 
+  /*
+
+  What's this function doing?
+
+  */
   const postResult = joinedTitleArr
     .replace(verbalPhrases, match =>
       match.replace(/\b\w/g, match => match.toUpperCase())
