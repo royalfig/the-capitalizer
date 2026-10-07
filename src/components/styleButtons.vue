@@ -13,7 +13,7 @@ defineEmits(["clear", "copy"]);
 .footer {
   margin-bottom: 2em;
   justify-content: space-between;
-  background-color: var(--color-container-sunken);
+  background-color: var(--color-container);
   border: 1px solid var(--color-outline-variant);
   border-bottom-left-radius: var(--cap-border-radius);
   border-bottom-right-radius: var(--cap-border-radius);

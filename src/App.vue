@@ -274,10 +274,10 @@ html {
 
 body {
   margin: 0;
-  background: var(--color-surface);
+  background: var(--color-container-sunken);
   color: var(--color-on-surface);
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
-  line-height: 1.6;
+  font-family: -apple-system, BlinkMacSystemFont, avenir next, avenir, segoe ui, helvetica neue, Adwaita Sans, Cantarell, Ubuntu, roboto, noto, helvetica, arial, sans-serif;
+  line-height: 1.4;
 }
 
 h1 {
@@ -324,7 +324,7 @@ h5 {
 }
 
 .app-container {
-  background: var(--color-surface);
+  background: var(--color-container-sunken);
   padding: 1em;
 }
 

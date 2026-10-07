@@ -84,7 +84,7 @@ watch(picked, newStyle => {
 <style scoped>
 .styles {
   padding: 1rem;
-  background-color: var(--color-container-sunken);
+  background-color: var(--color-container);
   border: 1px solid var(--color-outline-variant);
   border-top-left-radius: var(--cap-border-radius);
   border-top-right-radius: var(--cap-border-radius);

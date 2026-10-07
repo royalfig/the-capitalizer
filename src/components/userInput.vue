@@ -131,7 +131,7 @@ defineExpose({ clearIt, copyIt });
 }
 
 .input-container {
-  background-color: var(--color-container);
+  background-color: var(--color-surface);
 }
 
 .input-container-bottom-border {
@@ -152,7 +152,7 @@ defineExpose({ clearIt, copyIt });
 }
 
 .result-container {
-  background-color: var(--color-container);
+  background-color: var(--color-surface);
 }
 
 .results {
@@ -177,7 +177,7 @@ defineExpose({ clearIt, copyIt });
   padding: 0;
   line-height: 1.6;
   color: var(--color-on-surface);
-  background-color: var(--color-container);
+  background-color: var(--color-surface);
   resize: none;
   caret-color: var(--color-primary);
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
