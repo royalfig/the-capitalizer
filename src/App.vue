@@ -277,7 +277,7 @@ body {
   background: var(--color-container-sunken);
   color: var(--color-on-surface);
   font-family: -apple-system, BlinkMacSystemFont, avenir next, avenir, segoe ui, helvetica neue, Adwaita Sans, Cantarell, Ubuntu, roboto, noto, helvetica, arial, sans-serif;
-  line-height: 1.4;
+  line-height: 1.6;
 }
 
 h1 {

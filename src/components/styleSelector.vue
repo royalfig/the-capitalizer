@@ -153,7 +153,7 @@ watch(picked, newStyle => {
   align-items: center;
   position: relative;
   padding-left: 1.25em;
-  margin-right: 1.5em;
+  margin-right: clamp(.5em, 1.25em, 1.5em);
   margin-bottom: 0.5em;
   cursor: pointer;
   font-weight: 600;
