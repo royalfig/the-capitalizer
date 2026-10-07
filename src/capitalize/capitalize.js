@@ -76,10 +76,13 @@ function capitalize(wordArray, config) {
   What's this function doing?
 
   */
-  const postResult = joinedTitleArr
-    .replace(verbalPhrases, match =>
-      match.replace(/\b\w/g, match => match.toUpperCase())
-    )
+  const withPhrasalVerbs = config.phrasalVerbs
+    ? joinedTitleArr.replace(verbalPhrases, match =>
+        match.replace(/\b\w/g, match => match.toUpperCase())
+      )
+    : joinedTitleArr;
+
+  const postResult = withPhrasalVerbs
     .replace(/-(\w)|:\s(\w)|\?\s(\w)/g, match => capFirstLetter(match))
     .replace(/(t|T)he U(\.)?s(\.)?(\W|\b)/g, "$1he U$2S$3$4")
     .replace(/ Ca?\. \d/g, match => match.toLowerCase())
@@ -131,6 +134,7 @@ const AP = {
   alwaysLowerLength: 4,
   alwaysUpper: [],
   hyphen: null,
+  phrasalVerbs: true,
   name: "Associated Press"
 };
 
@@ -147,6 +151,7 @@ const APA = {
   alwaysLowerLength: 4,
   alwaysUpper: [],
   hyphen: null,
+  phrasalVerbs: true,
   name: "American Psychological Association"
 };
 
@@ -162,6 +167,7 @@ const CMS = {
   alwaysLowerLength: null,
   alwaysUpper: [],
   hyphen: null,
+  phrasalVerbs: true,
   name: "Chicago Manual of Style"
 };
 
@@ -177,6 +183,11 @@ const MLA = {
   alwaysLowerLength: null,
   alwaysUpper: [],
   hyphen: null,
+  // MLA is strict: prepositions and coordinating conjunctions stay
+  // lowercase in the middle of a title regardless of length or whether
+  // they're part of a phrasal verb -- unlike AP, APA, CMS, NYT, and WP,
+  // MLA's own rules don't carve out an adverbial/phrasal-verb exception.
+  phrasalVerbs: false,
   name: "Modern Language Association"
 };
 
@@ -191,6 +202,7 @@ const NYT = {
   alwaysLowerLength: null,
   alwaysUpper: nyUpperCase,
   hyphen: null,
+  phrasalVerbs: true,
   name: "New York Times"
 };
 
@@ -200,6 +212,7 @@ const WP = {
   alwaysLowerLength: 5,
   alwaysUpper: [],
   hyphen: null,
+  phrasalVerbs: true,
   name: "Wikipedia"
 };
 

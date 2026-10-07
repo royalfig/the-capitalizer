@@ -131,4 +131,42 @@ describe("capitalizer (baseline, captured from current production behavior)", ()
       "Ms. Smith Goes to Washington"
     ]);
   });
+
+  // These two phrasal verbs were confirmed missing from the verbalPhrases
+  // regex by hand-checking real corpus titles against each style's own
+  // rules: "out" wasn't in the "look" particle list, and "dig" wasn't in
+  // the regex at all.
+  it("capitalizes phrasal verbs that were previously missed by the regex", () => {
+    for (const style of ["AP", "APA", "CMS", "NYT", "WP"]) {
+      expect(capitalize(style, "look out, secret seven")).toEqual([
+        "Look Out, Secret Seven"
+      ]);
+      expect(capitalize(style, "digging up the bones")).toEqual([
+        "Digging Up the Bones"
+      ]);
+    }
+  });
+
+  // MLA's own rule has no adverbial/phrasal-verb exception (confirmed
+  // against the MLA Handbook): prepositions and coordinating conjunctions
+  // stay lowercase in the middle of a title regardless of length or
+  // whether they're part of a phrasal verb. Every other style here does
+  // have that exception.
+  it("does not capitalize phrasal-verb particles for MLA", () => {
+    expect(capitalize("MLA", "turn off the lights")).toEqual([
+      "Turn off the Lights"
+    ]);
+    expect(capitalize("MLA", "running out of time")).toEqual([
+      "Running out of Time"
+    ]);
+  });
+
+  it("still capitalizes phrasal-verb particles for the other styles", () => {
+    expect(capitalize("AP", "turn off the lights")).toEqual([
+      "Turn Off the Lights"
+    ]);
+    expect(capitalize("CMS", "turn off the lights")).toEqual([
+      "Turn Off the Lights"
+    ]);
+  });
 });

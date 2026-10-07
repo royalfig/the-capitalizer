@@ -56,7 +56,7 @@ const styles = [
             },
             {
               rule:
-                "For hyphenated compounds, always capitalize the first word. Capitalize subsequent words unless they are articles, prepositions, or coordinating conjunctions, or a musical symbol (like &ldquo;sharp&rdquo; in F-sharp). If the first word is a prefix that could not stand on its own, then lowercase the following word (for example, &ldquo;Anti-theft&rdquo;). Capitalize all words in hyphenated numbers or fractions"
+                "For hyphenated compounds, always capitalize the first word. Capitalize subsequent words unless they are articles, prepositions, or coordinating conjunctions, or a musical symbol (like &ldquo;sharp&rdquo; in F-sharp). Capitalize all words in hyphenated numbers or fractions"
             }
           ]
         },
