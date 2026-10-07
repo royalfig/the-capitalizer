@@ -227,14 +227,14 @@ const sortedStyles = computed(() =>
   margin: 0.15em auto;
   font-weight: 900;
   line-height: 1.2;
-  color: #333333;
+  color: var(--color-on-surface);
   text-align: center;
 }
 
 .style {
   display: inline;
   line-height: 1.2;
-  color: var(--cap-dark-gray);
+  color: var(--color-on-surface);
 }
 
 .explainer {
@@ -247,8 +247,8 @@ const sortedStyles = computed(() =>
   font-weight: 700;
   font-size: 75%;
   text-transform: uppercase;
-  color: #fff;
-  background-color: var(--cap-dark-gray);
+  color: var(--color-on-surface);
+  background-color: var(--color-container-overlay);
   border-radius: 5px;
   margin-left: 5px;
   font-weight: 700;
@@ -257,7 +257,7 @@ const sortedStyles = computed(() =>
 
 .rule-container {
   margin-left: 1em;
-  border-left: 1px solid var(--cap-red);
+  border-left: 1px solid var(--color-primary);
 }
 </style>
 

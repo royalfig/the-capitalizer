@@ -84,8 +84,8 @@ watch(picked, newStyle => {
 <style scoped>
 .styles {
   padding: 1rem;
-  background-color: #ffffff;
-  border: 1px solid var(--cap-border);
+  background-color: var(--color-container);
+  border: 1px solid var(--color-outline);
   border-top-left-radius: var(--cap-border-radius);
   border-top-right-radius: var(--cap-border-radius);
 }
@@ -94,7 +94,7 @@ watch(picked, newStyle => {
   align-items: center;
   flex: 100%;
   font-weight: 600;
-  color: var(--cap-border);
+  color: var(--color-on-surface-variant);
 }
 
 @media (min-width: 768px) {
@@ -130,7 +130,7 @@ watch(picked, newStyle => {
   margin: 0 0 0 0.5em;
 
   & a {
-    color: var(--cap-border);
+    color: var(--color-on-surface-variant);
     text-decoration: none;
   }
 }
@@ -157,7 +157,7 @@ watch(picked, newStyle => {
   margin-bottom: 0.5em;
   cursor: pointer;
   font-weight: 600;
-  color: var(--cap-border);
+  color: var(--color-on-surface-variant);
   user-select: none;
   transition: all 0.2s ease-out;
 
@@ -182,20 +182,20 @@ watch(picked, newStyle => {
   left: 0;
   height: 1em;
   width: 1em;
-  border: 3px solid var(--cap-border);
+  border: 3px solid var(--color-outline);
   border-radius: 50%;
   transition: all 0.2s ease-out;
 }
 
 .style-label input:focus ~ .checkmark {
-  border: 3px solid var(--cap-dark-gray);
+  border: 3px solid var(--color-on-surface);
   z-index: 100;
   background: none;
 }
 
 /* When the radio button is checked, add a blue background */
 .style-label input:checked ~ .checkmark {
-  background-color: var(--cap-border);
+  background-color: var(--color-outline);
 }
 
 /* Create the indicator (the dot/circle - hidden when not checked) */

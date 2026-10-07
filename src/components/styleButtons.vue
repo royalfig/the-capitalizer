@@ -13,8 +13,8 @@ defineEmits(["clear", "copy"]);
 .footer {
   margin-bottom: 2em;
   justify-content: space-between;
-  background-color: #ffffff;
-  border: 1px solid var(--cap-border);
+  background-color: var(--color-container);
+  border: 1px solid var(--color-outline);
   border-bottom-left-radius: var(--cap-border-radius);
   border-bottom-right-radius: var(--cap-border-radius);
 }
@@ -25,11 +25,11 @@ defineEmits(["clear", "copy"]);
   border: none;
   cursor: pointer;
   padding: 1rem;
-  color: var(--cap-border);
+  color: var(--color-on-surface-variant);
   transition: all 0.2s ease;
 
   &:first-child {
-    border-right: 1px solid var(--cap-border);
+    border-right: 1px solid var(--color-outline);
 
     &:hover, &:focus {
       box-shadow: inset -1px 0 2px rgba(0, 0, 0, 0.25);
@@ -42,7 +42,7 @@ defineEmits(["clear", "copy"]);
   }
 
   &:last-child {
-    border-left: 1px solid var(--cap-border);
+    border-left: 1px solid var(--color-outline);
 
     &:hover, &:focus {
       box-shadow: inset 1px 0 2px rgba(0, 0, 0, 0.25);

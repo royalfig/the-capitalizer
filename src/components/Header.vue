@@ -20,14 +20,14 @@
 
 .title {
   margin: 0.15em auto;
-  color: #333333;
+  color: var(--color-on-surface);
   text-align: center;
   line-height: 1.2;
   font-weight: 900;
 }
 
 .subtitle {
-  color: #444;
+  color: var(--color-on-surface-variant);
   text-align: center;
   font-weight: 600;
   text-transform: uppercase;

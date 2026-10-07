@@ -111,9 +111,9 @@ defineExpose({ clearIt, copyIt });
 
 .input-container, .result-container {
   padding: 1em;
-  color: var(--cap-white);
-  border-left: 1px solid var(--cap-border);
-  border-right: 1px solid var(--cap-border);
+  color: var(--color-on-surface);
+  border-left: 1px solid var(--color-outline);
+  border-right: 1px solid var(--color-outline);
   border-collapse: collapse;
   height: 250px;
   font-weight: 400;
@@ -131,13 +131,13 @@ defineExpose({ clearIt, copyIt });
 }
 
 .input-container {
-  background-color: var(--cap-gray);
+  background-color: var(--color-container-sunken);
 }
 
 .input-container-bottom-border {
   width: 100%;
   height: 3px;
-  background-color: var(--cap-border);
+  background-color: var(--color-outline);
   outline: none;
   transition: background-color 0.2s ease-out;
 }
@@ -147,12 +147,12 @@ defineExpose({ clearIt, copyIt });
 }
 
 .input-titles:focus + .input-container-bottom-border {
-  background-color: var(--cap-red);
+  background-color: var(--color-primary);
   transition: all 0.2s ease-out;
 }
 
 .result-container {
-  background-color: var(--cap-darker-gray);
+  background-color: var(--color-container-sunken);
 }
 
 .results {
@@ -161,13 +161,13 @@ defineExpose({ clearIt, copyIt });
 }
 
 .results-active {
-  background-color: var(--cap-green);
+  background-color: var(--color-success);
 }
 
 .input-header {
   margin-bottom: 0.5em;
   padding-bottom: 0.15em;
-  border-bottom: 1px solid var(--cap-border);
+  border-bottom: 1px solid var(--color-outline);
   font-weight: 600;
 }
 
@@ -176,10 +176,10 @@ defineExpose({ clearIt, copyIt });
   height: 100%;
   padding: 0;
   line-height: 1.6;
-  color: var(--cap-white);
-  background-color: var(--cap-gray);
+  color: var(--color-on-surface);
+  background-color: var(--color-container-sunken);
   resize: none;
-  caret-color: var(--cap-red);
+  caret-color: var(--color-primary);
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
 }
 
@@ -195,22 +195,22 @@ defineExpose({ clearIt, copyIt });
   }
 
   &::-webkit-scrollbar-track {
-    background: var(--cap-border);
+    background: var(--color-outline);
   }
 
   &::-webkit-scrollbar-thumb {
-    background: var(--cap-white);
+    background: var(--color-on-surface-variant);
   }
 
   &::-webkit-scrollbar-thumb:hover {
-    background: var(--cap-dark-gray);
+    background: var(--color-on-surface);
   }
 }
 
 .title-num {
   margin-left: 1px;
-  background: var(--cap-white);
-  color: var(--cap-dark-gray);
+  background: var(--color-container-overlay);
+  color: var(--color-on-surface);
   padding: 1px 3px;
   vertical-align: text-top;
   border-radius: 4px;

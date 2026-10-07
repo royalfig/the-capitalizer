@@ -76,7 +76,8 @@ const year = computed(() => new Date().getFullYear());
 <style scoped>
 .footer {
   margin-top: 5rem;
-  background: var(--cap-dark-gray);
+  background: var(--color-container);
+  color: var(--color-on-surface);
   font-size: 0.8em;
   padding: 1em;
   font-weight: 100;
@@ -93,7 +94,7 @@ const year = computed(() => new Date().getFullYear());
 
   & .brand {
     font-size: 115%;
-    color: var(--cap-white);
+    color: var(--color-on-surface);
   }
 
   & p {
@@ -110,7 +111,7 @@ const year = computed(() => new Date().getFullYear());
   height: 1.25rem;
   width: 1.25rem;
   margin: 0.5em;
-  fill: var(--cap-border);
+  fill: var(--color-on-surface-variant);
   transition: fill 0.2s ease-out;
 
   &:first-child {
@@ -118,12 +119,12 @@ const year = computed(() => new Date().getFullYear());
   }
 
   &:hover {
-    fill: var(--cap-red);
+    fill: var(--color-primary);
   }
 }
 
 .copyright {
   font-size: 0.9em;
-  color: var(--cap-white);
+  color: var(--color-on-surface);
 }
 </style>

@@ -31,8 +31,8 @@
 }
 
 .instructions {
-  background: var(--cap-yellow);
-  color: var(--cap-darker-gray);
+  background: var(--color-warning);
+  color: var(--color-on-warning);
   padding: 2px 5px;
   text-transform: uppercase;
   border-radius: 5px;

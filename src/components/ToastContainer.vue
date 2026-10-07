@@ -31,7 +31,8 @@ const { toasts } = useToast();
 .toasted {
   margin: 4px 0;
   padding: 0.75em 1.25em;
-  background: var(--cap-white);
+  background: var(--color-container-overlay);
+  color: var(--color-on-surface);
   border: 2px solid;
   border-radius: var(--cap-border-radius);
   font-weight: 600;
