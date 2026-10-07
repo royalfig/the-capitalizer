@@ -30,7 +30,7 @@ function capFirstLetter(word) {
 
 const doCapitalization = (word, pos, config, length) => {
   const baseWord = word.replace(
-    /[.,:;'"?!{}#&%$*^\u2018\u2019\u201c\u201d]|\[|\]/g,
+    /[.,:;'"?!{}#&%$*^()\u2018\u2019\u201c\u201d]|\[|\]/g,
     ""
   );
   const baseWordCap = baseWord.toUpperCase();
