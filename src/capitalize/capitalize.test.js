@@ -169,4 +169,47 @@ describe("capitalizer (baseline, captured from current production behavior)", ()
       "Turn Off the Lights"
     ]);
   });
+
+  // Hand-verified against real titles pulled from the 5000-title corpus
+  // (Open Library + Crossref): these phrasal verbs were already correctly
+  // handled by the existing verbalPhrases regex before this round's fixes,
+  // confirmed identical across AP/CMS/NYT/WP.
+  it("already correctly capitalizes these phrasal verbs from the corpus audit", () => {
+    const cases = [
+      ["running out of time", "Running Out of Time"],
+      ["holding up the universe", "Holding Up the Universe"],
+      ["coming out and disclosures", "Coming Out and Disclosures"],
+      ["five go off in a caravan", "Five Go Off in a Caravan"],
+      ["five go off to camp", "Five Go Off to Camp"]
+    ];
+    for (const style of ["AP", "CMS", "NYT", "WP"]) {
+      for (const [input, expected] of cases) {
+        expect(capitalize(style, input)).toEqual([expected]);
+      }
+    }
+  });
+
+  // Controls from the same audit: ordinary (non-phrasal) short
+  // prepositions correctly stay lowercase, confirming the phrasal-verb
+  // fixes above didn't introduce false positives.
+  it("leaves ordinary, non-phrasal short prepositions lowercase", () => {
+    for (const style of ["AP", "CMS", "NYT", "WP"]) {
+      expect(capitalize(style, "the wind in the willows")).toEqual([
+        "The Wind in the Willows"
+      ]);
+      expect(capitalize(style, "a study in scarlet")).toEqual([
+        "A Study in Scarlet"
+      ]);
+    }
+  });
+
+  it("capitalizes 'down' regardless of position, since it's not on any style's preposition list", () => {
+    // Not actually about phrasal-verb detection -- "down" simply never
+    // appears in lists.js's `prep` array, so it always falls through to
+    // normal capitalization. Documented here so it isn't mistaken for a
+    // deliberate adverbial-use fix if someone goes looking for one.
+    expect(capitalize("CMS", "five go down to the sea")).toEqual([
+      "Five Go Down to the Sea"
+    ]);
+  });
 });
