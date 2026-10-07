@@ -107,10 +107,14 @@ const year = computed(() => new Date().getFullYear());
   }
 }
 
+.social-media {
+  line-height: 0;
+}
+
 .social-media svg {
-  height: 1.25rem;
-  width: 1.25rem;
-  margin: 0.5em;
+  height: 1.1rem;
+  width: 1.1rem;
+  margin: 0.75em;
   fill: var(--color-on-surface-variant);
   transition: fill 0.2s ease-out;
 
@@ -119,7 +123,7 @@ const year = computed(() => new Date().getFullYear());
   }
 
   &:hover {
-    fill: var(--color-primary);
+    fill: var(--color-secondary);
   }
 }
 
