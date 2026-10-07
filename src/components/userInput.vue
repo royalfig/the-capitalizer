@@ -180,7 +180,7 @@ defineExpose({ clearIt, copyIt });
   background-color: var(--color-surface);
   resize: none;
   caret-color: var(--color-primary);
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+  font-family: -apple-system, BlinkMacSystemFont, avenir next, avenir, segoe ui, helvetica neue, Adwaita Sans, Cantarell, Ubuntu, roboto, noto, helvetica, arial, sans-serif;
 }
 
 .input-titles, .result-title {

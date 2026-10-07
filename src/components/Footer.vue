@@ -80,7 +80,6 @@ const year = computed(() => new Date().getFullYear());
   color: var(--color-on-surface);
   font-size: 0.8em;
   padding: 1em;
-  font-weight: 100;
 
   & .container {
     justify-content: space-between;
