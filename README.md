@@ -18,6 +18,16 @@ The Capitalizer is a lightning⚡fast tool for automatically converting text to 
 
 The Capitalizer is a PWA built with Vue.js. The business logic for capitalization lives in /capitalize/capitalize.js.
 
+## Deploy
+
+This is a static Vite build (`npm run build` -> `dist/`), set up for Cloudflare Pages.
+
+**Git integration (recommended):** connect this repo in the Cloudflare dashboard under Workers & Pages. It picks up `wrangler.jsonc`'s build output directory automatically; set the build command to `npm run build` if it isn't detected.
+
+**Direct upload from the CLI:** `npm run deploy` (runs `wrangler pages deploy`; requires `wrangler login` first).
+
+Node 22+ is required (see `.node-version`).
+
 ## TODOs
 
 - Improve capitalization logic (e.g., hyphenation rules, better verbal noun support)

@@ -1,0 +1,18 @@
+# The service worker itself must always be revalidated, or clients can get
+# stuck on an old version indefinitely -- the browser only checks for SW
+# updates when it fetches sw.js, so this file can't be cached.
+/sw.js
+  Cache-Control: no-cache
+
+# manifest.webmanifest and workbox-*.js are referenced by sw.js and should
+# follow the same policy so updates to the precache list are picked up.
+/manifest.webmanifest
+  Cache-Control: no-cache
+
+/workbox-*.js
+  Cache-Control: no-cache
+
+# Vite fingerprints these filenames with a content hash, so a given URL's
+# content never changes -- safe to cache for a long time.
+/assets/*
+  Cache-Control: public, max-age=31536000, immutable
