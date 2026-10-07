@@ -17,7 +17,7 @@ import { useToast } from "../composables/useToast";
 const { toasts } = useToast();
 </script>
 
-<style lang="stylus" scoped>
+<style scoped>
 .toast-stack {
   position: fixed;
   bottom: 10px;
@@ -31,9 +31,9 @@ const { toasts } = useToast();
 .toasted {
   margin: 4px 0;
   padding: 0.75em 1.25em;
-  background: cap-white;
+  background: var(--cap-white);
   border: 2px solid;
-  border-radius: cap-border-radius;
+  border-radius: var(--cap-border-radius);
   font-weight: 600;
 }
 

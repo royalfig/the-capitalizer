@@ -218,7 +218,7 @@ const sortedStyles = computed(() =>
 );
 </script>
 
-<style scoped lang="stylus">
+<style scoped>
 .explainer-container {
   margin-top: 6rem;
 }
@@ -234,7 +234,7 @@ const sortedStyles = computed(() =>
 .style {
   display: inline;
   line-height: 1.2;
-  color: cap-dark-gray;
+  color: var(--cap-dark-gray);
 }
 
 .explainer {
@@ -248,7 +248,7 @@ const sortedStyles = computed(() =>
   font-size: 75%;
   text-transform: uppercase;
   color: #fff;
-  background-color: cap-dark-gray;
+  background-color: var(--cap-dark-gray);
   border-radius: 5px;
   margin-left: 5px;
   font-weight: 700;
@@ -257,7 +257,7 @@ const sortedStyles = computed(() =>
 
 .rule-container {
   margin-left: 1em;
-  border-left: 1px solid cap-red;
+  border-left: 1px solid var(--cap-red);
 }
 </style>
 

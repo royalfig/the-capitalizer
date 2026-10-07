@@ -40,7 +40,32 @@ function styleValue(newStyle) {
 }
 </script>
 
-<style lang="stylus">
+<style>
+/*
+  Global styles and design tokens. This is the app's only unscoped
+  <style> block, so it's the one place the shared design tokens and
+  layout utility classes (below) live -- real CSS custom properties
+  cascade to every component automatically, unlike Stylus variables,
+  which needed to be re-imported into each component's own compiled
+  output.
+
+  Breakpoints can't be custom properties: @media condition values don't
+  support var(). tablet = 768px, laptop = 992px, desktop = 1200px.
+*/
+:root {
+  --cap-red: #f16b6f;
+  --cap-green: #aacd6e;
+  --cap-border: #707070;
+  --cap-white: #f9f7f7;
+  --cap-gray: #3d3d3d;
+  --cap-dark-gray: #333333;
+  --cap-darker-gray: #313030;
+  --cap-info: #433b60;
+  --cap-success: #556b30;
+  --cap-yellow: #f1aa6b;
+  --cap-border-radius: 6px;
+}
+
 * {
   box-sizing: border-box;
 }
@@ -75,12 +100,35 @@ h5 {
   font-size: 1.25em;
 }
 
+.m-0 {
+  margin: 0;
+}
+
+.container {
+  max-width: 1040px;
+  margin: 0 auto;
+}
+
+.flex-row {
+  display: flex;
+  flex-flow: row wrap;
+}
+
+.flex-col {
+  display: flex;
+  flex-direction: column;
+}
+
+.flex-100 {
+  width: 100%;
+}
+
 .app-container {
   background: #fffefe;
   padding: 1em;
 }
 
-@media (min-width: tablet) {
+@media (min-width: 768px) {
   html {
     font-size: 17px;
   }
@@ -90,32 +138,32 @@ h5 {
   }
 }
 
-@media (min-width: laptop) {
+@media (min-width: 992px) {
   html {
     font-size: 18px;
   }
 }
 
-@media (min-width: desktop) {
+@media (min-width: 1200px) {
   html {
     font-size: 19px;
   }
 }
 
 .toasted.custom-toast.outline.info {
-  color: cap-info;
-  border-color: cap-info;
+  color: var(--cap-info);
+  border-color: var(--cap-info);
 }
 
 .toasted.custom-toast.outline.success {
-  color: cap-success;
-  border-color: cap-success;
+  color: var(--cap-success);
+  border-color: var(--cap-success);
 }
 
 .underline {
   height: 2px;
   width: 100%;
-  background-color: cap-red;
+  background-color: var(--cap-red);
   margin: 2px auto;
 }
 </style>

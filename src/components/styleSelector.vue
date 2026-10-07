@@ -81,23 +81,23 @@ watch(picked, newStyle => {
 });
 </script>
 
-<style lang="stylus" scoped>
+<style scoped>
 .styles {
   padding: 1rem;
   background-color: #ffffff;
-  border: 1px solid cap-border;
-  border-top-left-radius: cap-border-radius;
-  border-top-right-radius: cap-border-radius;
+  border: 1px solid var(--cap-border);
+  border-top-left-radius: var(--cap-border-radius);
+  border-top-right-radius: var(--cap-border-radius);
 }
 
 .selected-style {
   align-items: center;
   flex: 100%;
   font-weight: 600;
-  color: cap-border;
+  color: var(--cap-border);
 }
 
-@media (min-width: tablet) {
+@media (min-width: 768px) {
   .selected-style {
     flex: 1;
   }
@@ -129,8 +129,8 @@ watch(picked, newStyle => {
 .current-style {
   margin: 0 0 0 0.5em;
 
-  a {
-    color: cap-border;
+  & a {
+    color: var(--cap-border);
     text-decoration: none;
   }
 }
@@ -141,14 +141,14 @@ watch(picked, newStyle => {
   margin-top: 10px;
 }
 
-@media (min-width: tablet) {
+@media (min-width: 768px) {
   .style-options {
     flex: 1;
   }
 }
 
 .style-label {
-  // for accessibility
+  /* for accessibility */
   min-width: 48px;
   align-items: center;
   position: relative;
@@ -157,7 +157,7 @@ watch(picked, newStyle => {
   margin-bottom: 0.5em;
   cursor: pointer;
   font-weight: 600;
-  color: cap-border;
+  color: var(--cap-border);
   user-select: none;
   transition: all 0.2s ease-out;
 
@@ -182,23 +182,20 @@ watch(picked, newStyle => {
   left: 0;
   height: 1em;
   width: 1em;
-  border: 3px solid cap-border;
+  border: 3px solid var(--cap-border);
   border-radius: 50%;
   transition: all 0.2s ease-out;
 }
 
-// .style-label:hover input ~ .checkmark, .style-label:focus input ~ .checkmark {
-// background-color: lighten(cap-border, 75%);
-// }
 .style-label input:focus ~ .checkmark {
-  border: 3px solid cap-dark-gray;
+  border: 3px solid var(--cap-dark-gray);
   z-index: 100;
   background: none;
 }
 
 /* When the radio button is checked, add a blue background */
 .style-label input:checked ~ .checkmark {
-  background-color: cap-border;
+  background-color: var(--cap-border);
 }
 
 /* Create the indicator (the dot/circle - hidden when not checked) */
@@ -213,7 +210,7 @@ watch(picked, newStyle => {
   display: block;
 }
 
-@media (min-width: tablet) {
+@media (min-width: 768px) {
   .style-options {
     margin-top: 0;
   }

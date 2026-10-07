@@ -9,8 +9,8 @@
   </div>
 </template>
 
-<style lang="stylus" scoped>
-@media (max-width: tablet) {
+<style scoped>
+@media (max-width: 768px) {
   .small {
     display: block;
   }
@@ -20,7 +20,7 @@
   }
 }
 
-@media (min-width: tablet) {
+@media (min-width: 768px) {
   .small {
     display: none;
   }
@@ -31,8 +31,8 @@
 }
 
 .instructions {
-  background: cap-yellow;
-  color: cap-darker-gray;
+  background: var(--cap-yellow);
+  color: var(--cap-darker-gray);
   padding: 2px 5px;
   text-transform: uppercase;
   border-radius: 5px;

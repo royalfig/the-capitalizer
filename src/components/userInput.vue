@@ -96,24 +96,31 @@ function copyIt() {
 defineExpose({ clearIt, copyIt });
 </script>
 
-<style lang="stylus" scoped>
-.container {
+<style scoped>
+/*
+  Specificity note: this element's class list is "container flex-row",
+  both shared global utility classes (see App.vue). This rule needs to
+  win over the global .flex-row's `flex-flow: row wrap` on small screens,
+  so it targets both classes together (specificity 0,2,0) rather than
+  relying on source order against the global stylesheet.
+*/
+.container.flex-row {
   display: flex;
   flex-direction: column;
 }
 
 .input-container, .result-container {
   padding: 1em;
-  color: cap-white;
-  border-left: 1px solid cap-border;
-  border-right: 1px solid cap-border;
+  color: var(--cap-white);
+  border-left: 1px solid var(--cap-border);
+  border-right: 1px solid var(--cap-border);
   border-collapse: collapse;
   height: 250px;
   font-weight: 400;
 }
 
-@media (min-width: tablet) {
-  .container {
+@media (min-width: 768px) {
+  .container.flex-row {
     flex-direction: row;
   }
 
@@ -124,13 +131,13 @@ defineExpose({ clearIt, copyIt });
 }
 
 .input-container {
-  background-color: cap-gray;
+  background-color: var(--cap-gray);
 }
 
 .input-container-bottom-border {
   width: 100%;
   height: 3px;
-  background-color: cap-border;
+  background-color: var(--cap-border);
   outline: none;
   transition: background-color 0.2s ease-out;
 }
@@ -140,12 +147,12 @@ defineExpose({ clearIt, copyIt });
 }
 
 .input-titles:focus + .input-container-bottom-border {
-  background-color: cap-red;
+  background-color: var(--cap-red);
   transition: all 0.2s ease-out;
 }
 
 .result-container {
-  background-color: cap-darker-gray;
+  background-color: var(--cap-darker-gray);
 }
 
 .results {
@@ -154,13 +161,13 @@ defineExpose({ clearIt, copyIt });
 }
 
 .results-active {
-  background-color: cap-green;
+  background-color: var(--cap-green);
 }
 
 .input-header {
   margin-bottom: 0.5em;
   padding-bottom: 0.15em;
-  border-bottom: 1px solid cap-border;
+  border-bottom: 1px solid var(--cap-border);
   font-weight: 600;
 }
 
@@ -169,10 +176,10 @@ defineExpose({ clearIt, copyIt });
   height: 100%;
   padding: 0;
   line-height: 1.6;
-  color: cap-white;
-  background-color: cap-gray;
+  color: var(--cap-white);
+  background-color: var(--cap-gray);
   resize: none;
-  caret-color: cap-red;
+  caret-color: var(--cap-red);
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
 }
 
@@ -188,22 +195,22 @@ defineExpose({ clearIt, copyIt });
   }
 
   &::-webkit-scrollbar-track {
-    background: cap-border;
+    background: var(--cap-border);
   }
 
   &::-webkit-scrollbar-thumb {
-    background: cap-white;
+    background: var(--cap-white);
   }
 
   &::-webkit-scrollbar-thumb:hover {
-    background: cap-dark-gray;
+    background: var(--cap-dark-gray);
   }
 }
 
 .title-num {
   margin-left: 1px;
-  background: cap-white;
-  color: cap-dark-gray;
+  background: var(--cap-white);
+  color: var(--cap-dark-gray);
   padding: 1px 3px;
   vertical-align: text-top;
   border-radius: 4px;

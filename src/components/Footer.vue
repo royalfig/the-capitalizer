@@ -73,34 +73,34 @@ import { computed } from "vue";
 const year = computed(() => new Date().getFullYear());
 </script>
 
-<style lang="stylus" scoped>
+<style scoped>
 .footer {
   margin-top: 5rem;
-  background: cap-dark-gray;
+  background: var(--cap-dark-gray);
   font-size: 0.8em;
   padding: 1em;
   font-weight: 100;
 
-  .container {
+  & .container {
     justify-content: space-between;
     width: 100%;
   }
 
-  .footer-col > img {
+  & .footer-col > img {
     height: 2em;
     width: 2em;
   }
 
-  .brand {
+  & .brand {
     font-size: 115%;
-    color: cap-white;
+    color: var(--cap-white);
   }
 
-  p {
+  & p {
     margin: 0;
   }
 
-  a, :visited {
+  & a, & :visited {
     color: currentColor;
     text-decoration: none;
   }
@@ -110,7 +110,7 @@ const year = computed(() => new Date().getFullYear());
   height: 1.25rem;
   width: 1.25rem;
   margin: 0.5em;
-  fill: cap-border;
+  fill: var(--cap-border);
   transition: fill 0.2s ease-out;
 
   &:first-child {
@@ -118,12 +118,12 @@ const year = computed(() => new Date().getFullYear());
   }
 
   &:hover {
-    fill: cap-red;
+    fill: var(--cap-red);
   }
 }
 
 .copyright {
   font-size: 0.9em;
-  color: cap-white;
+  color: var(--cap-white);
 }
 </style>

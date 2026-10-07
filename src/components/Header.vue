@@ -10,7 +10,7 @@
   </header>
 </template>
 
-<style lang="stylus" scoped>
+<style scoped>
 .header {
   padding: 0 1em 1em;
   justify-content: center;

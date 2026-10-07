@@ -39,15 +39,6 @@ export default defineConfig({
       "@": fileURLToPath(new URL("./src", import.meta.url))
     }
   },
-  css: {
-    preprocessorOptions: {
-      stylus: {
-        additionalData: `@import "${fileURLToPath(
-          new URL("./src/styles/imports.styl", import.meta.url)
-        )}"\n`
-      }
-    }
-  },
   test: {
     environment: "jsdom"
   }
