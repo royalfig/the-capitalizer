@@ -1,59 +1,49 @@
 {
   "name": "vue-capitalize",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "private": true,
+  "type": "module",
   "scripts": {
-    "serve": "vue-cli-service serve",
-    "build": "vue-cli-service build",
-    "lint": "vue-cli-service lint",
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview",
+    "lint": "eslint src",
     "test": "vitest run"
   },
   "dependencies": {
-    "core-js": "^2.6.11",
-    "global": "^4.4.0",
-    "lodash": "^4.17.21",
-    "register-service-worker": "^1.6.2",
-    "rollup": "^2.45.2",
-    "vue": "^2.6.11",
-    "vue-analytics": "^5.22.1",
-    "vue-toasted": "^1.1.27"
+    "vue": "^3.5.43"
   },
   "devDependencies": {
-    "@vue/cli-plugin-babel": "^3.12.1",
-    "@vue/cli-plugin-eslint": "^3.12.1",
-    "@vue/cli-plugin-pwa": "^4.1.2",
-    "@vue/cli-service": "^4.1.2",
-    "babel-eslint": "^10.0.1",
-    "eslint": "^5.16.0",
-    "eslint-plugin-vue": "^5.0.0",
+    "@vitejs/plugin-vue": "^6.0.9",
+    "@vue/test-utils": "^2.5.1",
+    "eslint": "^8.57.1",
+    "eslint-plugin-vue": "^9.33.0",
     "jsdom": "^30.1.2",
-    "style-resources-loader": "^1.3.3",
     "stylus": "^0.54.7",
-    "stylus-loader": "^3.0.2",
-    "vitest": "^5.0.3",
-    "vue-template-compiler": "^2.6.11"
+    "vite": "^8.3.3",
+    "vite-plugin-pwa": "^2.0.0",
+    "vitest": "^5.0.3"
   },
   "eslintConfig": {
     "root": true,
     "env": {
-      "node": true
+      "node": true,
+      "browser": true,
+      "es2022": true
     },
     "extends": [
-      "plugin:vue/essential",
+      "plugin:vue/vue3-essential",
       "eslint:recommended"
     ],
-    "rules": {},
     "parserOptions": {
-      "parser": "babel-eslint"
-    }
-  },
-  "postcss": {
-    "plugins": {
-      "autoprefixer": {}
-    }
+      "ecmaVersion": "latest",
+      "sourceType": "module"
+    },
+    "rules": {}
   },
   "browserslist": [
     "> 1%",
-    "last 2 versions"
+    "last 2 versions",
+    "not dead"
   ]
 }

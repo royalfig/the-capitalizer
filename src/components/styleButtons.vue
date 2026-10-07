@@ -5,8 +5,8 @@
   </footer>
 </template>
 
-<script>
-export default {};
+<script setup>
+defineEmits(["clear", "copy"]);
 </script>
 
 <style lang="stylus" scoped>

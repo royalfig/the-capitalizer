@@ -27,61 +27,58 @@
   </section>
 </template>
 
-<script>
-export default {
-  data() {
-    return {
-      styles: [
-        {
-          abb: "AP",
-          name: "Associated Press"
-        },
-        {
-          abb: "APA",
-          name: "American Psychological Association"
-        },
-        {
-          abb: "CMS",
-          name: "Chicago Manual of Style"
-        },
-        {
-          abb: "MLA",
-          name: "Modern Language Association"
-        },
-        {
-          abb: "NYT",
-          name: "New York Times"
-        },
-        {
-          abb: "WP",
-          name: "Wikipedia"
-        }
-      ],
-      picked: "AP"
-    };
+<script setup>
+import { computed, onMounted, ref, watch } from "vue";
+
+const emit = defineEmits(["selected-style"]);
+
+const styles = [
+  {
+    abb: "AP",
+    name: "Associated Press"
   },
-  computed: {
-    styleName() {
-      let styleName = this.styles.find(o => o.abb === this.picked);
-      return styleName.name;
-    },
-    anchorTag: function() {
-      return "#" + this.picked + "_rule";
-    }
+  {
+    abb: "APA",
+    name: "American Psychological Association"
   },
-  mounted() {
-    if (localStorage.style) {
-      this.picked = localStorage.style;
-      this.$emit("selectedStyle", { style: this.picked });
-    }
+  {
+    abb: "CMS",
+    name: "Chicago Manual of Style"
   },
-  watch: {
-    picked(newStyle) {
-      localStorage.style = newStyle;
-      this.$emit("selectedStyle", { style: this.picked });
-    }
+  {
+    abb: "MLA",
+    name: "Modern Language Association"
+  },
+  {
+    abb: "NYT",
+    name: "New York Times"
+  },
+  {
+    abb: "WP",
+    name: "Wikipedia"
   }
-};
+];
+
+const picked = ref("AP");
+
+const styleName = computed(() => {
+  const found = styles.find(o => o.abb === picked.value);
+  return found.name;
+});
+
+const anchorTag = computed(() => "#" + picked.value + "_rule");
+
+onMounted(() => {
+  if (localStorage.style) {
+    picked.value = localStorage.style;
+    emit("selected-style", { style: picked.value });
+  }
+});
+
+watch(picked, newStyle => {
+  localStorage.style = newStyle;
+  emit("selected-style", { style: picked.value });
+});
 </script>
 
 <style lang="stylus" scoped>
@@ -110,12 +107,12 @@ export default {
   margin: 0;
 }
 
-.fade-enter {
+.fade-enter-from {
   transform: translateY(-10px);
   opacity: 0;
 }
 
-.fade-enter-to, .fade-leave {
+.fade-enter-to, .fade-leave-from {
   transform: translateY(0);
   opacity: 1;
 }
@@ -124,7 +121,7 @@ export default {
   transition: all 0.15s cubic-bezier(1, 0.5, 0.8, 1);
 }
 
-.fade-leave-to { /* .fade-leave-active below version 2.1.8 */
+.fade-leave-to {
   transform: translateY(10px);
   opacity: 0;
 }

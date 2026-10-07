@@ -2,7 +2,7 @@
   <footer class="flex-row footer">
     <div class="container flex-row">
       <div class="footer-col">
-        <img alt :src="require('../img/the_capitalizer.png')" />
+        <img alt src="../img/the_capitalizer.png" />
         <p class="brand">The Capitalizer</p>
         <p class="copyright">
           &copy; {{ year }}
@@ -53,15 +53,10 @@
   </footer>
 </template>
 
-<script>
-export default {
-  computed: {
-    year() {
-      const currentYear = new Date().getFullYear();
-      return currentYear;
-    }
-  }
-};
+<script setup>
+import { computed } from "vue";
+
+const year = computed(() => new Date().getFullYear());
 </script>
 
 <style lang="stylus" scoped>

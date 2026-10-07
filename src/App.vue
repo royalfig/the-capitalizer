@@ -1,56 +1,43 @@
 <template>
   <div>
     <div class="app-container">
-      <app-header></app-header>
-      <app-style-selector v-on:selectedStyle="styleValue"></app-style-selector>
-      <app-user-input ref="titleText" :styleValue="this.chosenStyle"></app-user-input>
-      <app-style-buttons v-on:clear="clearField" v-on:copy="copyField"></app-style-buttons>
-      <app-instructions></app-instructions>
-      <app-style-rules></app-style-rules>
+      <AppHeader></AppHeader>
+      <AppStyleSelector @selected-style="styleValue"></AppStyleSelector>
+      <AppUserInput ref="titleText" :style-value="chosenStyle"></AppUserInput>
+      <AppStyleButtons @clear="clearField" @copy="copyField"></AppStyleButtons>
+      <AppInstructions></AppInstructions>
+      <AppStyleRules></AppStyleRules>
     </div>
-    <app-footer></app-footer>
+    <AppFooter></AppFooter>
+    <AppToastContainer></AppToastContainer>
   </div>
 </template>
 
-<script>
-import Header from "./components/Header.vue";
-import styleSelector from "./components/styleSelector.vue";
-import userInput from "./components/userInput.vue";
-import styleButtons from "./components/styleButtons.vue";
-import Instructions from "./components/Instructions.vue";
-import styleRules from "./components/styleRules.vue";
-import Footer from "./components/Footer.vue";
+<script setup>
+import { ref } from "vue";
+import AppHeader from "./components/Header.vue";
+import AppStyleSelector from "./components/styleSelector.vue";
+import AppUserInput from "./components/userInput.vue";
+import AppStyleButtons from "./components/styleButtons.vue";
+import AppInstructions from "./components/Instructions.vue";
+import AppStyleRules from "./components/styleRules.vue";
+import AppFooter from "./components/Footer.vue";
+import AppToastContainer from "./components/ToastContainer.vue";
 
-export default {
-  data() {
-    return {
-      chosenStyle: { style: "AP" }
-    };
-  },
-  components: {
-    "app-header": Header,
-    "app-style-selector": styleSelector,
-    "app-user-input": userInput,
-    "app-style-buttons": styleButtons,
-    "app-instructions": Instructions,
-    "app-style-rules": styleRules,
-    "app-footer": Footer
-  },
-  methods: {
-    clearField() {
-      this.$refs.titleText.clearIt();
-    },
-    copyField() {
-      this.$refs.titleText.copyIt();
-    },
-    styleValue(chosenStyle) {
-      this.chosenStyle = chosenStyle;
-    }
-  },
-  mounted() {
-    this.$ga.page("/");
-  }
-};
+const chosenStyle = ref({ style: "AP" });
+const titleText = ref(null);
+
+function clearField() {
+  titleText.value.clearIt();
+}
+
+function copyField() {
+  titleText.value.copyIt();
+}
+
+function styleValue(newStyle) {
+  chosenStyle.value = newStyle;
+}
 </script>
 
 <style lang="stylus">

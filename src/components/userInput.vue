@@ -33,73 +33,67 @@
   </section>
 </template>
 
-<script>
+<script setup>
+import { computed, ref } from "vue";
 import titleCapitalizer from "../capitalize/capitalize.js";
+import { useToast } from "../composables/useToast";
 
-export default {
-  data() {
-    return {
-      message: ""
-    };
-  },
-  computed: {
-    titleNum() {
-      if (this.message !== "") {
-        // Split titles into individuals
-        const originalTitles = this.message
-          .trim()
-          .toLowerCase()
-          .split(/\n/);
+const props = defineProps(["styleValue"]);
+const { show } = useToast();
 
-        return originalTitles.length;
-      } else {
-        return 0;
-      }
-    },
-    capitalize() {
-      const style = this.styleValue.style;
+const message = ref("");
 
-      if (this.message !== "") {
-        const capitalizedTitle = titleCapitalizer(style, this.message);
-        return capitalizedTitle;
-      } else {
-        return "";
-      }
-    }
-  },
-  methods: {
-    clearIt() {
-      if (this.message === "") {
-        this.$toasted.show("Enter a title first", { type: "info" });
-      } else {
-        this.message = "";
-        this.$toasted.show("Titles Cleared", { type: "success" });
-      }
-    },
-    copyIt() {
-      if (this.message === "") {
-        this.$toasted.show("Enter a title to copy", { type: "info" });
-      } else {
-        const textArea = document.createElement("textarea");
-        const titleArray = [];
-        this.capitalize.forEach(element => {
-          titleArray.push(element.capitalized);
-        });
-        const copyTitle = titleArray.join("\n");
-        textArea.value = copyTitle;
-        document.body.appendChild(textArea);
-        textArea.select();
-        document.execCommand("copy");
-        document.body.removeChild(textArea);
-        const copied = this.titleNum > 1 ? " Titles Copied" : " Title Copied";
-        this.$toasted.show(this.titleNum + copied, {
-          type: "success"
-        });
-      }
-    }
-  },
-  props: ["styleValue"]
-};
+const titleNum = computed(() => {
+  if (message.value !== "") {
+    const originalTitles = message.value
+      .trim()
+      .toLowerCase()
+      .split(/\n/);
+
+    return originalTitles.length;
+  }
+  return 0;
+});
+
+const capitalize = computed(() => {
+  const style = props.styleValue.style;
+
+  if (message.value !== "") {
+    return titleCapitalizer(style, message.value);
+  }
+  return "";
+});
+
+function clearIt() {
+  if (message.value === "") {
+    show("Enter a title first", { type: "info" });
+  } else {
+    message.value = "";
+    show("Titles Cleared", { type: "success" });
+  }
+}
+
+function copyIt() {
+  if (message.value === "") {
+    show("Enter a title to copy", { type: "info" });
+  } else {
+    const textArea = document.createElement("textarea");
+    const titleArray = [];
+    capitalize.value.forEach(element => {
+      titleArray.push(element.capitalized);
+    });
+    const copyTitle = titleArray.join("\n");
+    textArea.value = copyTitle;
+    document.body.appendChild(textArea);
+    textArea.select();
+    document.execCommand("copy");
+    document.body.removeChild(textArea);
+    const copied = titleNum.value > 1 ? " Titles Copied" : " Title Copied";
+    show(titleNum.value + copied, { type: "success" });
+  }
+}
+
+defineExpose({ clearIt, copyIt });
 </script>
 
 <style lang="stylus" scoped>
@@ -216,12 +210,12 @@ export default {
   font-size: 0.8em;
 }
 
-.fade-enter {
+.fade-enter-from {
   transform: translateY(-10px);
   opacity: 0;
 }
 
-.fade-enter-to, .fade-leave {
+.fade-enter-to, .fade-leave-from {
   transform: translateY(0);
   opacity: 1;
 }
@@ -230,7 +224,7 @@ export default {
   transition: all 0.15s cubic-bezier(1, 0.5, 0.8, 1);
 }
 
-.fade-leave-to { /* .fade-leave-active below version 2.1.8 */
+.fade-leave-to {
   transform: translateY(10px);
   opacity: 0;
 }

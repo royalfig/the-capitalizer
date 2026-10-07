@@ -1,17 +1,9 @@
-import Vue from "vue";
+import { createApp } from "vue";
 import App from "./App.vue";
-import Toasted from "vue-toasted";
+import { registerSW } from "virtual:pwa-register";
 
-import "./registerServiceWorker";
+if (import.meta.env.PROD) {
+  registerSW({ immediate: true });
+}
 
-Vue.config.productionTip = false;
-
-Vue.use(Toasted, {
-  duration: 4000,
-  theme: "outline",
-  className: "custom-toast"
-});
-
-new Vue({
-  render: h => h(App)
-}).$mount("#app");
+createApp(App).mount("#app");

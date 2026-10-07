@@ -25,11 +25,10 @@
   </aside>
 </template>
 
-<script>
-export default {
-  data() {
-    return {
-      styles: [
+<script setup>
+import { computed } from "vue";
+
+const styles = [
         {
           id: "CMS",
           badge: "Academic",
@@ -214,24 +213,20 @@ export default {
             }
           ]
         }
-      ]
-    };
-  },
-  computed: {
-    sortedStyles() {
-      return this.styles.slice(0).sort((a, b) => {
-        var idA = a.id;
-        var idB = b.id;
-        if (idA < idB) {
-          return -1;
-        }
-        if (idA > idB) {
-          return 1;
-        }
-      });
+];
+
+const sortedStyles = computed(() =>
+  styles.slice(0).sort((a, b) => {
+    const idA = a.id;
+    const idB = b.id;
+    if (idA < idB) {
+      return -1;
     }
-  }
-};
+    if (idA > idB) {
+      return 1;
+    }
+  })
+);
 </script>
 
 <style scoped lang="stylus">
