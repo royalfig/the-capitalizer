@@ -169,6 +169,7 @@ function styleValue(newStyle) {
     calc(sin(var(--light-angle)) * -26.00px) calc(cos(var(--light-angle)) * 26.00px) 29px -1.9px rgb(from var(--shadow-color) r g b / calc(0.11 * var(--shadow-strength)));
 
   --cap-border-radius: 6px;
+  --width-input-max: 1400px;
 }
 
 @media (prefers-color-scheme: dark) {
@@ -274,7 +275,7 @@ html {
 
 body {
   margin: 0;
-  background: var(--color-container-sunken);
+  background: var(--color-surface);
   color: var(--color-on-surface);
   font-family: -apple-system, BlinkMacSystemFont, avenir next, avenir, segoe ui, helvetica neue, Adwaita Sans, Cantarell, Ubuntu, roboto, noto, helvetica, arial, sans-serif;
   line-height: 1.6;
@@ -324,7 +325,7 @@ h5 {
 }
 
 .app-container {
-  background: var(--color-container-sunken);
+  background: var(--color-surface);
   padding: 1em;
 }
 

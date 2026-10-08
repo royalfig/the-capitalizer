@@ -82,6 +82,9 @@ watch(picked, newStyle => {
 </script>
 
 <style scoped>
+.container {
+    max-width: var(--width-input-max);
+}
 .styles {
   padding: 1rem;
   background-color: var(--color-container);

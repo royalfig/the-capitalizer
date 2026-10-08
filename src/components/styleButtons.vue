@@ -10,6 +10,10 @@ defineEmits(["clear", "copy"]);
 </script>
 
 <style scoped>
+.container {
+    max-width: var(--width-input-max);
+}
+
 .footer {
   margin-bottom: 2em;
   justify-content: space-between;

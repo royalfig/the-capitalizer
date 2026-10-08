@@ -109,6 +109,10 @@ defineExpose({ clearIt, copyIt });
   flex-direction: column;
 }
 
+.container {
+    max-width: var(--width-input-max);
+}
+
 .input-container, .result-container {
   padding: 1em;
   color: var(--color-on-surface);
